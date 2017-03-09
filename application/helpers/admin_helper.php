@@ -4,4 +4,26 @@
     {
         return base_url('admin/'.$url);
     }
+
+
+    function isset_user($data)
+    {
+    	if ($data) 
+    	{
+            # code...
+            $user = $data;
+            //pre($user);
+            //$data= array();
+            foreach ($user as $key => $value) {
+                # code...
+                return $data = $value->maGV;
+            }
+            
+        }
+		else
+		{
+			// không tồn tại 
+			redirect(admin_url('login'));
+		}
+	}
 ?>

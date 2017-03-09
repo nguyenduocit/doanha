@@ -10,3 +10,5 @@
         <script src="<?php echo public_url('admin') ?>/js/jquery.mCustomScrollbar.concat.min.js"></script>
         <!-- Custom Theme Scripts -->
         <script src="<?php echo public_url('admin') ?>/js/custom.min.js"></script>
+        
+        <script src="<?php echo public_url('admin') ?>/js/check.js"></script>

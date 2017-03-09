@@ -17,8 +17,12 @@
         <div class="clearfix"></div>
     </div>
     <!-- Hiện thông báo -->
+        <?php 
+              $this->load->view('admin/partials/alert');
+        ?> 
     <!-- Hiện thông báo -->
     <div class="x_content">
+
         <table class="table table-striped table-bordered">
             <thead>
                 <tr>
@@ -38,21 +42,36 @@
                     # code...
                     foreach ($list_khoa as $key => $value) {
 
-                        # code...
                         echo '
                              <tr>
-                                <td>1</td>
-                                <td>Công Nghệ Thông Tin</td>
-                                <td>001</td>
-                                <td>06-10-2017</td>
-                                <td>06-10-2017</td>
-                                <td>Phan Trung Phú</td>
+                                <td>'.$value ->id.'</td>
+                                <td>'.$value ->tenkhoa.'</td>
+                                <td>'.$value ->makhoa.'</td>
+                                <td>'.$value ->created_at.'</td>
+                                <td>'.$value ->updated_at.'</td>
+                                <td>'.$value ->nguoithaotac.'</td>
+                                
+                                ';
+                                if($value ->hienthi == 0)
+                                    {
+                                        echo '
+                                        <td class="text-center">
+                                            <a href="" class="btn btn-xs btn-default">Ẩn</a>
+                                        </td>';
+                                    }
+                                    else{
+                                        echo '
+                                        <td class="text-center">
+                                            <a href="" class="btn btn-xs btn-default">Hiện</a>
+                                        </td>';
+                                    }
+                                    
+                                
+
+                                echo '
                                 <td class="text-center">
-                                    <a href="" class="btn btn-xs btn-default">Ẩn</a>
-                                </td>
-                                <td class="text-center">
-                                    <a class="btn btn-xs btn-default" href=""><i class="fa fa-pencil"></i></a>
-                                    <a class="btn btn-xs btn-danger btn-delete-action" href=""><i class="fa fa-trash-o"></i></a>
+                                    <a class="btn btn-xs btn-default" href="'.admin_url('khoa/edit/').$value ->id.'"><i class="fa fa-pencil"></i></a>
+                                    <a class="btn btn-xs btn-danger btn-delete-action verify_action " href="'.admin_url('khoa/delete/').$value ->id.'"><i class="fa fa-trash-o"></i></a>
                                 </td>
                             </tr>
                         ';
@@ -64,22 +83,9 @@
         </table>
         <div>
             <nav aria-label="Page navigation" class="clearfix">
-                <ul class="pagination" >
-                    <li>
-                        <a href=""  aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-
-                    <li><a href="">1</a></li>
-                    <li><a href="">2</a></li>
-                    <li><a href="">3</a></li>
-                    <li>
-                        <a href="" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
+                <?php
+                    echo $this->pagination->create_links();
+                ?>
                 <div class="pull-right" style="margin-top: 20px;">
                     <a href="" type="button" class="btn btn-danger">Trở Về</a>
                 </div>
