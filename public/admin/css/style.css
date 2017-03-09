@@ -1,0 +1,6 @@
+.x_title h2 {}
+
+.text-danger p {
+    margin-bottom: -5px;
+    color: red;
+}
