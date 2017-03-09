@@ -77,27 +77,44 @@
 
 					$activel = $this ->input ->post('active');
 
-					// lưu vào mảng data ;
-				
-					$data = array(
-								'makhoa' 		=> $makhoa,
-								'tenkhoa' 		=> $tenkhoa,
-								'nguoithaotac'  => $maGV,
-								'hienthi'		=> $activel
-						);
+					$input = array();
 
-					//kiểm tra và chạy câu lệnh inser 
+					$input['where'] = array('makhoa' =>$makhoa);
 
-					if($this->KhoaModel->create($data))
+					$data = $this->KhoaModel->get_list($input);
+
+					if(empty($data))
 					{
-						 $this->session->set_flashdata('success','Insert  thành công');
-						 redirect(admin_url('khoa'));
+						$makhoa = $this ->input ->post('makhoa');
+
+						// lưu vào mảng data ;
+				
+						$data = array(
+									'makhoa' 		=> $makhoa,
+									'tenkhoa' 		=> $tenkhoa,
+									'nguoithaotac'  => $maGV,
+									'hienthi'		=> $activel
+									);
+
+						//kiểm tra và chạy câu lệnh inser 
+
+						if($this->KhoaModel->create($data))
+						{
+							 $this->session->set_flashdata('success','Insert  thành công');
+							 redirect(admin_url('khoa'));
+						}
+						else
+						{
+							$this->session->set_flashdata('error','Lỗi không thể insert dữ liệu');
+
+						}
+
 					}
 					else
 					{
-						$this->session->set_flashdata('error','Lỗi không thể insert dữ liệu');
-
+						$this->session->set_flashdata('error','Mã khoa đã bị trùng .');
 					}
+
 				}
 
 			}
@@ -145,39 +162,63 @@
 
 				if($this->form_validation->run())
 				{
+					
 					// gán giá trị tên khoa
 					$tenkhoa = $this->input ->post('tenkhoa');
 
-					// gán giá trị mã khoa
+					$makhoa = $this->input ->post('makhoa');
 
-					$makhoa = $this ->input ->post('makhoa');
+					if ($list_khoa->makhoa == $makhoa ) 
+					{
+						$data = array();
+						
+					}
+					else
+					{
+						$input = array();
+						$input['where'] = array('makhoa' => $makhoa);
+						$data = $this->KhoaModel->get_list($input);
+
+					}
+					
 
 					// lấy giá trị của activel 
 
 					$activel = $this ->input ->post('active');
 
-					// lưu vào mảng data ;
-				
-					$data = array(
-								'makhoa' 		=> $makhoa,
-								'tenkhoa' 		=> $tenkhoa,
-								'nguoithaotac'  => $maGV,
-								'hienthi'		=> $activel
-						);
-
-					//kiểm tra và chạy câu lệnh inser 
-
-					if($this->KhoaModel->update($id,$data))
+					if(empty($data))
 					{
-						 $this->session->set_flashdata('success','Update  thành công');
-						 redirect(admin_url('khoa'));
+
+						$makhoa = $this->input ->post('makhoa');
+						// lưu vào mảng data ;
+						$data = array(
+									'makhoa' 		=> $makhoa,
+									'tenkhoa' 		=> $tenkhoa,
+									'nguoithaotac'  => $maGV,
+									'hienthi'		=> $activel
+							);
+
+						//kiểm tra và chạy câu lệnh inser 
+
+						if($this->KhoaModel->update($id,$data))
+						{
+							 $this->session->set_flashdata('success','Update  thành công');
+							 redirect(admin_url('khoa'));
+						}
+						else
+						{
+							$this->session->set_flashdata('error','Lỗi không thể update dữ liệu');
+							redirect(admin_url('khoa/edit'));
+
+						}
 					}
 					else
 					{
-						$this->session->set_flashdata('error','Lỗi không thể update dữ liệu');
-						redirect(admin_url('khoa/edit'));
-
+						$this->session->set_flashdata('error','Lỗi không thể update dữ liệu , mã khoa đã trùng');
+							redirect(admin_url('khoa/edit'));
 					}
+					
+				
 				}
 
 		     
@@ -216,8 +257,6 @@
 	        	redirect(admin_url('khoa'));
 	        }
 	        
-
-
 	    }
 
 	}

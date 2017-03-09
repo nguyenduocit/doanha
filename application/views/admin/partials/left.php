@@ -28,8 +28,8 @@
                         <a><i class="fa fa-database"></i> Dữ liệu hệ thống <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="<?php echo admin_url('khoa') ?>">Quản lý Khoa</a></li>
-                            <li><a href="a">Quản lý Bộ Môn</a></li>
-                            <li><a href="b">Quản lý Chuyên Ngành</a></li>
+                            <li><a href="<?php echo admin_url('bomon') ?>">Quản lý Bộ Môn</a></li>
+                            <li><a href="<?php echo admin_url('chuyennganh') ?>">Quản lý Chuyên Ngành</a></li>
                         </ul>
                     </li>
                 </ul>

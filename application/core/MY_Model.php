@@ -269,6 +269,20 @@
                 return FALSE;
             }
         }
+
+
+
+        function getOneFlag($input = array() )
+        {
+            $this->db->where($input);
+            $query = $this->db->get($this->table);
+            $row = $query->row();
+            if(count($row) > 0 )
+            {
+                return false;
+            }
+            return true;
+        }
         
     }
 ?>
