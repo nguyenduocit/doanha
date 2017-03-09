@@ -54,7 +54,7 @@
             
             
             <div class="form-actions no-margin-bottom" style="text-align:center;">
-                <a href="/cms_core/admin/modules/category/" class="btn btn-danger  ">Trở về</a>
+                <a href="#" class="btn btn-danger  " onclick="history.go(-1); return false;">Trở về</a>
                 <input type="submit" value=" Add New" class="btn btn-info">
             </div>
 

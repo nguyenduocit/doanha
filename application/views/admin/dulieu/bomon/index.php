@@ -83,7 +83,7 @@
                     echo $this->pagination->create_links();
                 ?>
                 <div class="pull-right" style="margin-top: 20px;">
-                    <a href="" type="button" class="btn btn-danger">Trở Về</a>
+                    <a href="" type="button" class="btn btn-danger" onclick="history.go(-1); return false;" >Trở Về</a>
                 </div>
             </nav>
         </div>

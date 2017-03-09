@@ -162,7 +162,7 @@
 
 				if($this->form_validation->run())
 				{
-					
+
 					// gán giá trị tên khoa
 					$tenkhoa = $this->input ->post('tenkhoa');
 
@@ -208,7 +208,8 @@
 						else
 						{
 							$this->session->set_flashdata('error','Lỗi không thể update dữ liệu');
-							redirect(admin_url('khoa/edit'));
+							
+							
 
 						}
 					}
