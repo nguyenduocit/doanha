@@ -285,47 +285,23 @@
 	    }
 
 
-	     // tìm kiếm theo tên
-        function search()
+	    function search()
         {
-            if ($this->uri->rsegment('3') == 1)
-            {
-                // lấy dữ liệu từ automatic complete
-                $key = $this->input->get('term');
-            }
-            else{
-                $key = $this->input->get('key-search');
-            }
+           
+            $key = $this->input->post('key-search');
+            
 
             $this->data['key'] = trim($key);
-              $input = array();
+            $input = array();
             $input['like'] = array('tenchuyennganh',$key);
-            $list = $this->ChuyennganhtModel->get_list($input);
+         
+            $list = $this->ChuyennganhModel->get_list($input);
 
-            $this->data['list'] = $list;
-
-            if ($this->uri->rsegment('3') == 1)
-            {
-                // xử lý autocomplete
-                $result = array();
-                foreach ($list as $row)
-                {
-                    $item = array();
-                    $item['id'] = $row ->id;
-                    $item['lable'] = $row->name;
-                    $item['value'] = $row->name;
-                    $result[] = $item;
-                }
-                // du lieu tra ve
-                die(json_encode($result));
-            }
-           
+            $data['list'] = $list;
             // hiển thị ra phần view
            	$data['temp'] = 'admin/dulieu/chuyennganh/index';
             $this->load->view('admin/main',$data);	
-
         }
-
 
 
 	}

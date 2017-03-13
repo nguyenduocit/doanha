@@ -2,10 +2,10 @@
     <div class="x_title">
         <h2>Quản Lý Danh Sách Bộ Môn </h2>
         <div>
-            <form method="post" action="<?php echo admin_url('bomon/search') ?> ">
+            <form method="get" action="<?php echo admin_url('bomon/search') ?> ">
                 <div class="col-lg-4 pull-right" style="padding-right: 0px;">
                     <div class="input-group">
-                        <input type="text"  name="key-search" id="text-search"  class="form-control" placeholder="Nhập từ khóa tìm kiếm ">
+                        <input type="text"  name="key-search" id="text-search"  class="form-control" placeholder="Nhập vào tên bộ môn ">
                         <span class="input-group-btn">
                           <a href="/"><input type="submit" value="Tìm kiếm " class="btn btn-info"></a>
                         </span>

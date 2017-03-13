@@ -2,18 +2,10 @@
     <div class="x_title">
         <h2>Quản Lý Danh Sách Chuyên Ngành </h2>
         <div>
-
-        <script type="text/javascript">
-            $(function() {
-                $( "#text-search" ).autocomplete({
-                    source: "<?php echo site_url('chuyennganh/search/1') ?>",
-                });
-            });
-        </script>
            <form method="post" action="<?php echo admin_url('chuyennganh/search') ?> ">
                 <div class="col-lg-4 pull-right" style="padding-right: 0px;">
                     <div class="input-group">
-                        <input type="text"  name="key-search" id="text-search"  class="form-control" placeholder="Nhập từ khóa tìm kiếm ">
+                        <input type="text"  name="key-search" id="text-search"  class="form-control" placeholder="Nhập vào tên chuyên ngành ">
                         <span class="input-group-btn">
                           <a href="/"><input type="submit" value="Tìm kiếm " class="btn btn-info"></a>
                         </span>

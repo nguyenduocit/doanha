@@ -203,6 +203,27 @@
             } 
             return false;
         }
+
+
+        // tìm kiếm theo tên
+        function search()
+        {
+           
+           $key = $this->input->get('key-search');
+            
+
+            $this->data['key'] = trim($key);
+            $input = array();
+            $input['like'] = array('tenloaimon',$key);
+         
+            $list = $this->LoaimonModel->get_list($input);
+            
+
+            $data['list'] = $list;
+            // hiển thị ra phần view
+            $data['temp'] = 'admin/dulieu/loaimon/index';
+            $this->load->view('admin/main',$data);  
+        }
     }
 
  ?>

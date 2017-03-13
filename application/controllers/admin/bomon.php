@@ -294,7 +294,7 @@
         function search()
         {
            
-            $key = $this->input->post('key-search');
+           $key = $this->input->get('key-search');
             
 
             $this->data['key'] = trim($key);
@@ -302,6 +302,7 @@
             $input['like'] = array('tenbomon',$key);
          
             $list = $this->BomonModel->get_list($input);
+            
 
             $data['list'] = $list;
             // hiển thị ra phần view

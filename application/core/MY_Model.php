@@ -204,7 +204,8 @@
             $this->get_list_set_input($input);
             
             //thuc hien truy van du lieu
-            $query = $this->db->get($this->table);
+             $query = $this->db->get($this->table);
+           
             //echo $this->db->last_query();
             return $query->result();
         }

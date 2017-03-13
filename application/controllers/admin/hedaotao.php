@@ -225,6 +225,26 @@
             } 
             return false;
         }
+
+        // tìm kiếm theo tên
+        function search()
+        {
+           
+           $key = $this->input->get('key-search');
+            
+
+            $this->data['key'] = trim($key);
+            $input = array();
+            $input['like'] = array('tenhedaotao',$key);
+         
+            $list = $this->HedaotaoModel->get_list($input);
+            
+
+            $data['list'] = $list;
+            // hiển thị ra phần view
+            $data['temp'] = 'admin/dulieu/hedaotao/index';
+            $this->load->view('admin/main',$data);  
+        }
     }
 
  ?>

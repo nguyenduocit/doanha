@@ -35,9 +35,9 @@
         	$input['limit'] = array($config['per_page'],$segment );
 
         	// lấy ra danh sách khoa 
-        	$list_khoa = $this->KhoaModel->get_list($input);
+        	$list = $this->KhoaModel->get_list($input);
 			// gán truyền danh sách các khoa sang view 
-			$data['list_khoa'] = $list_khoa;
+			$data['list'] = $list;
 
 			$data['temp'] = 'admin/dulieu/khoa/index';
 			$this->load->view('admin/main',$data);	
@@ -259,6 +259,28 @@
 	        }
 	        
 	    }
+
+
+
+	    // tìm kiếm theo tên
+        function search()
+        {
+           
+           $key = $this->input->get('key-search');
+            
+
+            $this->data['key'] = trim($key);
+            $input = array();
+            $input['like'] = array('tenkhoa',$key);
+         
+            $list = $this->KhoaModel->get_list($input);
+            
+
+            $data['list'] = $list;
+            // hiển thị ra phần view
+           	$data['temp'] = 'admin/dulieu/khoa/index';
+            $this->load->view('admin/main',$data);	
+        }
 
 	}
  ?>

@@ -2,12 +2,12 @@
     <div class="x_title">
         <h2>Quản Lý Danh Sách Lớp </h2>
         <div>
-            <form>
+            <form method="get" action="<?php echo admin_url('lop/search') ?> ">
                 <div class="col-lg-4 pull-right" style="padding-right: 0px;">
                     <div class="input-group">
-                        <input type="text"  name="search" class="form-control" placeholder="Nhập từ khóa tìm kiếm ">
+                        <input type="text"  name="key-search" id="text-search"  class="form-control" placeholder="Nhập vào tên lớp  ">
                         <span class="input-group-btn">
-                          <input type="submit" name="submit" value="Tìm kiếm " class="btn btn-info">
+                          <a href="/"><input type="submit" value="Tìm kiếm " class="btn btn-info"></a>
                         </span>
                     </div>
                 </div>
