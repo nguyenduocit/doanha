@@ -98,7 +98,7 @@
                     <div class="form-group <?php echo !empty(form_error('image')) ? 'has-error' : '' ?>">
                         <label class="control-label col-lg-4">Ảnh đại diện : </label>
                         <div class="col-lg-7">
-                            <input type="file" id="required2" name="image" class="form-control" >
+                            <input type="file" name="image" id="image" class="form-control"  >
                         </div>
                     </div>
 

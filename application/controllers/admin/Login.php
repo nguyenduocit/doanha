@@ -45,6 +45,9 @@
             $maGV = $this->input->post('maGV');
             $passwod = $this->input->post('password');
 
+            // mã hóa mật khẩu
+            //$password = md5(sha1($passwod));
+
             // load ra model admin 
              $this->load->model('AdminModel');
              // gán điều kiện 

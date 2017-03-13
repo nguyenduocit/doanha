@@ -140,7 +140,7 @@
 
 					$matkhau     = $this->input -> post("matkhau");
 
-
+					$matkhau = md5(sha1($matkhau ));
 
 					$input = array();
 
@@ -249,9 +249,9 @@
 
 			// kiểm tra có tồn tại giáo viên
 
-			 $maGV = isset_user($this->session->userdata('userdata'));
+			 $maGVs = isset_user($this->session->userdata('userdata'));
 
-			 $list = $this->BomonModel->get_info($id);
+			 $list = $this->AdminModel->get_info($id);
 
 			 // kiểm tra 
 			  if(!$list)
@@ -265,68 +265,74 @@
 			if($this->input->post())
 			{
 				// kiểm tra giá trị tên bộ môn
-				$this->form_validation->set_rules('tenbomon','Nhập vào Tên bộ môn ','required');
-
+				
 				// kiểm tra giá trị mã bộ môn
-				$this->form_validation->set_rules('mabomon','Nhập vào mã bộ môn ','required');
-
-
-				$this->form_validation->set_rules('viettat','Nhập vào viết tắt của bộ môn ','required');
+				$this->form_validation->set_rules('maGV','Nhập vào mã giáo viên ','required');
 
 
 				if($this->form_validation->run())
 				{
-					// gán giá trị tên bộ môn
-					$tenbomon = $this->input ->post('tenbomon');
 
-					// gán giá trị mã bộ môn
+					// gán giá trị mã GV
+
+					$maGV = $this ->input ->post('maGV');
+
+
+					$makhoa = $this ->input ->post('makhoa');
+
 
 					$mabomon = $this ->input ->post('mabomon');
 
-					// lấy giá trị của activel 
 
-					$activel = $this ->input ->post('active');
+					$machuyennganh = $this ->input ->post('machuyennganh');
 
-					// lây giá trị của mã khoa 
-					$makhoa = $this ->input ->post('makhoa');
 
-					$viettat = $this ->input ->post('viettat');
+					$hocham = $this ->input ->post('hocham');
 
-					if($list->mabomon == $mabomon)
+
+					$chucvu = $this ->input ->post('chucvu');
+
+
+					$trinhdo = $this ->input ->post('trinhdo');
+
+
+					
+
+					if($list->maGV == $maGV)
 					{
 						$data = array();
 					}else
 					{
 						$input = array();
 
-						$input['where'] = array('mabomon' =>$mabomon);
+						$input['where'] = array('maGV' =>$maGV);
 
-						$data = $this->BomonModel->get_list($input);
+						$data = $this->AdminModel->get_list($input);
 
 					}
 
 					if(empty($data))
 					{
-						$mabomon = $this ->input ->post('mabomon');
+						$maGV = $this ->input ->post('maGV');
 
-						// lưu vào mảng data ;
-						//id`, `mabomon`, `tenbomon`, `viettat`, `makhoa`, `nguoithaotac`, `hienthi`, `created_at`, `updated_at`)
 				
 						$data = array(
-									'mabomon'		=>$mabomon,
-									'tenbomon' 		=> $tenbomon,
-									'viettat' 		=> $viettat,
+
+									'hocham' 		=> $hocham,
+									'trinhdo' 		=> $trinhdo,
+									'chucvu' 		=> $chucvu,
+									'mabomon' 		=> $mabomon,
 									'makhoa' 		=> $makhoa,
-									'nguoithaotac'  => $maGV,
-									'hienthi'		=> $activel
+									'manganh' 		=> $machuyennganh,
+									'nguoithaotac'  => $maGVs,
 									);
 
 						//kiểm tra và chạy câu lệnh inser 
 
-						if($this->BomonModel->update($id,$data))
+						if($this->AdminModel->update($id,$data))
 						{
 							 $this->session->set_flashdata('success','Update  thành công');
-							 redirect(admin_url('bomon'));
+							 redirect(admin_url('admin'));
 						}
 						else
 						{
@@ -337,19 +343,39 @@
 					}
 					else
 					{
-						$this->session->set_flashdata('error','Bộ môn đã bị trùng .');
+						$this->session->set_flashdata('error','Mã giáo viên  đã bị trùng .');
 					}
 
 				}
 			}
+			// lấy ra danh sách bộ môn
+			$list_bomon = $this->BomonModel->get_list();
+			$data['list_bomon'] = $list_bomon;
+
+			//lấy ra danh sách chuyên ngành
+			$list_chuyennganh = $this->ChuyennganhModel->get_list();
+			$data['list_chuyennganh'] = $list_chuyennganh;
+
 
 			$list_khoa = $this->KhoaModel->get_list();
 			$data['list_khoa'] = $list_khoa;
 
+
+			$list_hocham = $this->HochamModel->get_list();
+			$data['list_hocham'] = $list_hocham;
+
+
+			$list_chucvu = $this->ChucvuModel->get_list();
+			$data['list_chucvu'] = $list_chucvu;
+
+			$list_trinhdo = $this->TrinhdoModel->get_list();
+			$data['list_trinhdo'] = $list_trinhdo;
+
+
 			$data['list'] = $list;
 
 
-			$data['temp'] = 'admin/dulieu/bomon/edit';
+			$data['temp'] = 'admin/dulieu/giaovien/edit';
 			$this->load->view('admin/main',$data);	
 		}
 
@@ -366,18 +392,18 @@
 
 			settype($id, "int");
 	        
-	        if ($this->BomonModel->delete($id)) {
+	        if ($this->AdminModel->delete($id)) {
 	        	# code...
 	        	$this->session->set_flashdata('success','Delet thành công ');
 
-	        	redirect(admin_url('bomon'));
+	        	redirect(admin_url('admin'));
 	        }
 	        else
 	        {
 	        	
 	        	$this->session->set_flashdata('error',' Lỗi không thể xóa dữ liệu ');
 
-	        	redirect(admin_url('bomon'));
+	        	redirect(admin_url('admin'));
 	        }
 	        
 	    }
@@ -392,14 +418,14 @@
 
             $this->data['key'] = trim($key);
             $input = array();
-            $input['like'] = array('tenbomon',$key);
+            $input['like'] = array('hoten',$key);
          
-            $list = $this->BomonModel->get_list($input);
+            $list = $this->AdminModel->get_list($input);
             
 
             $data['list'] = $list;
             // hiển thị ra phần view
-           	$data['temp'] = 'admin/dulieu/bomon/index';
+           	$data['temp'] = 'admin/dulieu/giaovien/index';
             $this->load->view('admin/main',$data);	
         }
 	}
