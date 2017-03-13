@@ -15,3 +15,6 @@
         <link href="<?php echo public_url('admin') ?>/css/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
         <!-- Custom Theme Style -->
         <link href="<?php echo public_url('admin') ?>/css/custom.min.css" rel="stylesheet"><link href="<?php echo public_url('admin') ?>/css/style.css" rel="stylesheet">
+
+        
+        <link href="<?php echo public_url('admin') ?>/css/jquery-ui-1.8.16.custom.css" rel="stylesheet"><link href="<?php echo public_url('admin') ?>/css/style.css" rel="stylesheet">

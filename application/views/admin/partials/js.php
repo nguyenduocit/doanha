@@ -11,4 +11,7 @@
         <!-- Custom Theme Scripts -->
         <script src="<?php echo public_url('admin') ?>/js/custom.min.js"></script>
         
-        <script src="<?php echo public_url('admin') ?>/js/check.js"></script>
+        <script src="<?php echo ppublic_url('admin') ?>/js/check.js"></script>
+
+        
+        <script src="<?php echo ppublic_url('admin') ?>/js/jquery-ui-1.8.16.custom.min.js"></script>

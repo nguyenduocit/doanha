@@ -103,9 +103,6 @@
 					{
 						$mabomon = $this ->input ->post('mabomon');
 
-						// lưu vào mảng data ;
-						//id`, `mabomon`, `tenbomon`, `viettat`, `makhoa`, `nguoithaotac`, `hienthi`, `created_at`, `updated_at`)
-				
 						$data = array(
 									'mabomon'		=>$mabomon,
 									'tenbomon' 		=> $tenbomon,
@@ -131,7 +128,7 @@
 					}
 					else
 					{
-						$this->session->set_flashdata('error','Mã khoa đã bị trùng .');
+						$this->session->set_flashdata('error','Bộ môn đã bị trùng .');
 					}
 
 				}
@@ -247,7 +244,7 @@
 					}
 					else
 					{
-						$this->session->set_flashdata('error','Mã khoa đã bị trùng .');
+						$this->session->set_flashdata('error','Bộ môn đã bị trùng .');
 					}
 
 				}
@@ -293,8 +290,29 @@
 	    }
 
 
+	    // tìm kiếm theo tên
+        function search()
+        {
+           
+            $key = $this->input->post('key-search');
+            
 
+            $this->data['key'] = trim($key);
+            $input = array();
+            $input['like'] = array('tenbomon',$key);
+         
+            $list = $this->BomonModel->get_list($input);
+
+            $data['list'] = $list;
+            // hiển thị ra phần view
+           	$data['temp'] = 'admin/dulieu/bomon/index';
+            $this->load->view('admin/main',$data);	
+        }
 	}
+
+
+
+
 
 
 ?>

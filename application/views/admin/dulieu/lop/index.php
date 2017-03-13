@@ -1,26 +1,18 @@
 <div class="x_panel">
     <div class="x_title">
-        <h2>Quản Lý Danh Sách Chuyên Ngành </h2>
+        <h2>Quản Lý Danh Sách Lớp </h2>
         <div>
-
-        <script type="text/javascript">
-            $(function() {
-                $( "#text-search" ).autocomplete({
-                    source: "<?php echo site_url('chuyennganh/search/1') ?>",
-                });
-            });
-        </script>
-           <form method="post" action="<?php echo admin_url('chuyennganh/search') ?> ">
+            <form>
                 <div class="col-lg-4 pull-right" style="padding-right: 0px;">
                     <div class="input-group">
-                        <input type="text"  name="key-search" id="text-search"  class="form-control" placeholder="Nhập từ khóa tìm kiếm ">
+                        <input type="text"  name="search" class="form-control" placeholder="Nhập từ khóa tìm kiếm ">
                         <span class="input-group-btn">
-                          <a href="/"><input type="submit" value="Tìm kiếm " class="btn btn-info"></a>
+                          <input type="submit" name="submit" value="Tìm kiếm " class="btn btn-info">
                         </span>
                     </div>
                 </div>
             </form>
-            <a href=" <?php echo admin_url('chuyennganh/add') ?>" class="btn btn-info pull-right">Thêm mới</a>
+            <a href=" <?php echo admin_url('lop/add') ?>" class="btn btn-info pull-right">Thêm mới</a>
         </div>
         <div class="clearfix"></div>
     </div>
@@ -36,10 +28,13 @@
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Mã chuyên ngành</th>
-                    <th>Tên chuyên ngành</th>
-                    <th>Mã bộ môn</th>
-                    <th>Người Tạo</th>
+                    <th>Mã Lớp</th>
+                    <th>Mã hệ đào tạo</th>
+                    <th>Tên lớp </th>
+                    <th>Sĩ số </th>
+                    <th>Mã chuyên ngành </th>
+                    <th>Giáo viên chủ nhiệm </th>
+                    <th>Người tạo</th>
                     <th>Ngày Tạo</th>
                     <th>Ngày Cập Nhật</th>
                     <th class="text-center">Active</th>
@@ -49,14 +44,19 @@
             <tbody>
                 <?php
                     if (isset($list)) {
-                       
+                        //// lưu vào mảng data ;
+                         //`machuyennganh`, `tenchuyennganh`, `mabomon`, `nguoithaotac`, `hienthi`, `created_at`, `updated_at`
+                        # code...
                         foreach ($list as  $value) {  ?>
 
                          <tr>
                             <td><?php echo $value ->id ?></td>
+                            <td><?php echo $value ->malop ?></td>
+                            <td><?php echo $value ->mahedaotao ?></td>
+                            <td><?php echo $value ->tenlop ?></td>
+                            <td><?php echo $value ->siso ?></td>
                             <td><?php echo $value ->machuyennganh ?></td>
-                            <td><?php echo $value ->tenchuyennganh?></td>
-                            <td><?php echo $value ->mabomon ?></td>
+                            <td><?php echo $value ->gvcn ?></td>
                             <td><?php echo $value ->nguoithaotac ?></td>
                             <td><?php echo $value ->created_at ?></td>
                             <td><?php echo $value ->updated_at ?></td>
@@ -72,8 +72,8 @@
                              <?php endif; ?>
                
                             <td class="text-center">
-                                <a class="btn btn-xs btn-default" href=" <?php echo admin_url('chuyennganh/edit/').$value ->id ?>"><i class="fa fa-pencil"></i></a>
-                                <a class="btn btn-xs btn-danger btn-delete-action verify_action " href="<?php echo admin_url('chuyennganh/delete/').$value ->id ?>"><i class="fa fa-trash-o"></i></a>
+                                <a class="btn btn-xs btn-default" href=" <?php echo admin_url('lop/edit/').$value ->id ?>"><i class="fa fa-pencil"></i></a>
+                                <a class="btn btn-xs btn-danger btn-delete-action verify_action " href="<?php echo admin_url('lop/delete/').$value ->id ?>"><i class="fa fa-trash-o"></i></a>
                             </td>
                         </tr>
                 <?php 

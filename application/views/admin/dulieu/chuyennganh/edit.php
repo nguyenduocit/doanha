@@ -1,6 +1,6 @@
 <div class="x_panel">
     <div class="x_title">
-        <h2> Chỉnh sửa bộ môn </h2>
+        <h2> Chỉnh Sửa Chuyên Ngành </h2>
         <div class="clearfix"></div>
     </div>
     <!-- Hiện thông báo -->
@@ -72,7 +72,7 @@
             
             
             <div class="form-actions no-margin-bottom" style="text-align:center;">
-                <a href="/cms_core/admin/modules/category/" class="btn btn-danger  " onclick="history.go(-1); return false;" >Trở về</a>
+                <a href="#" class="btn btn-danger  " onclick="history.go(-1); return false;" >Trở về</a>
                 <input type="submit" value=" Update " class="btn btn-info">
             </div>
 

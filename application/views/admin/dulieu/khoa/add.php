@@ -1,6 +1,6 @@
 <div class="x_panel">
     <div class="x_title">
-        <h2>Thêm mới khoa</h2>
+        <h2>Thêm Mới Khoa</h2>
         <div class="clearfix"></div>
     </div>
     <!-- Hiện thông báo -->

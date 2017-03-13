@@ -216,7 +216,7 @@
 					else
 					{
 						$this->session->set_flashdata('error','Lỗi không thể update dữ liệu , mã khoa đã trùng');
-							redirect(admin_url('khoa/edit'));
+							//redirect(admin_url('khoa/edit'));
 					}
 					
 				
