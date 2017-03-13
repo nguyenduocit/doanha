@@ -15,7 +15,7 @@
             <div class="form-group <?php echo !empty(form_error('tenchuyennganh')) ? 'has-error' : '' ?>">
                 <label class="control-label col-lg-3">Tên Chuyên Ngành : </label>
                 <div class="col-lg-7">
-                    <input type="text" id="required2" name="tenchuyennganh" class="form-control" value=" <?php echo $list->tenchuyennganh ?>" placeholder = "Tên Chuyên Ngành">
+                    <input type="text" id="required2" name="tenchuyennganh" class="form-control" value="<?php echo $list->tenchuyennganh ?>" placeholder = "Tên Chuyên Ngành">
                    
                     <?php if (!empty(form_error('tenchuyennganh'))) : ?>
                         <span class="text-danger"><?php echo form_error('tenchuyennganh'); ?> </p></span>

@@ -22,7 +22,7 @@
                 <h3>Bảng điều khiển</h3>
                 <ul class="nav side-menu">
                     <li>
-                        <a href="<?php echo admin_url('home') ?>"><i class="fa fa-home"></i> Trang chủ <span class="fa fa-chevron-down"></span></a>
+                        <a href="<?php echo admin_url('home') ?>"><i class="fa fa-home"></i> Trang chủ </a>
                     </li>
                     <li>
                         <a><i class="fa fa-database"></i> Dữ liệu hệ thống <span class="fa fa-chevron-down"></span></a>
@@ -32,7 +32,12 @@
                             <li><a href="<?php echo admin_url('chuyennganh') ?>">Quản lý Chuyên Ngành</a></li>
                             <li><a href="<?php echo admin_url('hedaotao') ?>">Quản lý Hệ Đào Tạo</a></li>
                             <li><a href="<?php echo admin_url('loaimon') ?>">Quản lý Loại Môn</a></li>
-                            <li><a href="<?php echo admin_url('lop') ?>">Quản lý Lớp</a></li> <li><a href="<?php echo admin_url('monhoc') ?>">Quản lý môn học</a></li>
+                            <li><a href="<?php echo admin_url('lop') ?>">Quản lý Lớp</a></li> 
+                            <li><a href="<?php echo admin_url('monhoc') ?>">Quản lý môn học</a></li>
+                            <li><a href="<?php echo admin_url('admin') ?>">Quản lý giáo viên</a></li> 
+                            <li><a href="<?php echo admin_url('hocham') ?>">Quản lý học hàm</a></li>
+                            <li><a href="<?php echo admin_url('trinhdo') ?>">Quản lý trình độ</a></li>
+                            <li><a href="<?php echo admin_url('chucvu') ?>">Quản lý chức vụ</a></li>
                         </ul>
                     </li>
                 </ul>

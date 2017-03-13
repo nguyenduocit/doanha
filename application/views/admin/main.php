@@ -28,7 +28,10 @@
 
 
                 <!-- load footer -->
-                <?php $this->load->view('admin/partials/footer') ?>
+                <footer>
+                     <?php //$this->load->view('admin/partials/footer') ?>
+
+                </footer>
                 <!-- end -->
             </div>
         </div>

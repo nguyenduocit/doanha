@@ -25,7 +25,7 @@
             <div class="form-group <?php echo !empty(form_error('machuyennganh')) ? 'has-error' : '' ?>">
                 <label class="control-label col-lg-3">Mã Chuyên Ngành : </label>
                 <div class="col-lg-7">
-                    <input type="text" id="required2" name="machuyennganh" class="form-control" value="<?php set_value('machuyennganh') ?>"  placeholder="Mã khoa">
+                    <input type="text" id="required2" name="machuyennganh" class="form-control" value="<?php set_value('machuyennganh') ?>"  placeholder="Mã chuyên ngành">
                    
                     <?php if (!empty(form_error('machuyennganh'))) : ?>
                         <span class="text-danger"><?php echo form_error('machuyennganh'); ?> </p></span>
@@ -35,8 +35,7 @@
 
 
              <div class="form-group">
-                <div class="col-lg-2"></div>
-                <label class="control-label col-lg-1">Tên Bộ môn</label>
+                <label class="control-label col-lg-3">Tên Bộ môn</label>
                 <div class="col-lg-7">
                     <select class="form-control" name="mabomon">
 
