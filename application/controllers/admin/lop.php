@@ -10,6 +10,7 @@
 			$this->load->model('ChuyennganhModel');
 			$this->load->model('HedaotaoModel');
 			$this->load->model('AdminModel');
+			$this->load->model('BomonModel');
 			 //kiểm tra dữ liệu
 
 	        $this->load->library('form_validation');

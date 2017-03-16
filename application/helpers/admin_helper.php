@@ -5,6 +5,12 @@
         return base_url('admin/'.$url);
     }
 
+    function kehoach_url($url='')
+    {
+        return base_url('kehoach/'.$url);
+    }
+
+
 
     function isset_user($data)
     {
