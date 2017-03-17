@@ -11,6 +11,7 @@
     <div class="x_content">
           <form action="" class="form-horizontal" id="block-validate" novalidate="novalidate" method="POST" enctype="multipart/form-data">
 
+
             <div class="form-group <?php echo !empty(form_error('tenkhoa')) ? 'has-error' : '' ?>">
                 <label class="control-label col-lg-3">Tên Khoa : </label>
                 <div class="col-lg-7">

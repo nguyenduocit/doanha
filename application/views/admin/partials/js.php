@@ -17,4 +17,4 @@
         <script src="<?php echo public_url('admin') ?>/js/myscript.js"></script>
 
         
-        <script src="<?php echo public_url('admin') ?>/js/jquery-ui-1.8.16.custom.min.js"></script>
+       

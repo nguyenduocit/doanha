@@ -45,6 +45,8 @@
                         <a><i class="fa fa-database"></i> Kế hoạch đào tạo <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="<?php echo kehoach_url('kehoachchung') ?>">Lập kế hoạch chung</a></li>
+
+                            <li><a href="<?php echo kehoach_url('kehoachtheolop') ?>">Lập KHDT theo lớp</a></li>
                             
                         </ul>
                     </li>

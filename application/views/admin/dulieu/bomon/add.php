@@ -25,7 +25,7 @@
             <div class="form-group <?php echo !empty(form_error('mabomon')) ? 'has-error' : '' ?>">
                 <label class="control-label col-lg-3">Mã Bộ Môn : </label>
                 <div class="col-lg-7">
-                    <input type="text" id="required2" name="mabomon" class="form-control" value="<?php set_value('mabomon') ?>"  placeholder="Mã khoa">
+                    <input type="text" id="required2" name="mabomon" class="form-control" value="<?php set_value('mabomon') ?>"  placeholder="Mã Bộ Môn">
                    
                     <?php if (!empty(form_error('mabomon'))) : ?>
                         <span class="text-danger"><?php echo form_error('mabomon'); ?> </p></span>

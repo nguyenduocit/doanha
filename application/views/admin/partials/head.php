@@ -16,9 +16,10 @@
         <!-- Custom Theme Style -->
         <link href="<?php echo public_url('admin') ?>/css/custom.min.css" rel="stylesheet"><link href="<?php echo public_url('admin') ?>/css/style.css" rel="stylesheet">
 
-        
+        <script src="<?php echo public_url('admin') ?>/js/jquery.min.js"></script>
         <link href="<?php echo public_url('admin') ?>/css/jquery-ui-1.8.16.custom.css" rel="stylesheet">
 
         <link href="<?php echo public_url('admin') ?>/css/style.css" rel="stylesheet">
 
          <script src="<?php echo public_url('admin') ?>/js/myscript.js"></script>
+         <script src="<?php echo public_url('admin') ?>/js/xuly_ajax.js"></script>

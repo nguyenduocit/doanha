@@ -1,6 +1,6 @@
 <div class="x_panel">
     <div class="x_title">
-        <h2>Thêm Kế Hoạch </h2>
+        <h2>Sửa Kế Hoạch Chung </h2>
         <div class="clearfix"></div>
     </div>
     <!-- Hiện thông báo -->
@@ -12,7 +12,7 @@
           <form action="" class="form-horizontal" id="block-validate" novalidate="novalidate" method="POST" enctype="multipart/form-data">
 
             <div class="form-group <?php echo !empty(form_error('makehoachchung')) ? 'has-error' : '' ?>">
-                <label class="control-label col-lg-3">Mã kế hoạc  : </label>
+                <label class="control-label col-lg-3">Mã kế hoạch  : </label>
                 <div class="col-lg-7">
                     <input type="text" id="required2" name="makehoachchung" class="form-control" value="<?php echo $list ->makehoachchung ?>" placeholder="Mã kế hoạch: ">
                    
@@ -41,7 +41,7 @@
                 <div class="col-lg-2"></div>
                 <label class="control-label col-lg-1">Tên Khoa</label>
                 <div class="col-lg-7">
-                    <select class="form-control" name="makhoa">
+                    <select class="form-control" name="makhoa" id='makhoa'>
 
                     <?php  foreach ($list_khoa as $value) { ?>
                         <option <?php echo $list->khoa == $value->makhoa ? "selected":"" ?> value="<?php echo $value ->makhoa ?>"> <?php echo $value ->tenkhoa ?> </option>
@@ -51,16 +51,25 @@
                 </div>
             </div>
 
-
-            <div class="form-group">
+             <div class="form-group">
                 <div class="col-lg-1"></div>
                 <label class="control-label col-lg-2">Bộ môn :</label>
                 <div class="col-lg-7">
-                    <select class="form-control" name="mabomon">
+                    <select class="form-control" name="mabomon" id="mabomon">
 
-                    <?php  foreach ($list_bomon as $value) { ?>
-                        <option <?php echo $list->bomon == $value->mabomon ? "selected":"" ?> class="bomon" mabomon="<?php echo $value ->mabomon ?>"  value="<?php echo $value ->mabomon ?>"> <?php echo $value ->tenbomon?> </option>
-                    <?php } ?>
+                   
+                    </select>
+                   
+                </div>
+            </div>
+           
+             <div class="form-group">
+                <div class="col-lg-1"></div>
+                <label class="control-label col-lg-2"> Chuyên Ngành :</label>
+                <div class="col-lg-7">
+                    <select class="form-control" name="machuyennganh" id="machuyennganh">
+
+                   
                     </select>
                    
                 </div>

@@ -5,6 +5,7 @@
 		{
 			parent::__construct();
 			$this->load->model('KhoaModel');
+			
 			 //kiểm tra dữ liệu
 	        $this->load->library('form_validation');
 	        $this->load->helper('form');
@@ -72,6 +73,8 @@
 					// gán giá trị mã khoa
 
 					$makhoa = $this ->input ->post('makhoa');
+
+					$mahedaotao = $this ->input ->post('mahedaotao');
 
 					// lấy giá trị của activel 
 

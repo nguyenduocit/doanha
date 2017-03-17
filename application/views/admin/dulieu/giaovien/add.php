@@ -53,10 +53,10 @@
                        
                         <label class="control-label col-lg-4">Khoa :</label>
                         <div class="col-lg-7">
-                            <select class="form-control" name="makhoa" index="3">
+                            <select class="form-control" name="makhoa" id="makhoa" index="3">
 
                             <?php  foreach ($list_khoa as $value) { ?>
-                                <option  value="<?php echo $value ->makhoa ?>"> <?php echo $value ->tenkhoa?> </option>
+                                <option src=""  value="<?php echo $value ->makhoa ?>"> <?php echo $value ->tenkhoa?> </option>
                             <?php } ?>
                             </select>
                            
@@ -69,7 +69,7 @@
                        
                         <label class="control-label col-lg-4">Bộ môn:</label>
                         <div class="col-lg-7">
-                            <select class="form-control" name="mabomon">
+                            <select class="form-control" name="mabomon" id="mabomon">
 
                             <?php  foreach ($list_bomon as $value) { ?>
                                 <option  value="<?php echo $value ->mabomon ?>"> <?php echo $value ->tenbomon ?> </option>

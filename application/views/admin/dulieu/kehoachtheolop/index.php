@@ -2,7 +2,7 @@
     <div class="x_title">
         <h2>Quản Lý Danh Sách Kế Hoạch </h2>
         <div>
-            <form method="get" action="<?php echo kehoach_url('kehoachchung/search') ?> ">
+            <form method="get" action="<?php echo kehoach_url('kehoachtheolop/search') ?> ">
                 <div class="col-lg-4 pull-right" style="padding-right: 0px;">
                     <div class="input-group">
                         <input type="text"  name="key-search" id="text-search"  class="form-control" placeholder="Nhập vào tên bộ môn ">
@@ -12,7 +12,7 @@
                     </div>
                 </div>
             </form>
-            <a href=" <?php echo kehoach_url('kehoachchung/add') ?>" class="btn btn-info pull-right">Thêm mới</a>
+            <a href=" <?php echo kehoach_url('kehoachtheolop/add') ?>" class="btn btn-info pull-right">Thêm mới</a>
         </div>
         <div class="clearfix"></div>
     </div>
@@ -32,7 +32,6 @@
                     <th>Hệ đào tạo</th>
                     <th>khoa </th>
                     <th>Bộ Môn</th>
-                    <th>Chuyên ngành</th>
                     <th>Học kỳ</th>
                     <th>Năm học</th>
                     <th>Số lớp</th>
@@ -55,7 +54,6 @@
                             <td><?php echo $value ->hedaotao ?></td>
                             <td><?php echo $value ->khoa ?></td>
                             <td><?php echo $value ->bomon  ?></td>
-                            <td><?php echo $value ->chuyennganh ?></td>
                             <td><?php echo $value ->hocky ?></td>
                             <td><?php echo $value ->namhoc ?></td>
                             <td><?php echo $value ->solop ?></td>
