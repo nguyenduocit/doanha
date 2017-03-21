@@ -253,6 +253,19 @@
             }
             
         }
+
+        /**
+        * lấy ra giá trị mới điều kiện hoặc
+        */
+
+        public function get_or($where)
+        {
+             $this->db->where($where);
+            //thuc hien cau truy van lay du lieu
+            $query = $this->db->get($this->table);
+
+            return $query->result();
+        }
         
         /**
          * kiểm tra sự tồn tại của dữ liệu theo 1 điều kiện nào đó

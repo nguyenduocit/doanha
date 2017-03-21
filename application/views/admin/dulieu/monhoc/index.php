@@ -34,7 +34,6 @@
                     <th>Số TCLT </th>
                     <th>Số TCTH </th>
                     <th>Mã chuyên ngành </th>
-                    <th>Mã bộ môn </th>
                     <th>Mã loại môn </th>
                     <th>TMC </th>
                     <th>Người tạo</th>
@@ -60,7 +59,6 @@
                             <td><?php echo $value ->soTCLT ?></td>
                             <td><?php echo $value ->soTCTH ?></td>
                             <td><?php echo $value ->machuyennganh ?></td>
-                            <td><?php echo $value ->mabomon ?></td>
                             <td><?php echo $value ->maloaimon ?></td>
                             <td><?php echo $value ->TCM ?></td>
                             <td><?php echo $value ->nguoithaotac ?></td>

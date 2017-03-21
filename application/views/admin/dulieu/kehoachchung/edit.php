@@ -41,7 +41,7 @@
                 <div class="col-lg-2"></div>
                 <label class="control-label col-lg-1">Tên Khoa</label>
                 <div class="col-lg-7">
-                    <select class="form-control" name="makhoa" id='makhoa'>
+                    <select class="form-control" name="makhoa" id='makhoa' readonly="readonly" >
 
                     <?php  foreach ($list_khoa as $value) { ?>
                         <option <?php echo $list->khoa == $value->makhoa ? "selected":"" ?> value="<?php echo $value ->makhoa ?>"> <?php echo $value ->tenkhoa ?> </option>
@@ -55,8 +55,10 @@
                 <div class="col-lg-1"></div>
                 <label class="control-label col-lg-2">Bộ môn :</label>
                 <div class="col-lg-7">
-                    <select class="form-control" name="mabomon" id="mabomon">
-
+                    <select class="form-control" name="mabomon" id="mabomon" readonly="readonly" >
+                        <?php  foreach ($list_khoa as $value) { ?>
+                        <option <?php echo $list->khoa == $value->makhoa ? "selected":"" ?> value="<?php echo $value ->makhoa ?>"> <?php echo $value ->tenkhoa ?> </option>
+                    <?php } ?>
                    
                     </select>
                    
@@ -67,7 +69,7 @@
                 <div class="col-lg-1"></div>
                 <label class="control-label col-lg-2"> Chuyên Ngành :</label>
                 <div class="col-lg-7">
-                    <select class="form-control" name="machuyennganh" id="machuyennganh">
+                    <select class="form-control" name="machuyennganh" id="machuyennganh" readonly="readonly" >
 
                    
                     </select>
@@ -79,7 +81,7 @@
             <div class="form-group <?php echo !empty(form_error('hocky')) ? 'has-error' : '' ?>">
                 <label class="control-label col-lg-3">Học kỳ : </label>
                 <div class="col-lg-7">
-                    <select class="form-control" name="hocky">
+                    <select class="form-control" name="hocky" readonly="readonly" >
 
                     <?php for($i = 1; $i<=10;$i++){ ?>
                         <option<?php echo $list->hocky == $i ? "selected":"" ?> class="hoclky" value="<?php echo $i ?>"> <?php echo  $i ?> </option>

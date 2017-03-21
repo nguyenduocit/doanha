@@ -38,15 +38,16 @@ class Kehoachchung extends MY_Controller
 				$segment = intval($segment);
 				$input = array();
 				$input['limit'] = array($config['per_page'],$segment );
-						
+
+	
 
 				// lấy ra danh sách khoa 
-					$list = $this->KehoachchungModel->get_list($input);
-				// gán truyền danh sách các khoa sang view 
-					$data['list'] = $list;
+				$list = $this->KehoachchungModel->get_list($input);
+			// gán truyền danh sách các khoa sang view 
+				$data['list'] = $list;
 
-					$data['temp'] = 'admin/dulieu/kehoachchung/index';
-					$this->load->view('admin/main',$data);  
+				$data['temp'] = 'admin/dulieu/kehoachchung/index';
+				$this->load->view('admin/main',$data);  
 	}
 
 
@@ -88,6 +89,8 @@ class Kehoachchung extends MY_Controller
 				$mabomon = $this ->input ->post('mabomon');
 
 
+				$machuyennganh = $this ->input ->post('machuyennganh');
+
 
 				$hocky = $this ->input ->post('hocky');
 
@@ -120,11 +123,12 @@ class Kehoachchung extends MY_Controller
 									'hedaotao'        =>$mahedaotao,
 									'khoa'            =>$makhoa,
 									'bomon'           =>$mabomon,
-									'hocky'     			=> $hocky,
+									'chuyennganh'   	=>$machuyennganh,
+									'hocky'     		=> $hocky,
 									'namhoc'          => $namhoc,
-									'solop'          => $solop,
-									'nguoithaotac'      => $maGV,
-									'hienthi'           => $activel
+									'solop'          	=> $solop,
+									'nguoithaotac'    => $maGV,
+									'hienthi'         => $activel
 									);
 
 					//kiểm tra và chạy câu lệnh inser 
@@ -243,11 +247,11 @@ class Kehoachchung extends MY_Controller
 
 			// kiểm tra 
 				if(!$list)
-						{
-								$this->session->set_flashdata('error','Không tồn tại kế hoạch .');
+				{
+					$this->session->set_flashdata('error','Không tồn tại kế hoạch .');
 
-								redirect(kehoach_url('kehoachchung'));
-						}
+					redirect(kehoach_url('kehoachchung'));
+				}
 
 			// kiểm tra khi người dùng kích vào  
 		if($this->input->post())
@@ -311,34 +315,34 @@ class Kehoachchung extends MY_Controller
 									
 	
 									$data = array(
-																'makehoachchung'  =>$makehoachchungs,
-																'hedaotao'        =>$mahedaotao,
-																'khoa'            =>$makhoa,
-																'bomon'           =>$mabomon,
-																'hocky'     			=> $hocky,
-																'namhoc'          => $namhoc,
-																'solop'          => $solop,
-																'nguoithaotac'      => $maGV,
-																'hienthi'           => $activel
-																);
+											'makehoachchung'  =>$makehoachchungs,
+											'hedaotao'        =>$mahedaotao,
+											'khoa'            =>$makhoa,
+											'bomon'           =>$mabomon,
+											'hocky'     	  => $hocky,
+											'namhoc'          => $namhoc,
+											'solop'           => $solop,
+											'nguoithaotac'    => $maGV,
+											'hienthi'         => $activel
+											);
 
 									//kiểm tra và chạy câu lệnh inser 
 
 									if($this->KehoachchungModel->update($id,$data))
 									{
-														$this->session->set_flashdata('success','Update  thành công');
-														redirect(kehoach_url('kehoachchung'));
+										$this->session->set_flashdata('success','Update  thành công');
+										redirect(kehoach_url('kehoachchung'));
 									}
 									else
 									{
-													$this->session->set_flashdata('error','Lỗi không thể update dữ liệu');
+										$this->session->set_flashdata('error','Lỗi không thể update dữ liệu');
 
 									}
 
 								}
 								else
 								{
-												$this->session->set_flashdata('error','Mã kế hoạch đã tồn tại  .');
+									$this->session->set_flashdata('error','Mã kế hoạch đã tồn tại  .');
 								}
 
 						}

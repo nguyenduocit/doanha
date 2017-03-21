@@ -19,6 +19,8 @@
     <!-- Hiện thông báo -->
         <?php 
               $this->load->view('admin/partials/alert');
+
+             
               //pre($list_bomon);
         ?> 
     <!-- Hiện thông báo -->

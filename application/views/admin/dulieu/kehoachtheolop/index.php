@@ -29,12 +29,11 @@
                 <tr>
                     <th>Id</th>
                     <th>Mã kế hoạch</th>
-                    <th>Hệ đào tạo</th>
-                    <th>khoa </th>
-                    <th>Bộ Môn</th>
+                    <th>Chuyên ngành</th>
+                    <th>Lớp </th>
+                    <th>Môn học </th>
                     <th>Học kỳ</th>
                     <th>Năm học</th>
-                    <th>Số lớp</th>
                     <th>Người Tạo</th>
                     <th>Ngày Tạo</th>
                     <th>Ngày Cập Nhật</th>
@@ -44,20 +43,32 @@
             </thead>
             <tbody>
                 <?php
+
                     if (isset($list)) {
                         # code...
                         foreach ($list as  $value) {  ?>
 
                          <tr>
                             <td><?php echo $value ->id ?></td>
-                            <td><?php echo $value ->makehoachchung ?></td>
-                            <td><?php echo $value ->hedaotao ?></td>
-                            <td><?php echo $value ->khoa ?></td>
-                            <td><?php echo $value ->bomon  ?></td>
+                            <td><?php echo $value ->makehoachtheolop?></td>
+                            <td><?php echo $value ->machuyennganh ?></td>
+                            <td><?php echo $value ->malop ?></td>
+                            <td>
+                                <?php 
+                                
+                                     $monhoc = json_decode($value->monhoc);
+                                     $count = count($monhoc);
+
+                                     for($i=0 ; $i<$count ; $i++)
+                                     {
+                                        echo $monhoc[$i]."<br/>";
+                                     }
+                                     
+                                ?>
+                            </td>
                             <td><?php echo $value ->hocky ?></td>
                             <td><?php echo $value ->namhoc ?></td>
-                            <td><?php echo $value ->solop ?></td>
-                            <td><?php echo $value ->nguoithaotac ?></td>
+                            <td><?php echo $value ->nguoithaothac ?></td>
                             <td><?php echo $value ->created_at ?></td>
                             <td><?php echo $value ->updated_at ?></td>
                                 
