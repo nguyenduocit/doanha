@@ -234,12 +234,12 @@ class Kehoachchung extends MY_Controller
 
 	public function edit()
 	{
-					// lấy id được trả về
+		// lấy id được trả về
 		$id =  $this->uri->rsegment(3);
 
 		settype($id, "int");
 
-		// kiểm tra có tồn tại giáo viên
+		// kiểm tra có tồn tại kế hoạch trả về 
 
 			$maGV = isset_user($this->session->userdata('userdata'));
 
@@ -264,6 +264,7 @@ class Kehoachchung extends MY_Controller
 
 						if($this->form_validation->run())
 						{
+
 							$makehoachchungs = $this ->input ->post('makehoachchung');
 
 							// lấy giá trị tên lớp
@@ -275,6 +276,8 @@ class Kehoachchung extends MY_Controller
 							// lấy giá trị sĩ số
 							$mabomon = $this ->input ->post('mabomon');
 
+
+							$machuyennganh = $this ->input ->post('machuyennganh');
 
 
 							$hocky = $this ->input ->post('hocky');
@@ -288,13 +291,12 @@ class Kehoachchung extends MY_Controller
 
 							$activel = $this ->input ->post('active');
 
+							// lây giá trị của mã khoa 
 
-													// lây giá trị của mã khoa 
-
-
+							// kiem tra nếu người dùng nhập mã kế hoạc trùng mới mã kế hoạc trong cơ sở dữ liệu thì k cho update
 							if($list->makehoachchung == $makehoachchungs )
 							{
-											$data = array();
+								$data = array();
 							}else
 							{
 								$input = array();
@@ -358,6 +360,9 @@ class Kehoachchung extends MY_Controller
 		
 		$list_khoa = $this->KhoaModel->get_list();
 		$data['list_khoa'] = $list_khoa;
+
+		$list_chuyennganh = $this->ChuyennganhModel->get_list();
+		$data['list_chuyennganh'] = $list_chuyennganh;
 
 		$data['list'] = $list;
 		$data['temp'] = 'admin/dulieu/kehoachchung/edit';

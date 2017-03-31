@@ -5,7 +5,7 @@
 		{
 			parent::__construct();
 
-
+			// load ra các model ( các bảng)
 			$this->load->model('BomonModel');
 			$this->load->model('KhoaModel');
 			$this->load->model('ChuyennganhModel');
@@ -13,8 +13,9 @@
 			$this->load->model('HochamModel');
 			$this->load->model('ChucvuModel');
 			$this->load->model('TrinhdoModel');
-			 //kiểm tra dữ liệu
 
+
+			// load ra thư viện validate và thư viện form 
 	        $this->load->library('form_validation');
 	        $this->load->helper('form');
 		}
@@ -37,8 +38,9 @@
 	        $config['prev_link']= 'Previous' ; //Nhãn tên của nút Previous
 	        // khởi tạo cấu hình phân trang
 	        $this->pagination->initialize($config);
-
+	        // lấy giá trị của phân đoạn thứ 4
 	        $segment = $this->uri->segment(4);
+	        // kiểu dữ liệu phải là int 
         	$segment = intval($segment);
 	        $input = array();
         	$input['limit'] = array($config['per_page'],$segment );
@@ -55,7 +57,7 @@
 
 
 		/*
-			Thêm mới bộ môn
+			Thêm mới admin
 		*/
 
 		public function add()
@@ -70,16 +72,16 @@
 			// kiểm tra khi người dùng kích vào thêm mới 
 			if($this->input->post())
 			{
-				// kiểm tra giá trị tên bộ môn
+				// kiểm tra giá trị tên người dùng 
 				$this->form_validation->set_rules('hoten','Nhập vào tên giáo viên ','required');
 
-
+				// kiểm tra giá trị mật khẩu
 				$this->form_validation->set_rules('matkhau','Nhập vào mật khẩu ','required|min_length[8]');
 
-
+				// nhập lại mật khẩu
 				$this->form_validation->set_rules('rmatkhau','Nhập vào mật khẩu , mật khẩu phải trùng khớp ','required|matches[matkhau]');
 
-				// kiểm tra giá trị mã bộ môn
+				// kiểm tra giá trị mã  giáo viên 
 				$this->form_validation->set_rules('maGV','Nhập vào mã giáo viên ','required');
 
 

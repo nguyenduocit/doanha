@@ -22,7 +22,7 @@
                 </div>
             </div>
 
-
+            <!-- list ra danh sách hệ đào tạo -->
             <div class="form-group">
                 <div class="col-lg-1"></div>
                 <label class="control-label col-lg-2">Chọn hệ đào tạo :</label>
@@ -36,12 +36,12 @@
                    
                 </div>
             </div>
-
+            <!-- list ra danh sách khoa  -->
              <div class="form-group">
                 <div class="col-lg-2"></div>
                 <label class="control-label col-lg-1">Tên Khoa</label>
                 <div class="col-lg-7">
-                    <select class="form-control" name="makhoa" id='makhoa' readonly="readonly" >
+                    <select class="form-control" name="makhoa" id='makhoa' >
 
                     <?php  foreach ($list_khoa as $value) { ?>
                         <option <?php echo $list->khoa == $value->makhoa ? "selected":"" ?> value="<?php echo $value ->makhoa ?>"> <?php echo $value ->tenkhoa ?> </option>
@@ -50,27 +50,29 @@
                    
                 </div>
             </div>
-
+            <!-- list ra danh sách bộ môn -->
              <div class="form-group">
                 <div class="col-lg-1"></div>
                 <label class="control-label col-lg-2">Bộ môn :</label>
                 <div class="col-lg-7">
-                    <select class="form-control" name="mabomon" id="mabomon" readonly="readonly" >
-                        <?php  foreach ($list_khoa as $value) { ?>
-                        <option <?php echo $list->khoa == $value->makhoa ? "selected":"" ?> value="<?php echo $value ->makhoa ?>"> <?php echo $value ->tenkhoa ?> </option>
-                    <?php } ?>
+                    <select class="form-control" name="mabomon" id="mabomon" >
+                        <?php  foreach ($list_bomon as $value) { ?>
+                        <option <?php echo $list->bomon == $value->mabomon ? "selected":"" ?> value="<?php echo $value ->makhoa ?>"> <?php echo $value ->tenbomon ?> </option>
+                        <?php } ?>
                    
                     </select>
-                   
                 </div>
             </div>
-           
+
+            <!-- list ra danh sách chuyên ngành -->
              <div class="form-group">
                 <div class="col-lg-1"></div>
                 <label class="control-label col-lg-2"> Chuyên Ngành :</label>
                 <div class="col-lg-7">
-                    <select class="form-control" name="machuyennganh" id="machuyennganh" readonly="readonly" >
-
+                    <select class="form-control" name="machuyennganh" id="machuyennganh" >
+                    <?php  foreach ($list_chuyennganh as $value) { ?>
+                        <option <?php echo $list->chuyennganh == $value->machuyennganh ? "selected":"" ?> value="<?php echo $value ->machuyennganh ?>"> <?php echo $value ->tenchuyennganh ?> </option>
+                        <?php } ?>
                    
                     </select>
                    
@@ -81,10 +83,9 @@
             <div class="form-group <?php echo !empty(form_error('hocky')) ? 'has-error' : '' ?>">
                 <label class="control-label col-lg-3">Học kỳ : </label>
                 <div class="col-lg-7">
-                    <select class="form-control" name="hocky" readonly="readonly" >
-
+                    <select class="form-control" name="hocky">
                     <?php for($i = 1; $i<=10;$i++){ ?>
-                        <option<?php echo $list->hocky == $i ? "selected":"" ?> class="hoclky" value="<?php echo $i ?>"> <?php echo  $i ?> </option>
+                        <option class="hoclky" <?php echo ($list->hocky == $i )?"selected":"" ?> value="<?php echo $i ?>"> <?php echo  $i ?> </option>
                     <?php } ?>
                     </select>
                     <?php if (!empty(form_error('hocky'))) : ?>
@@ -149,3 +150,4 @@
         </form>
     </div>
 </div>
+

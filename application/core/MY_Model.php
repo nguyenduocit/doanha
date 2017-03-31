@@ -297,6 +297,20 @@
             }
             return true;
         }
+
+
+        /**
+         * Join dữ liệu 3 bảng
+         * 
+         */
+        public function get_join($input = array())
+        {
+            $sql = "SELECT * FROM `kehoachchung` WHERE 1";
+           $query = $this ->db-> query($sql);
+                       
+            return $query->result();
+
+        }
         
     }
 ?>
