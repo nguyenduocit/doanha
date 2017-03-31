@@ -42,7 +42,7 @@ class Kehoachchung extends MY_Controller
 	
 
 				// lấy ra danh sách khoa 
-				$list = $this->KehoachchungModel->get_list($input);
+				$list = $this->KehoachchungModel->get_join($input);
 			// gán truyền danh sách các khoa sang view 
 				$data['list'] = $list;
 

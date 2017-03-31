@@ -54,10 +54,10 @@
                          <tr>
                             <td><?php echo $value ->id ?></td>
                             <td><?php echo $value ->makehoachchung ?></td>
-                            <td><?php echo $value ->hedaotao ?></td>
-                            <td><?php echo $value ->khoa ?></td>
-                            <td><?php echo $value ->bomon  ?></td>
-                            <td><?php echo $value ->chuyennganh ?></td>
+                            <td><?php echo $value ->tenhedaotao ?></td>
+                            <td><?php echo $value ->tenkhoa ?></td>
+                            <td><?php echo $value ->tenbomon  ?></td>
+                            <td><?php echo $value ->tenchuyennganh ?></td>
                             <td><?php echo $value ->hocky ?></td>
                             <td><?php echo $value ->namhoc ?></td>
                             <td><?php echo $value ->solop ?></td>

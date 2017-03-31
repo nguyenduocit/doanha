@@ -305,7 +305,13 @@
          */
         public function get_join($input = array())
         {
-            $sql = "SELECT * FROM `kehoachchung` WHERE 1";
+            $sql = "SELECT kehoachchung.id , kehoachchung.makehoachchung , hocky, namhoc, solop, kehoachchung.nguoithaotac,  kehoachchung.hienthi ,kehoachchung.created_at,kehoachchung.updated_at, tenkhoa ,tenbomon , tenchuyennganh , tenhedaotao FROM `kehoachchung`  INNER JOIN khoa ON kehoachchung.khoa = khoa.makhoa  INNER JOIN bomon ON khoa.makhoa = bomon.makhoa INNER JOIN chuyennganh ON bomon.mabomon = chuyennganh.mabomon INNER JOIN hedaotao ON kehoachchung.hedaotao = hedaotao.mahedaotao ";
+            // Thêm điều kiện limit cho câu truy vấn thông qua biến $input['limit'] 
+            //(ví dụ $input['limit'] = array('10' ,'0')) 
+            if (isset($input['limit'][0]) && isset($input['limit'][1]))
+            {
+                $this->db->limit($input['limit'][0], $input['limit'][1]);
+            }
            $query = $this ->db-> query($sql);
                        
             return $query->result();
