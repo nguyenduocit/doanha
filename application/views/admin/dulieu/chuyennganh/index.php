@@ -75,14 +75,17 @@
                
             </tbody>
         </table>
-        <div>
+        <div class="pagina" >
             <nav aria-label="Page navigation" class="clearfix">
                 <?php
                     echo $this->pagination->create_links();
                 ?>
-                <div class="pull-right" style="margin-top: 20px;">
+                <div class="btns">
+                     <div class="pull-right" style="margin-top: 20px;">
                     <a href="" type="button" onclick="history.go(-1); return false;" class="btn btn-danger">Trở Về</a>
+                    </div>
                 </div>
+               
             </nav>
         </div>
     </div>

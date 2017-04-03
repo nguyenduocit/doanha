@@ -10,6 +10,11 @@
         return base_url('kehoach/'.$url);
     }
 
+    function kehoachgiangday_url($url='')
+    {
+        return base_url('kehoachgiangday/'.$url);
+    }
+
 
 
     function isset_user($data)

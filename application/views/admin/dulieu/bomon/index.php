@@ -77,7 +77,7 @@
                
             </tbody>
         </table>
-        <div>
+        <div class="pagina" >
             <nav aria-label="Page navigation" class="clearfix">
                 <?php
                     echo $this->pagination->create_links();

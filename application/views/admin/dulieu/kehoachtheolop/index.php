@@ -1,6 +1,6 @@
 <div class="x_panel">
     <div class="x_title">
-        <h2>Quản Lý Danh Sách Kế Hoạch </h2>
+        <h2>Quản Lý Danh Sách Kế Hoạch Theo Lớp </h2>
         <div>
             <form method="get" action="<?php echo kehoach_url('kehoachtheolop/search') ?> ">
                 <div class="col-lg-4 pull-right" style="padding-right: 0px;">
@@ -84,7 +84,7 @@
                
                             <td class="text-center">
                                 <a class="btn btn-xs btn-default" href=" <?php echo kehoach_url('kehoachtheolop/edit/').$value ->id ?>"><i class="fa fa-pencil"></i></a>
-                                <a class="btn btn-xs btn-danger btn-delete-action verify_action " href="<?php echo kehoach_url('kehoachchung/delete/').$value ->id ?>"><i class="fa fa-trash-o"></i></a>
+                                <a class="btn btn-xs btn-danger btn-delete-action verify_action " href="<?php echo kehoach_url('kehoachtheolop/delete/').$value ->id ?>"><i class="fa fa-trash-o"></i></a>
                             </td>
                         </tr>
                 <?php 
@@ -94,7 +94,7 @@
                
             </tbody>
         </table>
-        <div>
+        <div class="pagina">
             <nav aria-label="Page navigation" class="clearfix">
                 <?php
                     echo $this->pagination->create_links();

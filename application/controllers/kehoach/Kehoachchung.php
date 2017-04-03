@@ -115,17 +115,19 @@ class Kehoachchung extends MY_Controller
 								
 
 					$data = array(
-									'makehoachchung'  =>$makehoachchungs,
-									'hedaotao'        =>$mahedaotao,
-									'khoa'            =>$makhoa,
-									'bomon'           =>$mabomon,
+									'makehoachchung'  	=>$makehoachchungs,
+									'hedaotao'        	=>$mahedaotao,
+									'khoa'            	=>$makhoa,
+									'bomon'           	=>$mabomon,
 									'chuyennganh'   	=>$machuyennganh,
 									'hocky'     		=> $hocky,
-									'namhoc'          => $namhoc,
+									'namhoc'          	=> $namhoc,
 									'solop'          	=> $solop,
-									'nguoithaotac'    => $maGV,
-									'hienthi'         => $activel
+									'nguoithaotac'    	=> $maGV,
+									'hienthi'         	=> $activel
 									);
+
+					
 
 					//kiểm tra và chạy câu lệnh inser 
 

@@ -50,6 +50,16 @@
                             
                         </ul>
                     </li>
+
+                    <li>
+                        <a><i class="fa fa-database"></i> Kế hoạch giảng dạy <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="<?php echo kehoachgiangday_url('quydinh') ?>"> Quản lý quy định</a></li>
+
+                            <li><a href="<?php echo kehoachgiangday_url('kehoachtheolop') ?>">Lập KHDT theo lớp</a></li>
+                            
+                        </ul>
+                    </li>
                 </ul>
             </div>
             <div class="menu_section">

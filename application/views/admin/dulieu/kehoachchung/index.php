@@ -1,6 +1,6 @@
 <div class="x_panel">
     <div class="x_title">
-        <h2>Quản Lý Danh Sách Kế Hoạch </h2>
+        <h2>Quản Lý Danh Sách Kế Hoạch Chung </h2>
         <div>
             <form method="get" action="<?php echo kehoach_url('kehoachchung/search') ?> ">
                 <div class="col-lg-4 pull-right" style="padding-right: 0px;">
@@ -87,7 +87,7 @@
                
             </tbody>
         </table>
-        <div>
+        <div class="pagina">
             <nav aria-label="Page navigation" class="clearfix">
                 <div class="pagi">
                     <?php

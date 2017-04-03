@@ -77,7 +77,7 @@
             <div class="form-group <?php echo !empty(form_error('solop')) ? 'has-error' : '' ?>">
                 <label class="control-label col-lg-3">Số lớp được mở: </label>
                 <div class="col-lg-7">
-                    <input type="number" id="required2" name="solop[]" readonly="readonly" class="form-control solop" value=" "  placeholder="Số lớp">
+                    <input type="number" id="required2" name="solop" readonly="readonly" class="form-control solop" value=" "  placeholder="Số lớp">
                    
                     <?php if (!empty(form_error('solop'))) : ?>
                         <span class="text-danger"><?php echo form_error('solop'); ?> </p></span>

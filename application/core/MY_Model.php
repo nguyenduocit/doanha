@@ -306,7 +306,7 @@
          */
         public function get_join($start , $num)
         {
-            $sql = "SELECT kehoachchung.id , kehoachchung.makehoachchung , hocky, namhoc, solop, kehoachchung.nguoithaotac,  kehoachchung.hienthi ,kehoachchung.created_at,kehoachchung.updated_at, tenkhoa ,tenbomon , tenchuyennganh , tenhedaotao FROM `kehoachchung`  INNER JOIN khoa ON kehoachchung.khoa = khoa.makhoa  INNER JOIN bomon ON khoa.makhoa = bomon.makhoa INNER JOIN chuyennganh ON bomon.mabomon = chuyennganh.mabomon INNER JOIN hedaotao ON kehoachchung.hedaotao = hedaotao.mahedaotao limit {$start},{$num} ";
+            $sql = "SELECT kehoachchung.id , kehoachchung.makehoachchung , hocky, namhoc, solop, kehoachchung.nguoithaotac,  kehoachchung.hienthi ,kehoachchung.created_at,kehoachchung.updated_at, tenkhoa ,tenbomon , tenchuyennganh , tenhedaotao FROM `kehoachchung`  INNER JOIN khoa ON kehoachchung.khoa = khoa.makhoa  INNER JOIN bomon ON khoa.makhoa = bomon.makhoa INNER JOIN chuyennganh ON bomon.mabomon = chuyennganh.mabomon INNER JOIN hedaotao ON kehoachchung.hedaotao = hedaotao.mahedaotao ORDER BY id DESC LIMIT {$start},{$num}  ";
             // Thêm điều kiện limit cho câu truy vấn thông qua biến $input['limit'] 
             //(ví dụ $input['limit'] = array('10' ,'0')) 
             

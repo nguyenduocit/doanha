@@ -96,6 +96,8 @@ class Kehoachtheolop extends MY_Controller
 
                 $monhoc = $this->input ->post('monhoc');
 
+                $solop = $this->input ->post('solop');
+
                 $monhoc = json_encode($monhoc);
 
                 $activel = $this ->input ->post('active');
@@ -104,7 +106,7 @@ class Kehoachtheolop extends MY_Controller
 
                 // lây giá trị của mã khoa 
 
-                $where = " makehoachtheolop = '".$makehoachtheolops."' OR malop = '".$malop."'";
+                $where = " makehoachtheolop = '".$makehoachtheolops."' OR malop = '".$malop."' AND hocky = '".$hocky."' ";
 
                 $data = $this->KehoachtheolopModel->get_or($where);
 
@@ -398,7 +400,7 @@ class Kehoachtheolop extends MY_Controller
 
 
                 /*
-                                Xóa thông tin  bộ môn
+                     Xóa thông tin  bộ môn
                 */
 
     function delete()
@@ -410,17 +412,17 @@ class Kehoachtheolop extends MY_Controller
         settype($id, "int");
         
         if ($this->KehoachtheolopModel->delete($id)) {
-                        # code...
-                        $this->session->set_flashdata('success','Delet thành công ');
+            # code...
+            $this->session->set_flashdata('success','Delet thành công ');
 
-                        redirect(kehoach_url('kehoachtheolop'));
+            redirect(kehoach_url('kehoachtheolop'));
         }
         else
         {
                         
-                        $this->session->set_flashdata('error',' Lỗi không thể xóa dữ liệu ');
+            $this->session->set_flashdata('error',' Lỗi không thể xóa dữ liệu ');
 
-                        redirect(kehoach_url('kehoachtheolop'));
+            redirect(kehoach_url('kehoachtheolop'));
         }
                     
     }
