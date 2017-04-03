@@ -1,6 +1,6 @@
 <div class="x_panel">
     <div class="x_title">
-        <h2>Thêm Kế Hoạch Theo Lớp </h2>
+        <h2>Chỉnh Sửa Kế Hoạch Theo Lớp </h2>
         <div class="clearfix"></div>
     </div>
     <!-- Hiện thông báo -->
@@ -10,6 +10,8 @@
     <!-- Hiện thông báo -->
     <div class="x_content">
           <form action="" class="form-horizontal" id="block-validate" novalidate="novalidate" method="POST" enctype="multipart/form-data">
+             
+
 
             <div class="form-group <?php echo !empty(form_error('makehoachtheolop')) ? 'has-error' : '' ?>">
                 <label class="control-label col-lg-3">Mã kế hoạch  : </label>
@@ -23,33 +25,36 @@
             </div>
 
 
-            <div class="form-group">
+            <div class="form-group ">
                 <div class="col-lg-1"></div>
                 <label class="control-label col-lg-2">Chọn chuyên ngành :</label>
                 <div class="col-lg-7">
-                    <select class="form-control" name="machuyennganh">
-
+                    <select class="form-control" name="machuyennganh" id="machuyennganh" class="required2">
+                    <option>Mời bạn chọn chuyên ngành</option>
                     <?php  foreach ($list_chuyennganh as $value) { ?>
-                        <option <?php echo $list->chuyennganh == $value->machuyennganh ? "selected":"" ?>   value="<?php echo $value ->machuyennganh ?>"> <?php echo $value ->tenchuyennganh?> </option>
+                        <option <?php echo ($list ->machuyennganh == $value ->machuyennganh)? "selected" :"" ?> value="<?php echo $value ->machuyennganh ?>"> <?php echo $value ->tenchuyennganh?> </option>
                     <?php } ?>
                     </select>
+                    <?php if (!empty(form_error('machuyennganh'))) : ?>
+                        <span class="text-danger"><?php echo form_error('machuyennganh'); ?> </p></span>
+                    <?php endif; ?>
                    
                 </div>
+            </div>
+            
           
 
             
             <div class="form-group <?php echo !empty(form_error('hocky')) ? 'has-error' : '' ?>">
                 <label class="control-label col-lg-3">Học kỳ : </label>
                 <div class="col-lg-7">
-                    <select class="form-control" name="hocky">
+                     <select class="form-control" name="hocky" id="hocky">
 
-                    <?php for($i = 1; $i<=10;$i++){ ?>
-                        <option<?php echo $list->hocky == $i ? "selected":"" ?> class="hoclky" value="<?php echo $i ?>"> <?php echo  $i ?> </option>
-                    <?php } ?>
+                        <?php for($i = 1; $i<=10;$i++){ ?>
+                            <option <?php echo ($list->hocky == $i)? "selected" :"" ?> class="hocky"  value="<?php echo $i ?>"> <?php echo  $i ?> </option>
+                        <?php } ?>
                     </select>
-                    <?php if (!empty(form_error('hocky'))) : ?>
-                        <span class="text-danger"><?php echo form_error('hocky'); ?> </p></span>
-                    <?php endif; ?>
+                   
                 </div>
             </div>
 
@@ -70,14 +75,47 @@
                 </div>
             </div>
 
-            <div class="form-group <?php echo !empty(form_error('solop')) ? 'has-error' : '' ?>">
-                <label class="control-label col-lg-3">Số được mỏ: </label>
+            <div class="form-group <?php echo !empty(form_error('lop')) ? 'has-error' : '' ?>">
+                <label class="control-label col-lg-3">Chọn lớp :</label>
                 <div class="col-lg-7">
-                    <input type="number" id="required2" name="solop" class="form-control" value="<?php echo $list->solop ?>"  placeholder="Sĩ số">
-                   
-                    <?php if (!empty(form_error('solop'))) : ?>
-                        <span class="text-danger"><?php echo form_error('solop'); ?> </p></span>
+
+                <select class="form-control" name="lop" id="lop">
+                <option>Mời bạn chọn lớp </option>
+
+                <?php  foreach ($list_lop as $value) { ?>
+                    <option <?php echo ($list ->malop == $value ->malop)? "selected" :"" ?>  value="<?php echo $value ->malop ?>"> <?php echo $value ->tenlop?> </option>
+                <?php } ?>
+
+                </select>
+                    
+                    <?php if (!empty(form_error('lop'))) : ?>
+                        <span class="text-danger"><?php echo form_error('lop'); ?> </p></span>
                     <?php endif; ?>
+                </div>
+            </div>
+
+
+
+
+            <div class="form-group <?php echo !empty(form_error('mon')) ? 'has-error' : '' ?>">
+                <label class="control-label col-lg-3">Danh sách môn cần mở : </label>
+                <div class="col-lg-7" id="mons">
+                   
+                    <?php $monhoc = json_decode($list->monhoc); ?>
+                    <?php foreach ($list_monhoc as $key => $value): ?>
+                        <div class=" form-group col-lg-4">
+                         <input type="checkbox"
+                        <?php 
+                            if(in_array($value->mamonhoc, $monhoc))
+                            {
+                                echo "checked";
+                            }
+                        ?>  
+                        id="mamonhoc" name="monhoc[]" value="<?php echo $value ->mamonhoc ?>"><?php echo $value ->tenmonhoc ?>
+                        </div>
+                    <?php endforeach; ?>
+                   
+                   
                 </div>
             </div>
 
@@ -87,17 +125,11 @@
                 <label class="control-label col-lg-1">Active</label>
                 <div class="col-lg-3">
                     <select class="form-control" name="active">
-                        <option value="1">Hiện</option>
-                        <option value="0">Ẩn</option>
+                        <option <?php echo ($list->hienthi == 1)? "selected":"" ?> value="1">Hiện</option>
+                        <option <?php echo ($list->hienthi == 0)? "selected":"" ?> value="0">Ẩn</option>
                     </select>
                    
                 </div>
-            </div>
-
-            <div class="form-group">
-                
-                
-                
             </div>
             
             

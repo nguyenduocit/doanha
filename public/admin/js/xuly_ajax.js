@@ -50,8 +50,6 @@ $(document).ready(function(){
 	$('#hocky').change(function(){
 		 machuyennganh = $('#machuyennganh').find(":selected").val();
 		 hocky = $('#hocky').find(":selected").val();
-		 console.log(machuyennganh);
-		 console.log(hocky);
 		 //$result = $("#machuyennganh");
 		 $.ajax({
 		 	url:'http://localhost/doanha/kehoach/Kehoachtheolop/data_khc',
@@ -63,14 +61,21 @@ $(document).ready(function(){
 		 	success:function(data)
 		 	{
 		 		
-		 		console.log(data);
-		 		$.each(data,function(key,val){
+		 		if (data) {
+		 			// lặp dữ liệu lớp
+		 			$.each(data,function(key,val){
 
 		 			$('.solop').find("input").remove();
 		 			$('.solop').val(val['solop']);
 
-
 		 		});
+
+		 		}
+		 		else
+		 		{
+		 			$('.solop').find("input").remove();
+		 		}
+		 		
 			 		
 		 		//result.find("option").remove();
 		 		// $result.append(data);
@@ -125,9 +130,18 @@ $(document).ready(function(){
 		 	data:{'machuyennganh':machuyennganh},
 		 	success:function(data)
 		 	{
+
+		 		if(data)
+		 		{
+		 			$result.find("option").remove();
+		 			$result.append(data);
+		 		}
+		 		else
+		 		{
+		 			$result.find("option").remove();
+		 		}
 		 	
-		 		$result.find("option").remove();
-		 		$result.append(data);
+		 		
 		 
 			}
 		 	

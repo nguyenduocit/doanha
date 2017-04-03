@@ -72,6 +72,7 @@
 			// kiểm tra khi người dùng kích vào thêm mới 
 			if($this->input->post())
 			{
+				// lấy giá trị của form
 				// kiểm tra giá trị tên người dùng 
 				$this->form_validation->set_rules('hoten','Nhập vào tên giáo viên ','required');
 
@@ -96,7 +97,7 @@
 
 
 
-
+				// chạy câu lệnh validate
 				if($this->form_validation->run())
 				{
 					// gán giá trị tên 
@@ -142,10 +143,12 @@
 
 					$matkhau     = $this->input -> post("matkhau");
 
+					// mã hóa mật khẩu 
 					$matkhau = md5(sha1($matkhau ));
 
 					$input = array();
 
+					// kiểm tra nếu mã giáo viên đã bị trùng
 					$input['where'] = array('maGV' =>$maGV);
 
 					$data = $this->AdminModel->get_list($input);
@@ -165,10 +168,10 @@
 			                {
 			                    $hinhanh = $upload_data['file_name'];
 			                    
-
 			                }
 						$giaovien = $this ->input ->post('mabomon');
 
+						// gán dữ liệu
 						$data = array(
 									'maGV'			=>$maGV,
 									'hoten' 		=> $hoten,

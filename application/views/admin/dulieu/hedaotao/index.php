@@ -49,13 +49,13 @@
                         <td><?php echo $item->nguoithaotac ?></td>
                         <td class="text-center">
                            <?php   if( $item ->hienthi == 0): ?>
-                                <td class="text-center">
+                               
                                     <a href="" class="btn btn-xs btn-default">Ẩn</a>
-                                </td>
+                                
                             <?php else :?>
-                                <td class="text-center">
+                                
                                     <a href="" class="btn btn-xs btn-default">Hiện</a>
-                                </td>
+                                
                              <?php endif; ?>
                         </td>
                         <td class="text-center">

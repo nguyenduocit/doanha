@@ -27,7 +27,7 @@ class Kehoachchung extends MY_Controller
 				$config  = array();
 				$config['total_rows'] =  $total_row; // tổng tất cả các sản phẩm trên website ;
 				$config['base_url'] =  kehoach_url('kehoachchung/index'); // link hiển thị dữ lieeu danh sách sản phẩm
-				$config['per_page'] =  10; // số sản phẩm hiển thị trên 1 trang
+				$config['per_page'] = 10; // số sản phẩm hiển thị trên 1 trang
 				$config['uri_segment'] = 4; // phân đoạn hiển thị số trnag
 				$config['next_link']= 'Next' ; //Nhãn tên của nút Next
 				$config['prev_link']= 'Previous' ; //Nhãn tên của nút Previous
@@ -36,13 +36,9 @@ class Kehoachchung extends MY_Controller
 
 				$segment = $this->uri->segment(4);
 				$segment = intval($segment);
-				$input = array();
-				$input['limit'] = array($config['per_page'],$segment );
-
-	
-
+				
 				// lấy ra danh sách khoa 
-				$list = $this->KehoachchungModel->get_join($input);
+				$list = $this->KehoachchungModel->get_join($segment,$config['per_page']);
 			// gán truyền danh sách các khoa sang view 
 				$data['list'] = $list;
 

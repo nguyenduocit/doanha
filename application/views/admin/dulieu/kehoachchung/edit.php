@@ -128,8 +128,8 @@
                 <label class="control-label col-lg-1">Active</label>
                 <div class="col-lg-3">
                     <select class="form-control" name="active">
-                        <option value="1">Hiện</option>
-                        <option value="0">Ẩn</option>
+                        <option <?php echo ($list->hienthi == 1)? "selected":"" ?> value="1">Hiện</option>
+                        <option <?php echo ($list->hienthi == 0)? "selected":"" ?> value="0">Ẩn</option>
                     </select>
                    
                 </div>

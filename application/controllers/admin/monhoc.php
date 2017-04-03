@@ -70,50 +70,36 @@
 				
 				$this->form_validation->set_rules('tenmonhoc','Nhập vào tên môn học','required');
 
-				
 				$this->form_validation->set_rules('mamonhoc','Nhập vào mã môn học','required');
-
 				
 				$this->form_validation->set_rules('soTCTH','Nhập vào số tín chỉ thực hành ','required');
-
 
 				$this->form_validation->set_rules('soTCLT','Nhập vào số tín chỉ lý thuyết  ','required');
 
 
 				if($this->form_validation->run())
 				{
+					// lấy dữ liệu từ form
 
 					$tenmonhoc = $this->input ->post('tenmonhoc');
 
-
 					$mamonhoc = $this->input ->post('mamonhoc');
 
-					// gán giá trị mã hệ đào tạo
 					$mahedaotao = $this->input ->post('mahedaotao');
-
-					// gán giá trị mã chuyên ngành 
 
 					$machuyennganh = $this ->input ->post('machuyennganh');
 
-					
 					$mabomon = $this ->input ->post('mabomon');
 
-					
 					$maloaimon = $this ->input ->post('maloaimon');
 
-				
 					$soTCTH = $this ->input ->post('soTCTH');
 
-					// lấy giá trị sĩ số
 					$soTCLT= $this ->input ->post('soTCLT');
 
-					// lấy giá trị của activel 
+					$activel = $this ->input ->post('active');		
 
-					$activel = $this ->input ->post('active');
-
-					// lây giá trị của mã khoa 
-					
-
+					// kiểm tra nếu mã môn học bị trùng
 					$input = array();
 
 					$input['where'] = array('mamonhoc' =>$mamonhoc);
@@ -158,13 +144,9 @@
 
 				}
 			}
-
+			// list ra danh sách dữ liệu của các bảng 
 			$list_hedaotao = $this->HedaotaoModel->get_list();
 			$data['list_hedaotao'] = $list_hedaotao;
-
-			$list_bomon = $this->BomonModel->get_list();
-			$data['list_bomon'] = $list_bomon;
-
 
 			$list_chuyennganh = $this->ChuyennganhModel->get_list();
 			$data['list_chuyennganh'] = $list_chuyennganh;
@@ -189,7 +171,7 @@
 
 			settype($id, "int");
 
-			// kiểm tra có tồn tại giáo viên
+			// kiểm tra có tồn tại môn học 
 
 			 $maGV = isset_user($this->session->userdata('userdata'));
 
@@ -220,39 +202,26 @@
 
 				if($this->form_validation->run())
 				{
+					// lấy ra giá trị form
 					$tenmonhoc = $this->input ->post('tenmonhoc');
-
 
 					$mamonhoc = $this->input ->post('mamonhoc');
 
-					// gán giá trị mã hệ đào tạo
 					$mahedaotao = $this->input ->post('mahedaotao');
-
-					// gán giá trị mã chuyên ngành 
 
 					$machuyennganh = $this ->input ->post('machuyennganh');
 
-					
 					$mabomon = $this ->input ->post('mabomon');
 
-					
 					$maloaimon = $this ->input ->post('maloaimon');
 
-				
 					$soTCTH = $this ->input ->post('soTCTH');
 
-					// lấy giá trị sĩ số
 					$soTCLT= $this ->input ->post('soTCLT');
-
-					// lấy giá trị của activel 
 
 					$activel = $this ->input ->post('active');
 
-					// lây giá trị của mã khoa 
-
-					// lây giá trị của mã khoa 
-
-
+					// kiểm tra nếu mã môn học bị trùng
 					if($list->mamonhoc == $mamonhoc )
 					{
 						$data = array();
@@ -266,8 +235,7 @@
 
 
 					}
-
-					
+					// nếu mã môn học k bị trùng gán dữ liệu
 
 					if(empty($data))
 					{
@@ -280,7 +248,6 @@
 									'soTCLT'			=>$soTCLT,
 									'soTCTH' 			=>$soTCTH,
 									'machuyennganh' 	=> $machuyennganh,
-									'mabomon' 			=> $mabomon,
 									'maloaimon'  		=> $maloaimon,
 									'TCM'  				=> $TCM,
 									'nguoithaotac'  	=> $maGV,
@@ -309,12 +276,9 @@
 				}
 			}
 
+			// lấy ra danh sách dữ liệu của các bảng
 			$list_hedaotao = $this->HedaotaoModel->get_list();
 			$data['list_hedaotao'] = $list_hedaotao;
-
-			$list_bomon = $this->BomonModel->get_list();
-			$data['list_bomon'] = $list_bomon;
-
 
 			$list_chuyennganh = $this->ChuyennganhModel->get_list();
 			$data['list_chuyennganh'] = $list_chuyennganh;
@@ -330,7 +294,7 @@
 
 
 		/*
-			Xóa thông tin  bộ môn
+			Xóa thông tin  môn học
 		*/
 
 		function delete()

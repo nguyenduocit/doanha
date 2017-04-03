@@ -49,6 +49,7 @@
                 </div>
             </div>
 
+
             <div class="form-group">
                 <div class="col-lg-1"></div>
                 <label class="control-label col-lg-2">Tên chuyên ngành :</label>
@@ -57,20 +58,6 @@
 
                     <?php  foreach ($list_chuyennganh as $value) { ?>
                         <option class="chuyennganh" machuyennganh="<?php echo $value ->machuyennganh ?>"  value="<?php echo $value ->machuyennganh ?>"> <?php echo $value ->tenchuyennganh?> </option>
-                    <?php } ?>
-                    </select>
-                   
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-lg-1"></div>
-                <label class="control-label col-lg-2">Bộ môn:</label>
-                <div class="col-lg-7">
-                    <select class="form-control" name="mabomon">
-
-                    <?php  foreach ($list_bomon as $value) { ?>
-                        <option  value="<?php echo $value ->mabomon ?>"> <?php echo $value ->tenbomon ?> </option>
                     <?php } ?>
                     </select>
                    

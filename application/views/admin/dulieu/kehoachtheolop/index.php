@@ -83,7 +83,7 @@
                              <?php endif; ?>
                
                             <td class="text-center">
-                                <a class="btn btn-xs btn-default" href=" <?php echo kehoach_url('kehoachchung/edit/').$value ->id ?>"><i class="fa fa-pencil"></i></a>
+                                <a class="btn btn-xs btn-default" href=" <?php echo kehoach_url('kehoachtheolop/edit/').$value ->id ?>"><i class="fa fa-pencil"></i></a>
                                 <a class="btn btn-xs btn-danger btn-delete-action verify_action " href="<?php echo kehoach_url('kehoachchung/delete/').$value ->id ?>"><i class="fa fa-trash-o"></i></a>
                             </td>
                         </tr>
