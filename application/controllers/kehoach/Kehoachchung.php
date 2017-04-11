@@ -42,6 +42,8 @@ class Kehoachchung extends MY_Controller
 			// gán truyền danh sách các khoa sang view 
 				$data['list'] = $list;
 
+				
+
 				$data['temp'] = 'admin/dulieu/kehoachchung/index';
 				$this->load->view('admin/main',$data);  
 	}
@@ -61,11 +63,6 @@ class Kehoachchung extends MY_Controller
 		// kiểm tra khi người dùng kích vào thêm mới 
 		if($this->input->post())
 		{
-					
-			// kiểm tra giá trị mã
-			$this->form_validation->set_rules('solop','Nhập vào số lớp ','required');
-
-
 
 			$this->form_validation->set_rules('makehoachchung','Nhập vào mã kế hoạch ','required');
 
@@ -93,8 +90,6 @@ class Kehoachchung extends MY_Controller
 
 				$namhoc = $this ->input ->post('namhoc');
 
-				$solop = $this ->input ->post('solop');
-
 				// lấy giá trị của activel 
 
 				$activel = $this ->input ->post('active');
@@ -116,13 +111,12 @@ class Kehoachchung extends MY_Controller
 
 					$data = array(
 									'makehoachchung'  	=>$makehoachchungs,
-									'hedaotao'        	=>$mahedaotao,
+									'mahedaotao'        =>$mahedaotao,
 									'khoa'            	=>$makhoa,
 									'bomon'           	=>$mabomon,
 									'chuyennganh'   	=>$machuyennganh,
 									'hocky'     		=> $hocky,
 									'namhoc'          	=> $namhoc,
-									'solop'          	=> $solop,
 									'nguoithaotac'    	=> $maGV,
 									'hienthi'         	=> $activel
 									);
@@ -145,8 +139,7 @@ class Kehoachchung extends MY_Controller
 				}
 				else
 				{
-								$this->session->set_flashdata('error','Mã kế hoạch đã tồn tại .
-									.');
+					$this->session->set_flashdata('error','Mã kế hoạch đã tồn tại .');
 				}
 
 			}
@@ -254,10 +247,6 @@ class Kehoachchung extends MY_Controller
 			// kiểm tra khi người dùng kích vào  
 		if($this->input->post())
 		{
-						// kiểm tra giá trị mã
-				$this->form_validation->set_rules('solop','Nhập vào số lớp ','required');
-
-
 				$this->form_validation->set_rules('makehoachchung','Nhập vào mã kế hoạch ','required');
 
 						if($this->form_validation->run())
@@ -282,8 +271,6 @@ class Kehoachchung extends MY_Controller
 
 
 							$namhoc = $this ->input ->post('namhoc');
-
-							$solop = $this ->input ->post('solop');
 
 							// lấy giá trị của activel 
 
@@ -316,12 +303,11 @@ class Kehoachchung extends MY_Controller
 	
 									$data = array(
 											'makehoachchung'  =>$makehoachchungs,
-											'hedaotao'        =>$mahedaotao,
+											'mahedaotao'        =>$mahedaotao,
 											'khoa'            =>$makhoa,
 											'bomon'           =>$mabomon,
 											'hocky'     	  => $hocky,
 											'namhoc'          => $namhoc,
-											'solop'           => $solop,
 											'nguoithaotac'    => $maGV,
 											'hienthi'         => $activel
 											);

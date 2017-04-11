@@ -149,6 +149,24 @@ $(document).ready(function(){
 	});
 
 
+	$('.delete_kh').click(function(){
+		 var id = $(this).attr('id');
+		 console.log(id);
+		 $.ajax({
+		 	url:'http://localhost/doanha/kehoach/kehoachchuyennganh/delete',
+		 	type:'post',
+		 	async:true,
+		 	dataType:'text',
+		 	data:{'id':id},
+		 	success:function(data)
+		 	{
+		 		$('tr.row_'+id).fadeOut();	
+		 
+			}
+		 	
+		 });
+	});
+
 	
 	
 	

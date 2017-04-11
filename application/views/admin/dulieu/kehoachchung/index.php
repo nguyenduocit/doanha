@@ -29,41 +29,35 @@
         <table class="table table-striped table-bordered">
             <thead>
                 <tr>
-                    <th>Id</th>
+                    <th>STT</th>
                     <th>Mã kế hoạch</th>
+                    <th>Chuyên Ngành</th>
                     <th>Hệ đào tạo</th>
-                    <th>khoa </th>
-                    <th>Bộ Môn</th>
-                    <th>Chuyên ngành</th>
-                    <th>Học kỳ</th>
                     <th>Năm học</th>
-                    <th>Số lớp</th>
                     <th>Người Tạo</th>
                     <th>Ngày Tạo</th>
-                    <th>Ngày Cập Nhật</th>
                     <th class="text-center">Active</th>
-                    <th colspan="2" class="text-center">Thao tác</th>
+                    <th  class="text-center">Thao tác</th>
+                    <th>Lập kế hoạch</th>
+                    <th >Chi Tiết</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
                     if (isset($list)) {
+                        $stt = 0;
+
                         # code...
                         foreach ($list as  $value) {  ?>
 
                          <tr>
-                            <td><?php echo $value ->id ?></td>
+                            <td><?php echo $stt = $stt +1 ?></td>
                             <td><?php echo $value ->makehoachchung ?></td>
-                            <td><?php echo $value ->tenhedaotao ?></td>
-                            <td><?php echo $value ->tenkhoa ?></td>
-                            <td><?php echo $value ->tenbomon  ?></td>
                             <td><?php echo $value ->tenchuyennganh ?></td>
-                            <td><?php echo $value ->hocky ?></td>
+                            <td><?php echo $value ->tenhedaotao ?></td>
                             <td><?php echo $value ->namhoc ?></td>
-                            <td><?php echo $value ->solop ?></td>
-                            <td><?php echo $value ->nguoithaotac ?></td>
+                            <td><?php echo $value ->hoten ?></td>
                             <td><?php echo $value ->created_at ?></td>
-                            <td><?php echo $value ->updated_at ?></td>
                                 
                             <?php   if($value ->hienthi == 0): ?>
                                 <td class="text-center">
@@ -79,7 +73,13 @@
                                 <a class="btn btn-xs btn-default" href=" <?php echo kehoach_url('kehoachchung/edit/').$value ->id ?>"><i class="fa fa-pencil"></i></a>
                                 <a class="btn btn-xs btn-danger btn-delete-action verify_action " href="<?php echo kehoach_url('kehoachchung/delete/').$value ->id ?>"><i class="fa fa-trash-o"></i></a>
                             </td>
+
+
+                            <td><a href="<?php echo kehoach_url('kehoachchuyennganh/add/').$value->makehoachchung ?>"><button type="button" class="btn btn-primary">Lập Kế Hoạch</button></a></td>
+
+                            <td><a href="<?php echo kehoach_url('Kehoachchuyennganh/view/').$value->makehoachchung ?>"><button type="button" class="btn btn-primary">CT Kế Hoạch</button></a></td>
                         </tr>
+
                 <?php 
                         }
                     }

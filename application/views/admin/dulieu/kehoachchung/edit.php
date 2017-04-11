@@ -30,7 +30,7 @@
                     <select class="form-control" name="mahedaotao">
 
                     <?php  foreach ($list_hedaotao as $value) { ?>
-                        <option <?php echo $list->hedaotao == $value->mahedaotao ? "selected":"" ?>   value="<?php echo $value ->mahedaotao ?>"> <?php echo $value ->tenhedaotao?> </option>
+                        <option <?php echo $list->mahedaotao == $value->mahedaotao ? "selected":"" ?>   value="<?php echo $value ->mahedaotao ?>"> <?php echo $value ->tenhedaotao?> </option>
                     <?php } ?>
                     </select>
                    
@@ -111,17 +111,7 @@
                 </div>
             </div>
 
-            <div class="form-group <?php echo !empty(form_error('solop')) ? 'has-error' : '' ?>">
-                <label class="control-label col-lg-3">Số lớp cần mở: </label>
-                <div class="col-lg-7">
-                    <input type="number" id="required2" name="solop" class="form-control" value="<?php echo $list->solop ?>"  placeholder="Sĩ số">
-                   
-                    <?php if (!empty(form_error('solop'))) : ?>
-                        <span class="text-danger"><?php echo form_error('solop'); ?> </p></span>
-                    <?php endif; ?>
-                </div>
-            </div>
-
+            
 
             <div class="form-group">
                 <div class="col-lg-2"></div>

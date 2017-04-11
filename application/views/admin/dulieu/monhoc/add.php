@@ -64,6 +64,20 @@
                 </div>
             </div>
 
+
+            <div class="form-group">
+                <div class="col-lg-1"></div>
+                <label class="control-label col-lg-2">Giáo viên giảng dạy :</label>
+                <div class="col-lg-7">
+                    <select class="form-control" name="tengiaovien">
+                    <?php  foreach ($list_giaovien as $value) { ?>
+                        <option class="chuyennganh" machuyennganh="<?php echo $value ->hoten ?>"  value="<?php echo $value ->maGV ?>"> <?php echo $value ->hoten?> </option>
+                    <?php } ?>
+                    </select>
+                   
+                </div>
+            </div>
+
             <div class="form-group">
                 <div class="col-lg-1"></div>
                 <label class="control-label col-lg-2">Loại Môn:</label>

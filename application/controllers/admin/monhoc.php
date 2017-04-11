@@ -29,7 +29,7 @@
 
 			$config  = array();
 			$config['total_rows'] =  $total_row; // tổng tất cả các sản phẩm trên website ;
-	        $config['base_url'] =  admin_url('lop/index'); // link hiển thị dữ lieeu danh sách sản phẩm
+	        $config['base_url'] =  admin_url('monhoc/index'); // link hiển thị dữ lieeu danh sách sản phẩm
 	        $config['per_page'] =  10; // số sản phẩm hiển thị trên 1 trang
 	        $config['uri_segment'] = 4; // phân đoạn hiển thị số trnag
 	        $config['next_link']= 'Next' ; //Nhãn tên của nút Next
@@ -75,6 +75,7 @@
 				$this->form_validation->set_rules('soTCTH','Nhập vào số tín chỉ thực hành ','required');
 
 				$this->form_validation->set_rules('soTCLT','Nhập vào số tín chỉ lý thuyết  ','required');
+				$this->form_validation->set_rules('tengiaovien','Bạn cần chọn giáo viên  ','required');
 
 
 				if($this->form_validation->run())
@@ -92,6 +93,8 @@
 					$mabomon = $this ->input ->post('mabomon');
 
 					$maloaimon = $this ->input ->post('maloaimon');
+
+					$tengiaovien = $this ->input ->post('tengiaovien');
 
 					$soTCTH = $this ->input ->post('soTCTH');
 
@@ -117,6 +120,7 @@
 									'soTCTH' 			=>$soTCTH,
 									'machuyennganh' 	=> $machuyennganh,
 									'maloaimon'  		=> $maloaimon,
+									'giaovien'  		=> $tengiaovien,
 									'TCM'  				=> $TCM,
 									'nguoithaotac'  	=> $maGV,
 									'hienthi'			=> $activel
@@ -153,6 +157,9 @@
 
 			$list_loaimon = $this->LoaimonModel->get_list();
 			$data['list_loaimon'] = $list_loaimon;
+
+			$list_giaovien = $this->AdminModel->get_list();
+			$data['list_giaovien'] = $list_giaovien;
 
 
 			$data['temp'] = 'admin/dulieu/monhoc/add';
@@ -215,9 +222,13 @@
 
 					$maloaimon = $this ->input ->post('maloaimon');
 
+					$tengiaovien = $this ->input ->post('tengiaovien');
+
 					$soTCTH = $this ->input ->post('soTCTH');
 
 					$soTCLT= $this ->input ->post('soTCLT');
+
+					$TCM= $this ->input ->post('TCM');
 
 					$activel = $this ->input ->post('active');
 
@@ -249,10 +260,13 @@
 									'soTCTH' 			=>$soTCTH,
 									'machuyennganh' 	=> $machuyennganh,
 									'maloaimon'  		=> $maloaimon,
+									'giaovien'  		=> $tengiaovien,
 									'TCM'  				=> $TCM,
 									'nguoithaotac'  	=> $maGV,
 									'hienthi'			=> $activel
 									);
+
+						//pre($data);
 
 						//kiểm tra và chạy câu lệnh inser 
 
@@ -285,6 +299,9 @@
 
 			$list_loaimon = $this->LoaimonModel->get_list();
 			$data['list_loaimon'] = $list_loaimon;
+
+			$list_giaovien = $this->AdminModel->get_list();
+			$data['list_giaovien'] = $list_giaovien;
 
 
 			$data['list'] = $list;

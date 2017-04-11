@@ -37,7 +37,7 @@
                 </div>
             </div>
 
-             <div class="form-group">
+            <div class="form-group">
                 <div class="col-lg-2"></div>
                 <label class="control-label col-lg-1">Tên Khoa</label>
                 <div class="col-lg-7">
@@ -80,21 +80,6 @@
                 </div>
             </div>
 
-            
-            <div class="form-group <?php echo !empty(form_error('hocky')) ? 'has-error' : '' ?>">
-                <label class="control-label col-lg-3">Học kỳ : </label>
-                <div class="col-lg-7">
-                    <select class="form-control" name="hocky">
-
-                    <?php for($i = 1; $i<=10;$i++){ ?>
-                        <option class="hoclky" value="<?php echo $i ?>"> <?php echo  $i ?> </option>
-                    <?php } ?>
-                    </select>
-                    <?php if (!empty(form_error('hocky'))) : ?>
-                        <span class="text-danger"><?php echo form_error('hocky'); ?> </p></span>
-                    <?php endif; ?>
-                </div>
-            </div>
 
             <div class="form-group <?php echo !empty(form_error('namhoc')) ? 'has-error' : '' ?>">
                 <label class="control-label col-lg-3">Năm học </label>
@@ -112,18 +97,6 @@
                     <?php endif; ?>
                 </div>
             </div>
-
-            <div class="form-group <?php echo !empty(form_error('solop')) ? 'has-error' : '' ?>">
-                <label class="control-label col-lg-3">Số lớp cần mở: </label>
-                <div class="col-lg-7">
-                    <input type="number" id="required2" name="solop" class="form-control" value="<?php set_value('solop') ?>"  placeholder="Sĩ số">
-                   
-                    <?php if (!empty(form_error('solop'))) : ?>
-                        <span class="text-danger"><?php echo form_error('solop'); ?> </p></span>
-                    <?php endif; ?>
-                </div>
-            </div>
-
 
             <div class="form-group">
                 <div class="col-lg-2"></div>

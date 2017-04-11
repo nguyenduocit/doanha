@@ -301,14 +301,37 @@
 
 
         /**
-         * Join dữ liệu 3 bảng
+         * Join dữ liệu 
          * 
          */
         public function get_join($start , $num)
         {
-            $sql = "SELECT kehoachchung.id , kehoachchung.makehoachchung , hocky, namhoc, solop, kehoachchung.nguoithaotac,  kehoachchung.hienthi ,kehoachchung.created_at,kehoachchung.updated_at, tenkhoa ,tenbomon , tenchuyennganh , tenhedaotao FROM `kehoachchung`  INNER JOIN khoa ON kehoachchung.khoa = khoa.makhoa  INNER JOIN bomon ON khoa.makhoa = bomon.makhoa INNER JOIN chuyennganh ON bomon.mabomon = chuyennganh.mabomon INNER JOIN hedaotao ON kehoachchung.hedaotao = hedaotao.mahedaotao ORDER BY id DESC LIMIT {$start},{$num}  ";
+            $sql = "SELECT kehoachchung.*, tenchuyennganh,hoten , tenhedaotao  FROM kehoachchung  INNER JOIN chuyennganh ON kehoachchung.chuyennganh = chuyennganh.machuyennganh INNER JOIN admin ON kehoachchung.nguoithaotac = admin.maGV INNER JOIN hedaotao ON kehoachchung.mahedaotao = hedaotao.mahedaotao  ORDER BY id DESC LIMIT {$start},{$num}  ";
             // Thêm điều kiện limit cho câu truy vấn thông qua biến $input['limit'] 
             //(ví dụ $input['limit'] = array('10' ,'0')) 
+            
+           $query = $this ->db-> query($sql);
+                       
+            return $query->result();
+
+        }
+        // $sql = "SELECT kehoachchuyennganh.*,tenchuyennganh,hoten,soTCLT, soTCTH ,TCM ,monhoc.giaovien 
+        //     FROM kehoachchuyennganh 
+        //     INNER JOIN  kehoachchung ON kehoachchuyennganh.makehoachchung = kehoachchung.makehoachchung 
+        //     INNER JOIN  chuyennganh  ON kehoachchung.chuyennganh = chuyennganh.machuyennganh
+        //     INNER JOIN  monhoc ON kehoachchuyennganh.mamonhoc = monhoc.mamonhoc
+        //     INNER JOIN admin ON  monhoc.giaovien= admin.maGV
+        //     WHERE chuyennganh = {$id} ";
+        
+        public function get_join_detail($id)
+        {
+            $sql = "SELECT kehoachchuyennganh.id, monhoc.mamonhoc, tenmonhoc,soTCLT,soTCTH,TCM,monhoc.giaovien,kehoachchuyennganh.hocky,hoten,kehoachchuyennganh.created_at , kehoachchuyennganh.updated_at
+            FROM kehoachchuyennganh 
+            INNER JOIN  kehoachchung ON kehoachchuyennganh.makehoachchung = kehoachchung.makehoachchung 
+            LEFT JOIN  chuyennganh  ON kehoachchung.chuyennganh = chuyennganh.machuyennganh
+            LEFT JOIN  monhoc ON kehoachchuyennganh.mamonhoc = monhoc.mamonhoc
+            LEFT JOIN admin ON  kehoachchung.nguoithaotac= admin.maGV
+            WHERE kehoachchuyennganh.machuyennganh = {$id} ";
             
            $query = $this ->db-> query($sql);
                        
