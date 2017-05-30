@@ -15,7 +15,7 @@
                 <div class="col-lg-1"></div>
                 <label class="control-label col-lg-2">Giáo Viên </label>
                 <div class="col-lg-7">
-                    <select class="form-control" name="giaovien" id="giaovien" class="required2" readonly="readonly">
+                    <select class="form-control" name="giaovien" id="giaovien" class="required2" >
                     <?php  foreach ($list_giaovien as $value) { ?>
                         <option value="<?php echo $value ->maGV ?>"> <?php echo $value ->hoten?> </option>
                     <?php } ?>
@@ -51,7 +51,7 @@
                 <div class="col-lg-7">
                     <select class="form-control" name="hocky" id="hockys" hocky ='hocky'>
                        
-                        <option class="hocky"  value="<?php echo $hocky ->hocky ?>"><?php echo $hocky ->hocky ?></option>
+                        
                         
                     </select>
 

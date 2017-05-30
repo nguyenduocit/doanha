@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 30, 2017 lúc 05:03 SA
+-- Thời gian đã tạo: Th5 30, 2017 lúc 08:11 CH
 -- Phiên bản máy phục vụ: 10.1.21-MariaDB
 -- Phiên bản PHP: 7.0.16
 
@@ -383,6 +383,32 @@ INSERT INTO `kehoachchuyennganh` (`id`, `makehoachchung`, `machuyennganh`, `mamo
 (23, 'DTDH451', '0611', ' 041102', 1, '2017-04-20 10:53:59', '2017-04-20 10:53:59'),
 (24, 'DTDH451', '0611', '071101', 2, '2017-05-10 02:05:58', '2017-05-10 02:05:58'),
 (25, 'DTDH451', '0611', '061102', 1, '2017-05-10 02:06:08', '2017-05-10 02:06:08');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `kehoachngoaikhoa`
+--
+
+CREATE TABLE `kehoachngoaikhoa` (
+  `id` int(11) NOT NULL,
+  `magv` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `malop` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `hocky` int(10) DEFAULT NULL,
+  `mamon` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `namhoc` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `nguoithaotac` varchar(85) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `kehoachngoaikhoa`
+--
+
+INSERT INTO `kehoachngoaikhoa` (`id`, `magv`, `malop`, `hocky`, `mamon`, `namhoc`, `nguoithaotac`, `created_at`) VALUES
+(1, '02071', '201151', 3, '031107', '2017-2018', '02001', '2017-05-30 17:35:35'),
+(2, '02056', '601141', 3, '061104', '2017-2018', '02001', '2017-05-30 17:49:41'),
+(3, '02071', '201151', 2, '031108', '2017-2018', '02001', '2017-05-30 18:08:30');
 
 -- --------------------------------------------------------
 
@@ -1241,6 +1267,12 @@ ALTER TABLE `kehoachchuyennganh`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Chỉ mục cho bảng `kehoachngoaikhoa`
+--
+ALTER TABLE `kehoachngoaikhoa`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Chỉ mục cho bảng `kehoachtheolop`
 --
 ALTER TABLE `kehoachtheolop`
@@ -1350,6 +1382,11 @@ ALTER TABLE `kehoachchung`
 --
 ALTER TABLE `kehoachchuyennganh`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+--
+-- AUTO_INCREMENT cho bảng `kehoachngoaikhoa`
+--
+ALTER TABLE `kehoachngoaikhoa`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT cho bảng `kehoachtheolop`
 --

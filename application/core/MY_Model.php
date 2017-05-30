@@ -595,6 +595,19 @@
             return $query->result();
         }
 
+        public function showKeHoachNgoaiKhoa(){
+           $sql = " SELECT kehoachngoaikhoa.id ,hoten,tenlop,tenmonhoc,kehoachngoaikhoa.namhoc, kehoachngoaikhoa.hocky, kehoachngoaikhoa.created_at  FROM kehoachngoaikhoa
+           INNER JOIN monhoc  ON kehoachngoaikhoa.mamon = monhoc.mamonhoc 
+           INNER JOIN lop ON kehoachngoaikhoa.malop = lop.malop
+           INNER JOIN admin ON kehoachngoaikhoa.magv = admin.maGV
+           ORDER BY kehoachngoaikhoa.id DESC
+             ";
+
+            $query = $this ->db-> query($sql);
+                       
+            return $query->result();
+        }
+
         
     }
 ?>

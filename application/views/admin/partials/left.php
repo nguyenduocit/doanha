@@ -48,7 +48,7 @@
 
                             <li><a href="<?php echo kehoach_url('kehoachtheolop') ?>">Lập KHDT theo lớp</a></li> 
 
-                            <li><a href="<?php echo kehoach_url('kehoachtheolop') ?>">Lập KHDT ngoài khoa</a></li>
+                            <li><a href="<?php echo kehoach_url('kehoachngoaikhoa') ?>">Lập KHDT ngoài khoa</a></li>
                             
                         </ul>
                     </li>

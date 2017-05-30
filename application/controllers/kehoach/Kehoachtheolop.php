@@ -287,12 +287,13 @@ class Kehoachtheolop extends MY_Controller
         // kiểm tra có tồn tại người dùng 
         $maGV = isset_user($this->session->userdata('userdata'));
 
-        $input= array();
+        $input['where']= array('id' =>$id);
         
         
 
         // lấy ra thông tin lớp cần lập kế hoạch
         $list_kehoachtheolop = $this->KehoachtheolopModel->get_list($input);
+
         
 
         $data['list_kehoachtheolop'] = $list_kehoachtheolop;

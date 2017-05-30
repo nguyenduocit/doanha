@@ -166,6 +166,21 @@
                         }
                     }
                 ?>
+                <tr>
+                    <td colspan="11" style="text-align: center;">Tổng cộng</td>
+                    <td>
+                        <?php 
+                            if(isset($data) && !empty($data)){ 
+                                echo  $tonggiothuhien = array_sum($data); 
+                                
+                            }else{
+                             echo 0;
+                            } 
+                             
+                        ?>
+                    </td>
+                    <td><?php echo isset($chamthi)?number_format(array_sum($chamthi))."đ":"0"?></td>
+                </tr>
                
             </tbody>
         </table>
@@ -176,7 +191,7 @@
                 <tr>
                     <th>STT</th>
                     <th>Nội dung</th>
-
+                    <th> Mã Lớp</th>
                     <th>Số lượng</th>
                     <th>Quy đổi</th>
                     <th>Số giờ chuẩn</th>
@@ -185,6 +200,7 @@
             </thead>
             <tbody>
                 <?php
+
                     if (isset($list_hdk) && !empty($list_hdk)) {
                         $stt = 0;
                         $tonggio = 0;
@@ -197,7 +213,7 @@
                         <tr class="row_<?php echo $value->id ?>">
                             <td><?php echo $stt = $stt +1 ?></td>
                             <td><?php echo $value ->tenmonhoc ?></td>
-                           
+                           <td><?php echo $value ->malop ?></td>
                             <td>
                             <?php 
                                 $ssv =  $value ->soTCTH;
@@ -214,7 +230,7 @@
                             </td>
                            
                             <td><?php echo $stt = "2"; ?></td>
-                            <td><?php echo $sogio = $ssv * 2; ?></td> 
+                            <td><?php echo $sogio = $ssv * 2; $tong[] = $ssv * 2 ?></td> 
                            
                             
                             
@@ -224,12 +240,16 @@
                         }
                     }
                 ?>
+                <tr>
+                    <td colspan="5" style="text-align: center;">Tổng cộng</td>
+                    <td><?php  echo isset($tong)?array_sum($tong):"0"?></td>
+                </tr>
                
             </tbody>
         </table>
     
 
-       <h2>II. Thanh toán thừa giờ </h2>
+       <h2>III. Thanh toán thừa giờ </h2>
         <table class="table table-striped table-bordered">
             <thead>
                 <tr>
