@@ -26,7 +26,7 @@
             <div class="form-group <?php echo !empty(form_error('mabomon')) ? 'has-error' : '' ?>">
                 <label class="control-label col-lg-3">Mã Bộ Môn : </label>
                 <div class="col-lg-7">
-                    <input type="text" id="required2" name="mabomon" class="form-control" value="<?php echo $list->mabomon?>"  placeholder="Mã khoa">
+                    <input type="text" id="required2" name="mabomon" readonly="readonly" class="form-control" value="<?php echo $list->mabomon?>"  placeholder="Mã Bộ Môn">
                    
                     <?php if (!empty(form_error('mabomon'))) : ?>
                         <span class="text-danger"><?php echo form_error('mabomon'); ?> </p></span>
@@ -46,19 +46,22 @@
             </div>
 
 
-             <div class="form-group">
+             <div class="form-group <?php echo !empty(form_error('makhoa')) ? 'has-error' : '' ?> ">
                 <div class="col-lg-2"></div>
                 <label class="control-label col-lg-1">Tên Khoa</label>
                 <div class="col-lg-7">
                     <select class="form-control" name="makhoa">
-
+                    <option value=""> Chọn khoa </option>
                     <?php  foreach ($list_khoa as $value) { ?>
+                        
                         <option 
                             <?php if($list->makhoa == $value->makhoa){ echo"selected";} ?> value="<?php echo $value ->makhoa ?>"> <?php echo $value ->tenkhoa ?> 
                         </option>
                     <?php } ?>
                     </select>
-                   
+                    <?php if (!empty(form_error('makhoa'))) : ?>
+                        <span class="text-danger"><?php echo form_error('makhoa'); ?> </p></span>
+                    <?php endif; ?>
                 </div>
             </div>
 

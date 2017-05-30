@@ -16,7 +16,7 @@
                     <div class="form-group <?php echo !empty(form_error('hoten')) ? 'has-error' : '' ?>">
                         <label class="control-label col-lg-4">Họ và tên : </label>
                         <div class="col-lg-7">
-                            <input type="text" id="required2" name="hoten" disabled="disabled"  class="form-control" value="<?php echo $list->hoten?>" placeholder = "Họ và tên " index="1">
+                            <input type="text" id="required2" name="hoten" readonly="readonly"  class="form-control" value="<?php echo $list->hoten?>" placeholder = "Họ và tên " index="1">
                            
                             <?php if (!empty(form_error('hoten'))) : ?>
                                 <span class="text-danger"><?php echo form_error('hoten'); ?> </p></span>
@@ -26,47 +26,60 @@
 
 
 
-                    <div class="form-group">
+                    <div class="form-group <?php echo !empty(form_error('makhoa')) ? 'has-error' : '' ?>">
                        
                         <label class="control-label col-lg-4">Khoa :</label>
                         <div class="col-lg-7">
                             <select class="form-control" name="makhoa" index="3">
-
+                            <option value="">Chọn khoa</option>
                             <?php  foreach ($list_khoa as $value) { ?>
                                 <option <?php echo $list->makhoa == $value->makhoa?"selected":" "; ?>  value="<?php echo $value ->makhoa ?>"> <?php echo $value ->tenkhoa?> </option>
                             <?php } ?>
                             </select>
+                            <?php if (!empty(form_error('makhoa'))) : ?>
+                                <span class="text-danger"><?php echo form_error('makhoa'); ?> </p></span>
+                            <?php endif; ?>
                            
                          </div>
                     </div>
 
 
 
-                    <div class="form-group">
-                       
+                    <div class="form-group <?php echo !empty(form_error('mabomon')) ? 'has-error' : '' ?>">
+                        
                         <label class="control-label col-lg-4">Bộ môn:</label>
                         <div class="col-lg-7">
                             <select class="form-control" name="mabomon">
-
+                            <option value=""> Chọn bộ môn</option>
                             <?php  foreach ($list_bomon as $value) { ?>
                                 <option <?php echo $list->mabomon == $value->mabomon?"selected":" "; ?>  value="<?php echo $value ->mabomon ?>"> <?php echo $value ->tenbomon ?> </option>
                             <?php } ?>
                             </select>
+
+                            <?php if (!empty(form_error('mabomon'))) : ?>
+                                <span class="text-danger"><?php echo form_error('mabomon'); ?> </p></span>
+                            <?php endif; ?>
                            
                         </div>
                     </div>
 
 
-                    <div class="form-group">
+                    <div class="form-group <?php echo !empty(form_error('machuyennganh')) ? 'has-error' : '' ?>">
                         
                         <label class="control-label col-lg-4">Tên chuyên ngành :</label>
                         <div class="col-lg-7">
                             <select class="form-control" name="machuyennganh">
-
+                            
                             <?php  foreach ($list_chuyennganh as $value) { ?>
+                                <option value=""> Chọn chuyên ngành</option>
                                 <option <?php echo $list->manganh == $value->machuyennganh?"selected":" "; ?> class="chuyennganh" machuyennganh="<?php echo $value ->machuyennganh ?>"  value="<?php echo $value ->machuyennganh ?>"> <?php echo $value ->tenchuyennganh?> </option>
                             <?php } ?>
                             </select>
+
+                            <?php if (!empty(form_error('machuyennganh'))) : ?>
+                                <span class="text-danger"><?php echo form_error('machuyennganh'); ?> </p></span>
+                            <?php endif; ?>
+                           
                            
                         </div>
                     </div>
@@ -82,13 +95,13 @@
                     <div class="form-group"></div>
 
 
-                   <!--  <div class="form-group <?php //echo !empty(form_error('sex')) ? 'has-error' : '' ?>">
+                    <div class="form-group <?php //echo !empty(form_error('sex')) ? 'has-error' : '' ?>">
                          <label class="control-label col-lg-4">Giới tính : </label>
                         <div class="col-lg-7">
-                            <input type="radio" checked="" value="1" id="optionsRadios1" name="sex"> Nam 
-                            <input type="radio"  value="1" id="optionsRadios1" name="sex"> Nữ 
+                            <input type="radio"  <?php echo $list->gioitinh == 1?"checked='checked'":""; ?> value="1" id="optionsRadios1" name="sex"> Nam 
+                            <input type="radio"  <?php echo $list->gioitinh == 0?"checked='checked'":""; ?>   value="0" id="optionsRadios1" name="sex"> Nữ 
                         </div>
-                    </div> -->
+                    </div>
 
 
                     <!--  end -->
@@ -100,7 +113,7 @@
                     <div class="form-group <?php echo !empty(form_error('email')) ? 'has-error' : '' ?>">
                         <label class="control-label col-lg-4">Email : </label>
                         <div class="col-lg-7">
-                            <input type="email" id="required2" disabled="disabled" name="email" class="form-control" value="<?php echo $list->email ?>" placeholder = "Email">
+                            <input type="email" id="required2" name="email" class="form-control" value="<?php echo $list->email ?>" placeholder = "Email">
                            
                             <?php if (!empty(form_error('email'))) : ?>
                                 <span class="text-danger"><?php echo form_error('email'); ?> </p></span>
@@ -111,7 +124,7 @@
                      <div class="form-group <?php echo !empty(form_error('maGV')) ? 'has-error' : '' ?>">
                         <label class="control-label col-lg-4">Mã giáo viên : </label>
                         <div class="col-lg-7">
-                            <input type="text" id="required2" name="maGV" class="form-control" value="<?php echo $list->maGV ?>" placeholder = " Mã giáo viên"  index="2">
+                            <input type="text" id="required2" name="maGV" readonly="readonly" class="form-control" value="<?php echo $list->maGV ?>" placeholder = " Mã giáo viên"  index="2">
                            
                             <?php if (!empty(form_error('maGV'))) : ?>
                                 <span class="text-danger"><?php echo form_error('maGV'); ?> </p></span>
@@ -123,7 +136,7 @@
                     <div class="form-group <?php echo !empty(form_error('diachi')) ? 'has-error' : '' ?>">
                         <label class="control-label col-lg-4">Địa Chỉ : </label>
                         <div class="col-lg-7">
-                            <input type="text" id="required2" disabled="disabled" name="diachi" class="form-control" value="<?php echo $list->diachi ?>" placeholder = "dienthoai" >
+                            <input type="text" id="required2"  name="diachi" class="form-control" value="<?php echo $list->diachi ?>" placeholder = "dienthoai" >
                            
                             <?php if (!empty(form_error('diachi'))) : ?>
                                 <span class="text-danger"><?php echo form_error('diachi'); ?> </p></span>
@@ -135,7 +148,7 @@
                     <div class="form-group <?php echo !empty(form_error('ngaysinh')) ? 'has-error' : '' ?>">
                         <label class="control-label col-lg-4">Ngày sinh : </label>
                         <div class="col-lg-7">
-                            <input type="date" id="required2" disabled="disabled" name="ngaysinh" class="form-control" value="<?php echo $list->ngaysinh ?>" placeholder = "dienthoai" >
+                            <input type="date" id="required2"  name="ngaysinh" class="form-control" value="<?php echo $list->ngaysinh ?>" placeholder = "dienthoai" >
                            
                             <?php if (!empty(form_error('ngaysinh'))) : ?>
                                 <span class="text-danger"><?php echo form_error('ngaysinh'); ?> </p></span>
@@ -147,7 +160,7 @@
                     <div class="form-group <?php echo !empty(form_error('dienthoai')) ? 'has-error' : '' ?>">
                         <label class="control-label col-lg-4">Số điện thoại : </label>
                         <div class="col-lg-7">
-                            <input type="number" id="required2" disabled="disabled" name="dienthoai" class="form-control" value="<?php echo $list->dienthoai ?>" placeholder = "">
+                            <input type="number" id="required2"  name="dienthoai" class="form-control" value="<?php echo $list->dienthoai ?>" placeholder = "">
                            
                             <?php if (!empty(form_error('dienthoai'))) : ?>
                                 <span class="text-danger"><?php echo form_error('dienthoai'); ?> </p></span>
@@ -156,38 +169,57 @@
                     </div>
 
 
-                    <div class="form-group">
+                    <div class="form-group <?php echo !empty(form_error('hocham')) ? 'has-error' : '' ?> ">
                         <label class="control-label col-lg-4">Học hàm:</label>
                         <div class="col-lg-7">
                             <select class="form-control" name="hocham">
+                             <option value=""> Chọn học hàm</option>
                             <?php foreach($list_hocham as $value )  {?>
-                               <option <?php echo $list->hocham == $value->mahocham?"selected":" "; ?>  value="<?php echo $value ->tenhocham ?>"><?php echo $value ->tenhocham ?></option>
+                               
+
+                               <option <?php echo $list->hocham == $value->mahocham?"selected":" "; ?>  value="<?php echo $value ->mahocham ?>"><?php echo $value ->tenhocham ?></option>
                             <?php } ?>
                             </select>
+
+                            <?php if (!empty(form_error('hocham'))) : ?>
+                                <span class="text-danger"><?php echo form_error('hocham'); ?> </p></span>
+                            <?php endif; ?>
                            
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group <?php echo !empty(form_error('chucvu')) ? 'has-error' : '' ?> ">
                         <label class="control-label col-lg-4">Chức vụ:</label>
                         <div class="col-lg-7">
                             <select class="form-control" name="chucvu">
+                             <option value=""> Chọn chức vụ</option>
                             <?php foreach($list_chucvu as $value )  {?>
-                               <option <?php echo $list->chucvu == $value->machucvu?"selected":" "; ?>  value="<?php echo $value ->tenchucvu ?>"><?php echo $value ->tenchucvu ?></option>
+                               
+                               <option <?php echo $list->chucvu == $value->machucvu?"selected":" "; ?>  value="<?php echo $value ->machucvu ?>"><?php echo $value ->tenchucvu ?></option>
                             <?php } ?>
                             </select>
+
+                             <?php if (!empty(form_error('chucvu'))) : ?>
+                                <span class="text-danger"><?php echo form_error('chucvu'); ?> </p></span>
+                            <?php endif; ?>
                            
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group <?php echo !empty(form_error('trinhdo')) ? 'has-error' : '' ?>  ">
                         <label class="control-label col-lg-4">Trìn độ:</label>
                         <div class="col-lg-7">
                             <select class="form-control" name="trinhdo">
-                            <?php foreach($list_trinhdo as $value )  {?>
-                               <option <?php echo $list->trinhdo == $value->matrinhdo?"selected":" "; ?> value="<?php echo $value ->tentrinhdo ?>"><?php echo $value ->tentrinhdo ?></option>
+                            <option value=""> Chọn trình độ</option>
+                            <?php foreach($list_trinhdo as $value )  { ?>
+                                
+                               <option <?php echo $list->trinhdo == $value->matrinhdo?"selected":" "; ?>  value="<?php echo $value->matrinhdo ?>" ><?php echo $value ->tentrinhdo ?></option>
                             <?php } ?>
                             </select>
+
+                            <?php if (!empty(form_error('trinhdo'))) : ?>
+                                <span class="text-danger"><?php echo form_error('trinhdo'); ?> </p></span>
+                            <?php endif; ?>
                            
                         </div>
                     </div>

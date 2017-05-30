@@ -70,10 +70,14 @@
 				$this->form_validation->set_rules('tenlop','Nhập vào tên tên lớp ','required');
 
 				// kiểm tra giá trị mã lớp
-				$this->form_validation->set_rules('malop','Nhập vào mã lớp ','required');
+				$this->form_validation->set_rules('malop','Nhập vào mã lớp ','required|numeric');
 
 				// kiểm tra giá trị mã
 				$this->form_validation->set_rules('siso','Nhập vào sĩ số của lớp ','required');
+
+				$this->form_validation->set_rules('mahedaotao','Chọn hệ đào tạo ','required');
+				$this->form_validation->set_rules('machuyennganh','Chọn chuyên ngành ','required');
+				$this->form_validation->set_rules('magv','Chọn giáo viên ','required');
 
 
 				if($this->form_validation->run())
@@ -103,17 +107,10 @@
 
 					// lây giá trị của mã khoa 
 					
-
-					$input = array();
-
-					$input['where'] = array('gvcn' =>$magv);
-
-					$data = $this->LopModel->get_list($input);
-
+					$input['where'] = array('malop'=>$malop);
+					$data= $this->LopModel->get_list($input);
 					if(empty($data))
 					{
-						//`lop`(`id`, `malop`, `mahedaotao`, `tenlop`, `siso`, `machuyennganh`, `gvcn`, `nguoithaotac`, `hienthi`, `created_at`, `updated_at`)
-				
 						$data = array(
 									'malop'				=>$malop,
 									'mahedaotao'		=>$mahedaotao,
@@ -138,12 +135,14 @@
 
 						}
 
+					}else{
+						$this->session->set_flashdata('error','Mã lớp đã tồn tại');
 					}
-					else
-					{
-						$this->session->set_flashdata('error',' Giáo viên đã có lớp chủ nhiệm .
-						 .');
-					}
+
+				
+						
+
+					
 
 				}
 			}
@@ -194,6 +193,7 @@
 			if($this->input->post())
 			{
 				// kiểm tra giá trị tên 
+				// kiểm tra giá trị tên 
 				$this->form_validation->set_rules('tenlop','Nhập vào tên tên lớp ','required');
 
 				// kiểm tra giá trị mã lớp
@@ -201,6 +201,10 @@
 
 				// kiểm tra giá trị mã
 				$this->form_validation->set_rules('siso','Nhập vào sĩ số của lớp ','required');
+
+				$this->form_validation->set_rules('mahedaotao','Chọn hệ đào tạo ','required');
+				$this->form_validation->set_rules('machuyennganh','Chọn chuyên ngành ','required');
+				$this->form_validation->set_rules('magv','Chọn giáo viên ','required');
 
 
 				if($this->form_validation->run())
@@ -231,25 +235,11 @@
 					// lây giá trị của mã khoa 
 
 
-					if($list->gvcn == $magv )
-					{
-						$data = array();
-					}else
-					{
-						$input = array();
-
-						$input['where'] = array('gvcn' =>$magv);
-
-						$data = $this->LopModel->get_list($input);
-
-
-					}
+			
 
 					
 
-					if(empty($data))
-					{
-						$malop = $this ->input ->post('malop');
+				
 
 						
 				
@@ -277,11 +267,7 @@
 
 						}
 
-					}
-					else
-					{
-						$this->session->set_flashdata('error','Giáo viên đã có lớp chủ nhiệm .');
-					}
+					
 
 				}
 			}

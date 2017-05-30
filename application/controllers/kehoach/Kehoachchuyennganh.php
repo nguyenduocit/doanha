@@ -171,24 +171,25 @@ class Kehoachchuyennganh extends MY_Controller
 
 	function delete()
 	{
-		$id = $_POST['id'];
+		 $id = $_POST['id'];
 
 		$maGV = isset_user($this->session->userdata('userdata'));
 
 		settype($id, "int");
 		
+		
 		if ($this->KehoachchuyennganhModel->delete($id)) {
-			# code...
-			$this->session->set_flashdata('success','Delet thành công ');
+			//code...
+			// $this->session->set_flashdata('success','Delet thành công ');
 
-			redirect(kehoach_url('kehoachchuyennganh'));
+			// redirect(kehoach_url('kehoachchuyennganh'));
 		}
 		else
 		{
 						
-			$this->session->set_flashdata('error',' Lỗi không thể xóa dữ liệu ');
+			// $this->session->set_flashdata('error',' Lỗi không thể xóa dữ liệu ');
 
-			redirect(kehoach_url('kehoachchuyennganh'));
+			// redirect(kehoach_url('kehoachchuyennganh'));
 		}
 					
 	}

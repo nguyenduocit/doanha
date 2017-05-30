@@ -5,7 +5,7 @@
            <form method="get" action="<?php echo admin_url('admin/search') ?> ">
                 <div class="col-lg-4 pull-right" style="padding-right: 0px;">
                     <div class="input-group">
-                        <input type="text"  name="key-search" id="text-search"  class="form-control" placeholder="Nhập vào tên môn học ">
+                        <input type="text"  name="key-search" id="text-search"  class="form-control" placeholder="Nhập vào tên giáo viên ">
                         <span class="input-group-btn">
                           <a href="/"><input type="submit" value="Tìm kiếm " class="btn btn-info"></a>
                         </span>

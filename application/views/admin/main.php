@@ -23,16 +23,17 @@
                     <!-- Nội dung thay đổi -->
                         <?php $this->load->view($temp) ?>
                     <!-- end -->
+
+                     <!-- load footer -->
+                   
+                <!-- end -->
                 </div>
                 <!-- /page content -->
 
 
-                <!-- load footer -->
                 <footer>
-                     <?php //$this->load->view('admin/partials/footer') ?>
-
+                    <?php //$this->load->view('admin/partials/footer') ?>
                 </footer>
-                <!-- end -->
             </div>
         </div>
         <!--load js-->

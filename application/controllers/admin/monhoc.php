@@ -46,6 +46,7 @@
         	$list = $this->MonhocModel->get_list($input);
 			// gán truyền danh sách các khoa sang view 
 			$data['list'] = $list;
+			//pre($list);
 
 
 			$data['temp'] = 'admin/dulieu/monhoc/index';
@@ -70,12 +71,17 @@
 				
 				$this->form_validation->set_rules('tenmonhoc','Nhập vào tên môn học','required');
 
-				$this->form_validation->set_rules('mamonhoc','Nhập vào mã môn học','required');
+				$this->form_validation->set_rules('mamonhoc','Nhập vào mã môn học','required|numeric');
 				
 				$this->form_validation->set_rules('soTCTH','Nhập vào số tín chỉ thực hành ','required');
 
 				$this->form_validation->set_rules('soTCLT','Nhập vào số tín chỉ lý thuyết  ','required');
 				$this->form_validation->set_rules('tengiaovien','Bạn cần chọn giáo viên  ','required');
+				$this->form_validation->set_rules('mahedaotao','Bạn cần chọn hệ đào tạo ','required');
+				$this->form_validation->set_rules('machuyennganh','Bạn cần chọn chuyên ngành ','required');
+				$this->form_validation->set_rules('tengiaovien','Bạn cần chọn giáo viên ','required');
+				$this->form_validation->set_rules('maloaimon','Bạn cần chọn loại môn học','required');
+				$this->form_validation->set_rules('TCM','TCM ','required');
 
 
 				if($this->form_validation->run())
@@ -100,18 +106,14 @@
 
 					$soTCLT= $this ->input ->post('soTCLT');
 
+					$TCM= $this ->input ->post('TCM');
+
 					$activel = $this ->input ->post('active');		
 
 					// kiểm tra nếu mã môn học bị trùng
 					$input = array();
 
-					$input['where'] = array('mamonhoc' =>$mamonhoc);
-
-					$data = $this->MonhocModel->get_list($input);
-
-					if(empty($data))
-					{
-				
+					
 						$data = array(
 									'mamonhoc'			=>$mamonhoc,
 									'tenmonhoc'			=>$tenmonhoc,
@@ -139,12 +141,7 @@
 
 						}
 
-					}
-					else
-					{
-						$this->session->set_flashdata('error',' Mã Môn học đã bị trùng .
-						 .');
-					}
+					
 
 				}
 			}
@@ -198,14 +195,18 @@
 
 				$this->form_validation->set_rules('tenmonhoc','Nhập vào tên môn học','required');
 
-				
-				$this->form_validation->set_rules('mamonhoc','Nhập vào mã môn học','required');
-
+				$this->form_validation->set_rules('mamonhoc','Nhập vào mã môn học','required|numeric');
 				
 				$this->form_validation->set_rules('soTCTH','Nhập vào số tín chỉ thực hành ','required');
 
-
 				$this->form_validation->set_rules('soTCLT','Nhập vào số tín chỉ lý thuyết  ','required');
+				$this->form_validation->set_rules('tengiaovien','Bạn cần chọn giáo viên  ','required');
+				$this->form_validation->set_rules('mahedaotao','Bạn cần chọn hệ đào tạo ','required');
+				$this->form_validation->set_rules('machuyennganh','Bạn cần chọn chuyên ngành ','required');
+				$this->form_validation->set_rules('tengiaovien','Bạn cần chọn giáo viên ','required');
+				$this->form_validation->set_rules('maloaimon','Bạn cần chọn loại môn học','required');
+				$this->form_validation->set_rules('TCM','TCM ','required');
+
 
 				if($this->form_validation->run())
 				{

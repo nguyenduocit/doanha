@@ -13,7 +13,7 @@
             <div class="form-group <?php echo !empty(form_error('maloaimon')) ? 'has-error' : '' ?>">
                 <label class="control-label col-lg-3">Mã loại môn</label>
                 <div class="col-lg-7">
-                    <input type="number" id="required2" name="maloaimon" class="form-control" value="<?php echo  $list->maloaimon ?>" placeholder="Mã hệ loại môn">
+                    <input type="number" id="required2" name="maloaimon" readonly="readonly" class="form-control" value="<?php echo  $list->maloaimon ?>" placeholder="Mã hệ loại môn">
                    
                     <?php if (!empty(form_error('maloaimon'))) : ?>
                         <span class="text-danger"><?php echo form_error('maloaimon'); ?> </p></span>

@@ -23,59 +23,71 @@
             </div>
 
 
-            <div class="form-group">
+            <div class="form-group <?php echo !empty(form_error('mahedaotao')) ? 'has-error' : '' ?>  " >
                 <div class="col-lg-1"></div>
                 <label class="control-label col-lg-2">Chọn hệ đào tạo :</label>
                 <div class="col-lg-7">
                     <select class="form-control" name="mahedaotao">
-
+                    <option value=" "> Chọn hệ đào tạo </option>
                     <?php  foreach ($list_hedaotao as $value) { ?>
                         <option  value="<?php echo $value ->mahedaotao ?>"> <?php echo $value ->tenhedaotao?> </option>
                     <?php } ?>
                     </select>
+
+                    <?php if (!empty(form_error('mahedaotao'))) : ?>
+                        <span class="text-danger"><?php echo form_error('mahedaotao'); ?> </p></span>
+                    <?php endif; ?>
                    
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group <?php echo !empty(form_error('makhoa')) ? 'has-error' : '' ?> "  >
                 <div class="col-lg-2"></div>
                 <label class="control-label col-lg-1">Tên Khoa</label>
                 <div class="col-lg-7">
                     <select class="form-control" name="makhoa" id="makhoa">
-
+                    <option value=" "> Chọn khoa  </option>
                     <?php  foreach ($list_khoa as $value) { ?>
                         <option value="<?php echo $value ->makhoa ?>"> <?php echo $value ->tenkhoa ?> </option>
                     <?php } ?>
                     </select>
+
+                    <?php if (!empty(form_error('makhoa'))) : ?>
+                        <span class="text-danger"><?php echo form_error('makhoa'); ?> </p></span>
+                    <?php endif; ?>
                    
                 </div>
             </div>
 
 
-            <div class="form-group">
+            <div class="form-group <?php echo !empty(form_error('mabomon')) ? 'has-error' : '' ?> "  >
                 <div class="col-lg-1"></div>
                 <label class="control-label col-lg-2">Bộ môn :</label>
                 <div class="col-lg-7">
                     <select class="form-control" name="mabomon" id="mabomon">
-
-                   <!--  <?php  //foreach ($list_bomon as $value) { ?>
-                        <option class="bomon" mabomon="<?php //echo $value ->mabomon ?>"  value="<?php //echo $value ->mabomon ?>"> <?php //echo $value ->tenbomon?> </option>
-                    <?php //} ?> -->
+                    <option value=" "> Chọn bộ môn </option>
+                    
                     </select>
+
+                    <?php if (!empty(form_error('mabomon'))) : ?>
+                        <span class="text-danger"><?php echo form_error('mabomon'); ?> </p></span>
+                    <?php endif; ?>
                    
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group <?php echo !empty(form_error('machuyennganh')) ? 'has-error' : '' ?> "  >
                 <div class="col-lg-1"></div>
                 <label class="control-label col-lg-2"> Chuyên Ngành :</label>
                 <div class="col-lg-7">
                     <select class="form-control" name="machuyennganh" id="machuyennganh">
-
-                   <!--  <?php  //foreach ($list_bomon as $value) { ?>
-                        <option class="bomon" mabomon="<?php //echo $value ->mabomon ?>"  value="<?php //echo $value ->mabomon ?>"> <?php //echo $value ->tenbomon?> </option>
-                    <?php //} ?> -->
+                    <option value=" "> Chọn Chuyên ngành </option>
+                    
                     </select>
+
+                    <?php if (!empty(form_error('machuyennganh'))) : ?>
+                        <span class="text-danger"><?php echo form_error('machuyennganh'); ?> </p></span>
+                    <?php endif; ?>
                    
                 </div>
             </div>
@@ -95,18 +107,6 @@
                     <?php if (!empty(form_error('namhoc'))) : ?>
                         <span class="text-danger"><?php echo form_error('namhoc'); ?> </p></span>
                     <?php endif; ?>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-lg-2"></div>
-                <label class="control-label col-lg-1">Active</label>
-                <div class="col-lg-3">
-                    <select class="form-control" name="active">
-                        <option value="1">Hiện</option>
-                        <option value="0">Ẩn</option>
-                    </select>
-                   
                 </div>
             </div>
 

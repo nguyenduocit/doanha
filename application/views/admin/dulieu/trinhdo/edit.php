@@ -25,7 +25,7 @@
              <div class="form-group <?php echo !empty(form_error('matrinhdo')) ? 'has-error' : '' ?>">
                 <label class="control-label col-lg-3">Mã trình độ : </label>
                 <div class="col-lg-7">
-                    <input type="text" id="required2" name="matrinhdo" class="form-control" value="<?php echo $list->matrinhdo ?>" placeholder="Mã hoc hàm">
+                    <input type="text" id="required2" name="matrinhdo" readonly="readonly" class="form-control" value="<?php echo $list->matrinhdo ?>" placeholder="Mã hoc hàm">
                    
                     <?php if (!empty(form_error('matrinhdo'))) : ?>
                         <span class="text-danger"><?php echo form_error('matrinhdo'); ?> </p></span>

@@ -24,8 +24,26 @@
                 </div>
             </div>
 
+             <div class="form-group <?php echo !empty(form_error('mahedaotao')) ? 'has-error' : '' ?>  " >
+                <div class="col-lg-1"></div>
+                <label class="control-label col-lg-2">Chọn hệ đào tạo :</label>
+                <div class="col-lg-7">
+                    <select class="form-control" name="mahedaotao">
+                    <option value=" "> Chọn hệ đào tạo </option>
+                    <?php  foreach ($list_hedaotao as $value) { ?>
+                        <option  value="<?php echo $value ->mahedaotao ?>"> <?php echo $value ->tenhedaotao?> </option>
+                    <?php } ?>
+                    </select>
 
-            <div class="form-group ">
+                    <?php if (!empty(form_error('mahedaotao'))) : ?>
+                        <span class="text-danger"><?php echo form_error('mahedaotao'); ?> </p></span>
+                    <?php endif; ?>
+                   
+                </div>
+            </div>
+
+
+            <div class="form-group <?php echo !empty(form_error('machuyennganh')) ? 'has-error' : '' ?> ">
                 <div class="col-lg-1"></div>
                 <label class="control-label col-lg-2">Chọn chuyên ngành :</label>
                 <div class="col-lg-7">
@@ -41,21 +59,8 @@
                    
                 </div>
             </div>
-          
 
-            
-            <div class="form-group <?php echo !empty(form_error('hocky')) ? 'has-error' : '' ?>">
-                <label class="control-label col-lg-3">Học kỳ : </label>
-                <div class="col-lg-7">
-                     <select class="form-control" name="hocky" id="hocky">
-
-                        <?php for($i = 1; $i<=10;$i++){ ?>
-                            <option class="hocky"  value="<?php echo $i ?>"> <?php echo  $i ?> </option>
-                        <?php } ?>
-                    </select>
-                   
-                </div>
-            </div>
+           
 
             <div class="form-group <?php echo !empty(form_error('namhoc')) ? 'has-error' : '' ?>">
                 <label class="control-label col-lg-3">Năm học </label>
@@ -74,24 +79,13 @@
                 </div>
             </div>
 
-            <div class="form-group <?php echo !empty(form_error('solop')) ? 'has-error' : '' ?>">
-                <label class="control-label col-lg-3">Số lớp được mở: </label>
-                <div class="col-lg-7">
-                    <input type="number" id="required2" name="solop" readonly="readonly" class="form-control solop" value=" "  placeholder="Số lớp">
-                   
-                    <?php if (!empty(form_error('solop'))) : ?>
-                        <span class="text-danger"><?php echo form_error('solop'); ?> </p></span>
-                    <?php endif; ?>
-                </div>
-            </div>
-
 
             <div class="form-group <?php echo !empty(form_error('lop')) ? 'has-error' : '' ?>">
                 <label class="control-label col-lg-3">Chọn lớp :</label>
                 <div class="col-lg-7">
 
                 <select class="form-control" name="lop" id="lop">
-                <option>Mời bạn chọn lớp </option>
+                <option value=" ">Mời bạn chọn lớp </option>
 
                 </select>
                     
@@ -101,32 +95,6 @@
                 </div>
             </div>
 
-
-
-
-            <div class="form-group <?php echo !empty(form_error('mon')) ? 'has-error' : '' ?>">
-                <label class="control-label col-lg-3">Danh sách môn cần mở : </label>
-                <div class="col-lg-7" id="mons">
-                   
-                   
-                   
-                </div>
-            </div>
-
-
-            <div class="form-group">
-                <div class="col-lg-2"></div>
-                <label class="control-label col-lg-1">Active</label>
-                <div class="col-lg-3">
-                    <select class="form-control" name="active">
-                        <option value="1">Hiện</option>
-                        <option value="0">Ẩn</option>
-                    </select>
-                   
-                </div>
-            </div>
-            
-            
             <div class="form-actions no-margin-bottom" style="text-align:center;">
                 <a href="#" class="btn btn-danger  " onclick="history.go(-1); return false;" >Trở về</a>
                 <input type="submit" value="Add New" class="btn btn-info">

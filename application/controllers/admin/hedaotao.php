@@ -155,6 +155,8 @@
                         'nguoithaotac'=> $maGV
                     );
 
+                    //pre($data);
+
                     if ($mahedaotao == $hedaotaoEdit->mahedaotao)
                     {
                         $data['mahedaotao']  = $mahedaotao;

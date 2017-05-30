@@ -93,7 +93,15 @@
 				$this->form_validation->set_rules('ngaysinh','Nhập vào ngày sinh','required');
 
 
-				$this->form_validation->set_rules('dienthoai','Nhập vào số điện thoại','required');
+				$this->form_validation->set_rules('dienthoai','Nhập vào số điện thoại','required|min_length[10]');
+
+				$this->form_validation->set_rules('makhoa','Chọn khoa ','required');
+				$this->form_validation->set_rules('mabomon','Chọn bộ môn ','required');
+				$this->form_validation->set_rules('machuyennganh','Chọn chuyên ngành ','required');
+				$this->form_validation->set_rules('hocham','Chọn học hàm ','required');
+				$this->form_validation->set_rules('chucvu','Chọn chức vụ ','required');
+				$this->form_validation->set_rules('trinhdo','Chọn trình độ ','required');
+
 
 
 
@@ -257,13 +265,14 @@
 			 $maGVs = isset_user($this->session->userdata('userdata'));
 
 			 $list = $this->AdminModel->get_info($id);
+			 //pre($list);
 
 			 // kiểm tra 
 			  if(!$list)
 		        {
 		            $this->session->set_flashdata('error','Không tồn tại bộ môn .');
 
-		            redirect(admin_url('bomon'));
+		            redirect(admin_url('admin'));
 		        }
 
 		     // kiểm tra khi người dùng kích vào  
@@ -271,16 +280,45 @@
 			{
 				// kiểm tra giá trị tên bộ môn
 				
-				// kiểm tra giá trị mã bộ môn
-				$this->form_validation->set_rules('maGV','Nhập vào mã giáo viên ','required');
+				$this->form_validation->set_rules('email','Nhập vào email','required|valid_email');
+
+				$this->form_validation->set_rules('diachi','Nhập vào địa chỉ','required');
+
+				$this->form_validation->set_rules('ngaysinh','Nhập vào ngày sinh','required');
+
+
+				$this->form_validation->set_rules('dienthoai','Nhập vào số điện thoại','required');
+
+				$this->form_validation->set_rules('makhoa','Chọn khoa ','required');
+				$this->form_validation->set_rules('mabomon','Chọn bộ môn ','required');
+				$this->form_validation->set_rules('machuyennganh','Chọn chuyên ngành ','required');
+				$this->form_validation->set_rules('hocham','Chọn học hàm ','required');
+				$this->form_validation->set_rules('chucvu','Chọn chức vụ ','required');
+				$this->form_validation->set_rules('trinhdo','Chọn trình độ ','required');
 
 
 				if($this->form_validation->run())
 				{
 
+					// gán giá trị tên 
+					$hoten = $this->input ->post('hoten');
+
 					// gán giá trị mã GV
 
 					$maGV = $this ->input ->post('maGV');
+
+					// lấy giá trị của email 
+
+					$email = $this ->input ->post('email');
+
+					// lây giá trị của địa chỉ 
+					$diachi = $this ->input ->post('diachi');
+
+					// lây giá trị của ngày sinh
+					$ngaysinh = $this ->input ->post('ngaysinh');
+
+
+					$dienthoai = $this ->input ->post('dienthoai');
 
 
 					$makhoa = $this ->input ->post('makhoa');
@@ -300,6 +338,7 @@
 
 					$trinhdo = $this ->input ->post('trinhdo');
 
+					$sex     = $this->input -> post("sex");
 
 					
 
@@ -312,17 +351,24 @@
 
 						$input['where'] = array('maGV' =>$maGV);
 
-						$data = $this->AdminModel->get_list($input);
+						$datas = $this->AdminModel->get_list($input);
 
 					}
 
-					if(empty($data))
+					if(empty($datas))
 					{
 						$maGV = $this ->input ->post('maGV');
 
-				
+						
 						$data = array(
 
+									'maGV'			=>$maGV,
+									'hoten' 		=> $hoten,
+									'ngaysinh' 		=> $ngaysinh,
+									'gioitinh' 		=> $sex,
+									'diachi' 		=> $diachi,
+									'dienthoai' 	=> $dienthoai,
+									'email' 		=> $email,
 									'hocham' 		=> $hocham,
 									'trinhdo' 		=> $trinhdo,
 									'chucvu' 		=> $chucvu,
@@ -331,7 +377,8 @@
 									'manganh' 		=> $machuyennganh,
 									'nguoithaotac'  => $maGVs,
 									);
-
+						
+								//pre($data);
 						//kiểm tra và chạy câu lệnh inser 
 
 						if($this->AdminModel->update($id,$data))

@@ -34,15 +34,19 @@
             </div>
 
 
-             <div class="form-group">
+             <div class="form-group <?php echo !empty(form_error('mabomon')) ? 'has-error' : '' ?>">
                 <label class="control-label col-lg-3">Tên Bộ môn</label>
                 <div class="col-lg-7">
                     <select class="form-control" name="mabomon">
-
+                    <option value=""> Chọn bộ môn</option>
                     <?php  foreach ($list_bomon as $value) { ?>
                         <option value="<?php echo $value ->mabomon ?>"> <?php echo $value ->tenbomon?> </option>
                     <?php } ?>
                     </select>
+
+                    <?php if (!empty(form_error('mabomon'))) : ?>
+                        <span class="text-danger"><?php echo form_error('mabomon'); ?> </p></span>
+                    <?php endif; ?>
                    
                 </div>
             </div>

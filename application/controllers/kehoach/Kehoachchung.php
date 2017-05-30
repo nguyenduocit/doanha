@@ -66,6 +66,14 @@ class Kehoachchung extends MY_Controller
 
 			$this->form_validation->set_rules('makehoachchung','Nhập vào mã kế hoạch ','required');
 
+			$this->form_validation->set_rules('mahedaotao','Chọn hệ đào tạo ','required');
+
+			$this->form_validation->set_rules('makhoa','Chọn khoa cần lập  ','required');
+
+			$this->form_validation->set_rules('mabomon','Chọn bộ môn cần lập ','required');
+
+			$this->form_validation->set_rules('machuyennganh','Chọn chuyên ngành cần lập ','required');
+
 
 			if($this->form_validation->run())
 			{
@@ -84,18 +92,9 @@ class Kehoachchung extends MY_Controller
 
 				$machuyennganh = $this ->input ->post('machuyennganh');
 
-
-				$hocky = $this ->input ->post('hocky');
-
-
 				$namhoc = $this ->input ->post('namhoc');
 
 				// lấy giá trị của activel 
-
-				$activel = $this ->input ->post('active');
-
-				// lây giá trị của mã khoa 
-				
 
 				$input = array();
 				
@@ -115,10 +114,8 @@ class Kehoachchung extends MY_Controller
 									'khoa'            	=>$makhoa,
 									'bomon'           	=>$mabomon,
 									'chuyennganh'   	=>$machuyennganh,
-									'hocky'     		=> $hocky,
 									'namhoc'          	=> $namhoc,
-									'nguoithaotac'    	=> $maGV,
-									'hienthi'         	=> $activel
+									'nguoithaotac'    	=> $maGV
 									);
 
 					
@@ -220,7 +217,7 @@ class Kehoachchung extends MY_Controller
 
 
 	/*
-					Chỉnh sửa thông tin  bộ môn
+		Chỉnh sửa kế hoạch chuyên ngành
 	*/
 
 	public function edit()
@@ -247,91 +244,90 @@ class Kehoachchung extends MY_Controller
 			// kiểm tra khi người dùng kích vào  
 		if($this->input->post())
 		{
-				$this->form_validation->set_rules('makehoachchung','Nhập vào mã kế hoạch ','required');
+			$this->form_validation->set_rules('makehoachchung','Nhập vào mã kế hoạch ','required');
 
-						if($this->form_validation->run())
-						{
+			$this->form_validation->set_rules('mahedaotao','Chọn hệ đào tạo ','required');
 
-							$makehoachchungs = $this ->input ->post('makehoachchung');
+			$this->form_validation->set_rules('makhoa','Chọn khoa cần lập  ','required');
 
-							// lấy giá trị tên lớp
-							$mahedaotao = $this ->input ->post('mahedaotao');
+			$this->form_validation->set_rules('mabomon','Chọn bộ môn cần lập ','required');
 
-							// lấy giá trị mã lớp
-							$makhoa = $this ->input ->post('makhoa');
+			$this->form_validation->set_rules('machuyennganh','Chọn chuyên ngành cần lập ','required');
 
-							// lấy giá trị sĩ số
-							$mabomon = $this ->input ->post('mabomon');
+			if($this->form_validation->run())
+			{
 
+				$makehoachchungs = $this ->input ->post('makehoachchung');
 
-							$machuyennganh = $this ->input ->post('machuyennganh');
+				// lấy giá trị tên lớp
+				$mahedaotao = $this ->input ->post('mahedaotao');
 
+				// lấy giá trị mã lớp
+				$makhoa = $this ->input ->post('makhoa');
 
-							$hocky = $this ->input ->post('hocky');
-
-
-							$namhoc = $this ->input ->post('namhoc');
-
-							// lấy giá trị của activel 
-
-							$activel = $this ->input ->post('active');
-
-							// lây giá trị của mã khoa 
-
-							// kiem tra nếu người dùng nhập mã kế hoạc trùng mới mã kế hoạc trong cơ sở dữ liệu thì k cho update
-							if($list->makehoachchung == $makehoachchungs )
-							{
-								$data = array();
-							}else
-							{
-								$input = array();
-
-								$input['where'] = array('makehoachchung' =>$makehoachchungs);
-
-								$data = $this->KehoachchungModel->get_list($input);
+				// lấy giá trị sĩ số
+				$mabomon = $this ->input ->post('mabomon');
 
 
-							}
+				$machuyennganh = $this ->input ->post('machuyennganh');
 
+
+				$namhoc = $this ->input ->post('namhoc');
+ 
+
+				// kiem tra nếu người dùng nhập mã kế hoạc trùng mới mã kế hoạc trong cơ sở dữ liệu thì k cho update
+				if($list->makehoachchung == $makehoachchungs )
+				{
+					$data = array();
+				}else
+				{
+					$input = array();
+
+					$input['where'] = array('makehoachchung' =>$makehoachchungs);
+
+					$data = $this->KehoachchungModel->get_list($input);
+
+
+				}
+
+					
+
+					if(empty($data))
+					{
+						$makehoachchungs = $this ->input ->post('makehoachchung');
+
+						
+
+						$data = array(
+								'makehoachchung'  =>$makehoachchungs,
+								'mahedaotao'        =>$mahedaotao,
+								'khoa'            =>$makhoa,
+								'bomon'           =>$mabomon,
+								'namhoc'          => $namhoc,
+								'nguoithaotac'    => $maGV
 								
+								);
 
-								if(empty($data))
-								{
-									$makehoachchungs = $this ->input ->post('makehoachchung');
+						//kiểm tra và chạy câu lệnh inser 
 
-									
-	
-									$data = array(
-											'makehoachchung'  =>$makehoachchungs,
-											'mahedaotao'        =>$mahedaotao,
-											'khoa'            =>$makhoa,
-											'bomon'           =>$mabomon,
-											'hocky'     	  => $hocky,
-											'namhoc'          => $namhoc,
-											'nguoithaotac'    => $maGV,
-											'hienthi'         => $activel
-											);
-
-									//kiểm tra và chạy câu lệnh inser 
-
-									if($this->KehoachchungModel->update($id,$data))
-									{
-										$this->session->set_flashdata('success','Update  thành công');
-										redirect(kehoach_url('kehoachchung'));
-									}
-									else
-									{
-										$this->session->set_flashdata('error','Lỗi không thể update dữ liệu');
-
-									}
-
-								}
-								else
-								{
-									$this->session->set_flashdata('error','Mã kế hoạch đã tồn tại  .');
-								}
+						if($this->KehoachchungModel->update($id,$data))
+						{
+							$this->session->set_flashdata('success','Update  thành công');
+							redirect(kehoach_url('kehoachchung'));
+						}
+						else
+						{
+							$this->session->set_flashdata('error','Lỗi không thể update dữ liệu');
 
 						}
+
+					}
+					else
+					{
+						$this->session->set_flashdata('error','Mã kế hoạch đã tồn tại  .');
+					}
+
+			}
 		}
 
 		$list_hedaotao = $this->HedaotaoModel->get_list();
@@ -354,9 +350,9 @@ class Kehoachchung extends MY_Controller
 	}
 
 
-				/*
-								Xóa thông tin  bộ môn
-				*/
+	/*
+		Xóa thông tin  bộ môn
+	*/
 
 	function delete()
 	{
@@ -367,17 +363,17 @@ class Kehoachchung extends MY_Controller
 		settype($id, "int");
 		
 		if ($this->KehoachchungModel->delete($id)) {
-						# code...
-						$this->session->set_flashdata('success','Delet thành công ');
+			# code...
+			$this->session->set_flashdata('success','Delet thành công ');
 
-						redirect(kehoach_url('kehoachchung'));
+			redirect(kehoach_url('kehoachchung'));
 		}
 		else
 		{
 						
-						$this->session->set_flashdata('error',' Lỗi không thể xóa dữ liệu ');
+			$this->session->set_flashdata('error',' Lỗi không thể xóa dữ liệu ');
 
-						redirect(kehoach_url('kehoachchung'));
+			redirect(kehoach_url('kehoachchung'));
 		}
 					
 	}
@@ -390,11 +386,10 @@ class Kehoachchung extends MY_Controller
 		$key = $this->input->get('key-search');
 		
 
-		$this->data['key'] = trim($key);
-		$input = array();
-		$input['like'] = array('makehoachchung',$key);
+		$key = trim($key);
+		
 
-		$list = $this->KehoachchungModel->get_list($input);
+		$list = $this->KehoachchungModel->get_Join_Seach($key);
 		
 
 		$data['list'] = $list;

@@ -70,6 +70,7 @@
 
 				// kiểm tra giá trị mã
 				$this->form_validation->set_rules('machuyennganh','Nhập vào mã chuyên ngành ','required');
+				$this->form_validation->set_rules('mabomon','Chọn bộ môn ','required');
 
 
 				if($this->form_validation->run())
@@ -173,6 +174,8 @@
 
 				// kiểm tra giá trị mã
 				$this->form_validation->set_rules('machuyennganh','Nhập vào mã chuyên ngành ','required');
+
+				$this->form_validation->set_rules('mabomon','Chọn bộ môn ','required');
 
 
 				if($this->form_validation->run())

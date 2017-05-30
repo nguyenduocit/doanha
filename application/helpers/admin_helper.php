@@ -15,6 +15,11 @@
         return base_url('kehoachgiangday/'.$url);
     }
 
+    function keKhai($url ="")
+    {
+        return base_url('kekhai/'.$url);
+    }
+
 
 
     function isset_user($data)

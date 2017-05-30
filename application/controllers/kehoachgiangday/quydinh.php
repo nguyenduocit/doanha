@@ -35,8 +35,26 @@
         	$input['limit'] = array($config['per_page'],$segment );
 
         	// lấy ra danh sách khoa 
-        	$list = $this->QuydinhModel->get_list($input);
+        	$list = $this->QuydinhModel->viewQuyDinh($segment,$config['per_page']);
+
+        	// lay ra ten nguoi thao tac
+        	foreach ($list as $key => $value) {
+				# code...
+				$where = array('maGV' =>$value->nguoithaotac);
+				$value->tennguoithaotac = $this->AdminModel->get_info_rule($where ,'hoten');
+			}
+			// lay ra ten giao vien
+			foreach ($list as $key => $value) {
+				# code...
+				$where = array('maGV' =>$value->maGV);
+				$value->tengiaovien = $this->AdminModel->get_info_rule($where ,'hoten');
+			}
+
+
+
+
 			// gán truyền danh sách các khoa sang view 
+			//pre($list);
 			$data['list'] = $list;
 
 			$data['temp'] ="admin/dulieu/quydinh/index";
@@ -300,13 +318,19 @@
         {
            
            $key = $this->input->get('key-search');
-            
-
-            $this->data['key'] = trim($key);
-            $input = array();
-            $input['like'] = array('maquydinh',$key);
          
-            $list = $this->QuydinhModel->get_list($input);
+           $list = $this->QuydinhModel->viewQuyDinh(0,10,$key);
+           foreach ($list as $key => $value) {
+				# code...
+				$where = array('maGV' =>$value->nguoithaotac);
+				$value->tennguoithaotac = $this->AdminModel->get_info_rule($where ,'hoten');
+			}
+			// lay ra ten giao vien
+			foreach ($list as $key => $value) {
+				# code...
+				$where = array('maGV' =>$value->maGV);
+				$value->tengiaovien = $this->AdminModel->get_info_rule($where ,'hoten');
+			}
             
 
             $data['list'] = $list;

@@ -5,7 +5,7 @@
             <form method="get" action="<?php echo kehoachgiangday_url('quydinh/search') ?> ">
                 <div class="col-lg-4 pull-right" style="padding-right: 0px;">
                     <div class="input-group">
-                        <input type="text"  name="key-search" id="text-search"  class="form-control" placeholder="Nhập vào mã quy định ">
+                        <input type="text"  name="key-search" id="text-search"  class="form-control" placeholder="Nhập vào mã quy định or họ tên">
                         <span class="input-group-btn">
                           <a href="/"><input type="submit" value="Tìm kiếm " class="btn btn-info"></a>
                         </span>
@@ -46,17 +46,24 @@
 
                     if (isset($list)) {
                         # code...
+                         $stt = 0;
                         foreach ($list as  $value) {  ?>
 
                          <tr>
-                            <td><?php echo $value ->id ?></td>
+                            <td><?php echo $stt = $stt +1 ?></td>
                             <td><?php echo $value ->maquydinh?></td>
-                            <td><?php echo $value ->maGV ?></td>
+                            <td><?php 
+                                $tengiaovien = $value ->tengiaovien ;
+                                echo $tengiaovien ->hoten;
+                             ?></td>
                             <td><?php echo $value ->namhoc ?></td>
                             <td><?php echo $value ->kyhoc ?></td>
                             <td><?php echo $value ->sogiochuan ?></td>
-                            <td><?php echo $value ->mucthanhtoan ?></td>
-                            <td><?php echo $value ->nguoithaotac ?></td>
+                            <td><?php echo number_format($value ->mucthanhtoan).'đ'  ?></td>
+                            <td><?php 
+                                $tennguoithaotac = $value ->tennguoithaotac ;
+                                echo $tennguoithaotac ->hoten;
+                            ?></td>
                             <td><?php echo $value ->created_at ?></td>
                             <td><?php echo $value ->updated_at ?></td>
                                 

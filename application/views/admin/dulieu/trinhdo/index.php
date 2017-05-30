@@ -5,7 +5,7 @@
             <form method="get" action="<?php echo admin_url('trinhdo/search') ?> ">
                 <div class="col-lg-4 pull-right" style="padding-right: 0px;">
                     <div class="input-group">
-                        <input type="text"  name="key-search" id="text-search"  class="form-control" placeholder="Nhập vào tên khoa ">
+                        <input type="text"  name="key-search" id="text-search"  class="form-control" placeholder="Nhập vào tên trình độ ">
                         <span class="input-group-btn">
                           <a href="/"><input type="submit" value="Tìm kiếm " class="btn btn-info"></a>
                         </span>

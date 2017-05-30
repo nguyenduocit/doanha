@@ -26,7 +26,7 @@
              <div class="form-group <?php echo !empty(form_error('makhoa')) ? 'has-error' : '' ?>">
                 <label class="control-label col-lg-3">Mã Khoa : </label>
                 <div class="col-lg-7">
-                    <input type="text" id="required2" name="makhoa" class="form-control" value="<?php echo $list_khoa ->makhoa; ?>" placeholder="Mã khoa">
+                    <input type="text" id="required2" name="makhoa" readonly="readonly" class="form-control" value="<?php echo $list_khoa ->makhoa; ?>" placeholder="Mã khoa">
                    
                     <?php if (!empty(form_error('makhoa'))) : ?>
                         <span class="text-danger"><?php echo form_error('makhoa'); ?> </p></span>

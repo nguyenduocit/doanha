@@ -33,7 +33,7 @@
                 <label class="control-label col-lg-3">Học kỳ : </label>
                 <div class="col-lg-7">
                     <select class="form-control" name="hocky">
-
+                        <option value="">Chọn Học Kỳ</option>
                     <?php for($i = 1; $i<=10;$i++){ ?>
                         <option class="hoclky" value="<?php echo $i ?>"> <?php echo  $i ?> </option>
                     <?php } ?>
@@ -44,15 +44,19 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group <?php echo !empty(form_error('mamonhoc')) ? 'has-error' : '' ?> ">
                 <label class="control-label col-lg-3">Chọn Môn Học</label>
                 <div class="col-lg-7">
                     <select class="form-control" name="mamonhoc" id="mamonhoc">
-
+                         <option value="">Chọn môn học</option>
                     <?php  foreach ($list_monhoc as $value) { ?>
                         <option value="<?php echo $value ->mamonhoc ?>"> <?php echo $value ->tenmonhoc ?> </option>
                     <?php } ?>
                     </select>
+
+                      <?php if (!empty(form_error('mamonhoc'))) : ?>
+                        <span class="text-danger"><?php echo form_error('mamonhoc'); ?> </p></span>
+                    <?php endif; ?>
                    
                 </div>
             </div>

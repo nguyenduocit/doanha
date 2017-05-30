@@ -8,12 +8,10 @@ class Kehoachtheolop extends MY_Controller
         */
         parent::__construct();
         $this->load->model('ChuyennganhModel');
-        $this->load->model('KehoachchungModel');
         $this->load->model('KehoachtheolopModel');
+        $this->load->model('ChitietkehoachtheolopModel');
         $this->load->model('MonhocModel');
         $this->load->model('HedaotaoModel');
-        $this->load->model('BomonModel');
-        $this->load->model('KhoaModel');
         $this->load->model('LopModel');
         $this->load->model('AdminModel');
 
@@ -44,13 +42,12 @@ class Kehoachtheolop extends MY_Controller
 
                 $segment = $this->uri->segment(4);
                 $segment = intval($segment);
-                $input = array();
-                $input['limit'] = array($config['per_page'],$segment );
                         
 
                 // lấy ra danh sách khoa 
-                    $list = $this->KehoachtheolopModel->get_list($input);
+                    $list = $this->KehoachtheolopModel->getKeHoachTheoLop($segment ,$config['per_page']);
                 // gán truyền danh sách các khoa sang view 
+                    
                     $data['list'] = $list;
                     
                    
@@ -80,6 +77,9 @@ class Kehoachtheolop extends MY_Controller
             $this->form_validation->set_rules('machuyennganh','Bạn cần chọn vào mã chuyên ngành ','required');
             $this->form_validation->set_rules('lop','Bạn cần chọn lớp  ','required');
             $this->form_validation->set_rules('makehoachtheolop','Nhập vào mã kế hoạch ','required');
+            $this->form_validation->set_rules('mahedaotao','Chọn mã hệ đào tạo ','required');
+            
+            
 
             if($this->form_validation->run())
             {
@@ -88,38 +88,25 @@ class Kehoachtheolop extends MY_Controller
                
                 $machuyennganh = $this ->input ->post('machuyennganh');
 
-                $hocky = $this ->input ->post('hocky');
-
                 $namhoc = $this ->input ->post('namhoc');
 
                 $malop = $this ->input ->post('lop');
 
-                $monhoc = $this->input ->post('monhoc');
-
-                $solop = $this->input ->post('solop');
-
-                $monhoc = json_encode($monhoc);
+                $mahedaotao = $this ->input ->post('mahedaotao');
 
                 $activel = $this ->input ->post('active');
+
+               
 
 
 
                 // lây giá trị của mã khoa 
 
-                $where = " makehoachtheolop = '".$makehoachtheolops."' OR malop = '".$malop."' AND hocky = '".$hocky."' ";
+                $where = " makehoachtheolop = '".$makehoachtheolops."' OR malop = '".$malop."'";
 
                 $data = $this->KehoachtheolopModel->get_or($where);
 
-                if($solop == 0 or empty($solop))
-                {
-                    $this->session->set_flashdata('error',' Kế hoạch mở lớp đã hết hoặc chưa có kế hoạch mở lớp .');
-                }
-                else
-                {
-
-
-                
-
+              
                     if(empty($data))
                     {
                                     
@@ -128,12 +115,13 @@ class Kehoachtheolop extends MY_Controller
                                         'makehoachtheolop'  =>$makehoachtheolops,
                                         'machuyennganh'     =>$machuyennganh,
                                         'malop'             =>$malop,
-                                        'monhoc'            =>$monhoc,
-                                        'hocky'             => $hocky,
+                                        'mahedaotao'        =>$mahedaotao,
                                         'namhoc'            => $namhoc,
-                                        'nguoithaothac'      => $maGV,
-                                        'hienthi'           => $activel
+                                        'nguoithaotac'      => $maGV,
+                                        
+                                       
                                         );
+
 
                         //pre($data);
 
@@ -141,27 +129,6 @@ class Kehoachtheolop extends MY_Controller
 
                         if($this->KehoachtheolopModel->create($data))
                         {
-                            // gán số lớp bằng số lớp  - 1 
-                            $solop = $solop -1;
-                            $input = array();
-                            $input['where'] = array('chuyennganh'=>$machuyennganh , 'hocky' => $hocky);
-
-                            // lấy ra kế hoạch chung mới có mã chuyên ngành mới học ký vừa chọn
-
-                            $list = $this->KehoachchungModel->get_list($input);
-
-                            // lấy ra id của kế hoạch
-
-                            foreach ($list as $key => $value) {
-                                # code...
-                                $id = $value ->id ;
-                            }
-
-                            $data = array(
-                                            'solop' =>$solop
-                                );
-                            
-                            $this->KehoachchungModel->update($id,$data);
 
                             $this->session->set_flashdata('success','Insert  thành công');
                             redirect(kehoach_url('kehoachtheolop'));
@@ -177,12 +144,12 @@ class Kehoachtheolop extends MY_Controller
                     {
                         $this->session->set_flashdata('error','Mã kế hoạch đã tồn tại , lớp đã được xếp lịch .');
                     }
-                }
 
             }
         }
 
-       
+        $list_hedaotao = $this->HedaotaoModel->get_list();
+        $data['list_hedaotao'] = $list_hedaotao;
         
         $list_chuyennganh = $this->ChuyennganhModel->get_list();
         $data['list_chuyennganh'] = $list_chuyennganh;
@@ -190,6 +157,198 @@ class Kehoachtheolop extends MY_Controller
         $data['temp'] = 'admin/dulieu/kehoachtheolop/add';
         $this->load->view('admin/main',$data);  
     }
+
+    /*
+        add kế hoạch theo lớp
+    */
+    public function addKeHoachLop()
+    {
+        // id lớp trả về 
+        $id =  $this->uri->rsegment(3);
+        settype($id,"int");
+
+        // kiểm tra có tồn tại người dùng 
+        $maGV = isset_user($this->session->userdata('userdata'));
+
+        $input= array();
+        $input['where'] = array('id' =>$id);
+
+        // lấy ra thông tin lớp cần lập kế hoạch
+        $list_kehoachtheolop = $this->KehoachtheolopModel->get_list($input);
+        
+
+        $data['list_kehoachtheolop'] = $list_kehoachtheolop;
+
+        // nếu kế hoạch của lớp  k tồn tại
+        if(!$list_kehoachtheolop)
+        {
+            $this->session->set_flashdata('error','Không tồn tại kế hoạch - không thể lập kế hoạch cho chuyên ngành .');
+            // chuyển về trang kế hoạch chung
+            redirect(kehoach_url('kehoachtheolop'));
+        }
+
+        foreach ($list_kehoachtheolop as  $value) 
+        {
+            $makehoachtheolop = $value->makehoachtheolop;
+            $malop            = $value ->malop;
+            $mahedaotao       = $value ->mahedaotao;
+            $namhoc          = $value ->namhoc;
+          
+           
+        }
+      
+        if($this->input->post())
+        {
+            $this->form_validation->set_rules('machuyennganhs','Bạn cần chọn vào mã chuyên ngành ','required');
+            $this->form_validation->set_rules('hocky','Bạn cần chọn học kỳ  ','required');
+            $this->form_validation->set_rules('monhoc','Chọn môn học ','required');
+            if($this->form_validation->run())
+            {
+                
+                
+                $mamonhoc = $this->input->post('monhoc');
+                $hocky = $this->input->post('hocky');
+
+                $data = array(
+
+                    'makehoachtheolop' => $makehoachtheolop,
+                    'mamonhoc '        => $mamonhoc,
+                    'malop'            => $malop,
+                    'hocky'            =>  $hocky,
+                    'namhoc'            =>  $namhoc,
+                    'nguoithaotac'     =>  $maGV
+
+                    );
+
+
+                 if($this->ChitietkehoachtheolopModel->create($data))
+                    {
+
+                        $this->session->set_flashdata('success','Insert  thành công');
+                        redirect(kehoach_url('kehoachtheolop/addKeHoachLop/').$id);
+                    }
+                    else
+                    {
+                        $this->session->set_flashdata('error','Lỗi không thể insert dữ liệu');
+
+                    }
+
+            }
+        }
+        
+        // xuất dữ liệu 
+        
+
+        $input['where'] = array('malop' =>$malop);
+        // lấy ra thông tin lớp cần lập kế hoạch
+        $lop = $this->LopModel->get_list($input);
+
+        // gửi thông tin lớp qua view
+        $data['lop'] = $lop;
+
+
+        // lấy ra dữ liệu về hệ đào tạo 
+        $input['where'] = array('mahedaotao ' =>$mahedaotao);
+        // lấy ra thông tin lớp cần lập kế hoạch
+        $hedaotao = $this->HedaotaoModel->get_list($input);
+        // gửi thông tin lớp qua view
+        $data['hedaotao'] = $hedaotao;
+
+        $list_chuyennganh = $this->ChuyennganhModel->get_list();
+        $data['list_chuyennganh'] = $list_chuyennganh;
+
+        $list_monhoc = $this->MonhocModel->get_list();
+        $data['list_monhoc'] = $list_monhoc;
+
+        $list = $this->ChitietkehoachtheolopModel->viewChitietKeHoachLop($makehoachtheolop);
+        $data['list'] = $list;
+
+        // lưu dữ liệu tên giáo viên giảng dạy vào mảng
+        foreach ($list as $key => $value) {
+            # code...
+            $where = array('maGV' =>$value->giaovien);
+            $value->tengiaovien = $this->AdminModel->get_info_rule($where ,'hoten');
+        }
+
+        $data['temp'] = 'admin/dulieu/kehoachtheolop/addkehoachlop';
+        $this->load->view('admin/main',$data);  
+
+    }
+
+    /*
+        Lấy ra danh sách kế hoạch theo lớp
+    */
+ public function viewKeHoachLop()
+    {
+        // id lớp trả về 
+        $id =  $this->uri->rsegment(3);
+        settype($id,"int");
+
+        // kiểm tra có tồn tại người dùng 
+        $maGV = isset_user($this->session->userdata('userdata'));
+
+        $input= array();
+        
+        
+
+        // lấy ra thông tin lớp cần lập kế hoạch
+        $list_kehoachtheolop = $this->KehoachtheolopModel->get_list($input);
+        
+
+        $data['list_kehoachtheolop'] = $list_kehoachtheolop;
+
+        // nếu kế hoạch của lớp  k tồn tại
+        if(!$list_kehoachtheolop)
+        {
+            $this->session->set_flashdata('error','Không tồn tại kế hoạch - không thể lập kế hoạch cho chuyên ngành .');
+            // chuyển về trang kế hoạch chung
+            redirect(kehoach_url('kehoachtheolop'));
+        }
+
+        foreach ($list_kehoachtheolop as  $value) 
+        {
+            $makehoachtheolop = $value->makehoachtheolop;
+           $malop            = $value ->malop;
+           $mahedaotao       = $value ->mahedaotao;
+            $data['namhoc'] = $value->namhoc;
+           
+        }
+
+     
+        // xuất dữ liệu 
+        $input['where'] = array('malop' =>$malop);
+        // lấy ra thông tin lớp cần lập kế hoạch
+        $lop = $this->LopModel->get_list($input);
+
+        // gửi thông tin lớp qua view
+        $data['lop'] = $lop;
+
+
+        // lấy ra dữ liệu về hệ đào tạo 
+        $input['where'] = array('mahedaotao ' =>$mahedaotao);
+        // lấy ra thông tin lớp cần lập kế hoạch
+        $hedaotao = $this->HedaotaoModel->get_list($input);
+        // gửi thông tin lớp qua view
+        $data['hedaotao'] = $hedaotao;
+      
+        $list = $this->ChitietkehoachtheolopModel->viewChitietKeHoachLop($makehoachtheolop);
+        //pre($list);
+        $data['list'] = $list;
+
+        // lưu dữ liệu tên giáo viên giảng dạy vào mảng
+        foreach ($list as $key => $value) {
+            # code...
+            $where = array('maGV' =>$value->giaovien);
+            $value->tengiaovien = $this->AdminModel->get_info_rule($where ,'hoten');
+        }
+
+        $data['temp'] = 'admin/dulieu/kehoachtheolop/chitietkhlop';
+        $this->load->view('admin/main',$data);  
+
+    }
+
+
+    
 
 
     /*
@@ -255,14 +414,18 @@ class Kehoachtheolop extends MY_Controller
 
         $data = $this->MonhocModel->get_list($input);
 
-        
-        die(json_encode($data));
+        foreach ($data as  $value) {
+            # code...
+            
+            echo '<option  id="'.$value ->mamonhoc.'" malop="'.$value ->mamonhoc.'"  value="'.$value ->mamonhoc.'">'.$value ->tenmonhoc.'</option>';
+        }
+       
         
     }
 
 
     /*
-                    Chỉnh sửa thông tin  bộ môn
+        Chỉnh sửa thông tin  bộ môn
     */
 
     public function edit()
@@ -308,29 +471,28 @@ class Kehoachtheolop extends MY_Controller
             // kiểm tra khi người dùng kích vào  
         if($this->input->post())
         {
-            // kiểm tra giá trị mã
+            // kiểm tra giá trị form người dùng đã nhập 
             $this->form_validation->set_rules('machuyennganh','Bạn cần chọn vào mã chuyên ngành ','required');
             $this->form_validation->set_rules('lop','Bạn cần chọn lớp  ','required');
             $this->form_validation->set_rules('makehoachtheolop','Nhập vào mã kế hoạch ','required');
-
+            $this->form_validation->set_rules('mahedaotao','Chọn mã hệ đào tạo ','required');
+            
             if($this->form_validation->run())
             {
-                // lấy giá trị từ form
+                 // lấy ra dữ liệu từ form             
                 $makehoachtheolops = $this ->input ->post('makehoachtheolop');
                
                 $machuyennganh = $this ->input ->post('machuyennganh');
-
-                $hocky = $this ->input ->post('hocky');
 
                 $namhoc = $this ->input ->post('namhoc');
 
                 $malop = $this ->input ->post('lop');
 
-                $monhoc = $this->input ->post('monhoc');
-
-                $monhoc = json_encode($monhoc);
+                $mahedaotao = $this ->input ->post('mahedaotao');
 
                 $activel = $this ->input ->post('active');
+
+                
 
 
                 // kiểm tra xem mã kế hoạch có bị trùng hay không
@@ -355,17 +517,16 @@ class Kehoachtheolop extends MY_Controller
 
                         
 
-                       $data = array(
+                         $data = array(
                                         'makehoachtheolop'  =>$makehoachtheolops,
                                         'machuyennganh'     =>$machuyennganh,
                                         'malop'             =>$malop,
-                                        'monhoc'            =>$monhoc,
-                                        'hocky'             => $hocky,
+                                        'mahedaotao'        =>$mahedaotao,
                                         'namhoc'            => $namhoc,
-                                        'nguoithaothac'      => $maGV,
-                                        'hienthi'           => $activel
+                                        'nguoithaotac'      => $maGV,
+                                        
+                                        
                                         );
-
 
                         //kiểm tra và chạy câu lệnh update
 
@@ -388,6 +549,9 @@ class Kehoachtheolop extends MY_Controller
 
             }
         }
+        $list_hedaotao = $this->HedaotaoModel->get_list();
+        $data['list_hedaotao'] = $list_hedaotao;
+        
         // lấy ra danh sách chuyên ngành
         $list_chuyennganh = $this->ChuyennganhModel->get_list();
         $data['list_chuyennganh'] = $list_chuyennganh;
@@ -399,9 +563,9 @@ class Kehoachtheolop extends MY_Controller
     }
 
 
-                /*
-                     Xóa thông tin  bộ môn
-                */
+    /*
+         Xóa thông tin 
+    */
 
     function delete()
     {
@@ -428,6 +592,32 @@ class Kehoachtheolop extends MY_Controller
     }
 
 
+    function delete_Ajax()
+    {
+        $id = $_POST['id'];
+
+        $maGV = isset_user($this->session->userdata('userdata'));
+
+        settype($id, "int");
+        
+        
+        if ($this->ChitietkehoachtheolopModel->delete($id)) {
+            //code...
+            // $this->session->set_flashdata('success','Delet thành công ');
+
+            // redirect(kehoach_url('kehoachchuyennganh'));
+        }
+        else
+        {
+                        
+            // $this->session->set_flashdata('error',' Lỗi không thể xóa dữ liệu ');
+
+            // redirect(kehoach_url('kehoachchuyennganh'));
+        }
+                    
+    }
+
+
     // tìm kiếm theo tên
     function search()
     {
@@ -435,17 +625,34 @@ class Kehoachtheolop extends MY_Controller
         $key = $this->input->get('key-search');
         
 
-        $this->data['key'] = trim($key);
-        $input = array();
-        $input['like'] = array('makehoachtheolop',$key);
+        $key = trim($key);
 
-        $list = $this->KehoachtheolopModel->get_list($input);
+        $list = $this->KehoachtheolopModel->seachKeHoachTheoLop($key);
         
 
         $data['list'] = $list;
         // hiển thị ra phần view
         $data['temp'] = 'admin/dulieu/kehoachtheolop/index';
         $this->load->view('admin/main',$data);  
+    }
+
+
+    function search_view()
+    {
+
+        $key = $this->input->get('key-search');
+        
+
+        $key = trim($key);
+
+        $list = $this->ChitietkehoachtheolopModel->seach_view($key);
+        
+
+        $data['list'] = $list;
+        // hiển thị ra phần view
+        $data['temp'] = 'admin/dulieu/kehoachtheolop/chitietkhlop';
+        $this->load->view('admin/main',$data);  
+
     }
 
 

@@ -152,7 +152,24 @@
             
             return FALSE;
         }
+
         
+        
+         /**
+         * Lay thong tin cua row 
+         * $field: Cột muốn lấy dữ liệu
+         */
+         function get_Field($field= '')
+        {
+            
+            $this->db->select($field);
+            
+            $query = $this->db->get($this->table);
+            return $query->result();
+            
+           
+        }
+
         /**
          * Lay tong so
          */
@@ -301,12 +318,13 @@
 
 
         /**
-         * Join dữ liệu 
-         * 
+         *  Lấy ra dữ liệu bảng kế hoạch chung
+         @@ $start giá trị bắt đầu
+         @@ $num giá trị số phần tử hiện thị trên 1 trang
          */
         public function get_join($start , $num)
         {
-            $sql = "SELECT kehoachchung.*, tenchuyennganh,hoten , tenhedaotao  FROM kehoachchung  INNER JOIN chuyennganh ON kehoachchung.chuyennganh = chuyennganh.machuyennganh INNER JOIN admin ON kehoachchung.nguoithaotac = admin.maGV INNER JOIN hedaotao ON kehoachchung.mahedaotao = hedaotao.mahedaotao  ORDER BY id DESC LIMIT {$start},{$num}  ";
+            $sql = "SELECT kehoachchung.*, tenchuyennganh,hoten , tenhedaotao  FROM kehoachchung  INNER JOIN chuyennganh ON kehoachchung.chuyennganh = chuyennganh.machuyennganh INNER JOIN admin ON kehoachchung.nguoithaotac = admin.maGV INNER JOIN hedaotao ON kehoachchung.mahedaotao = hedaotao.mahedaotao  ORDER BY kehoachchung.id DESC LIMIT {$start},{$num}  ";
             // Thêm điều kiện limit cho câu truy vấn thông qua biến $input['limit'] 
             //(ví dụ $input['limit'] = array('10' ,'0')) 
             
@@ -315,13 +333,29 @@
             return $query->result();
 
         }
-        // $sql = "SELECT kehoachchuyennganh.*,tenchuyennganh,hoten,soTCLT, soTCTH ,TCM ,monhoc.giaovien 
-        //     FROM kehoachchuyennganh 
-        //     INNER JOIN  kehoachchung ON kehoachchuyennganh.makehoachchung = kehoachchung.makehoachchung 
-        //     INNER JOIN  chuyennganh  ON kehoachchung.chuyennganh = chuyennganh.machuyennganh
-        //     INNER JOIN  monhoc ON kehoachchuyennganh.mamonhoc = monhoc.mamonhoc
-        //     INNER JOIN admin ON  monhoc.giaovien= admin.maGV
-        //     WHERE chuyennganh = {$id} ";
+        
+
+        /*
+        *
+        * Seach kế hoạch chung
+        @@ giá trị key tìm kiếm 
+        *
+        */
+        public function get_Join_Seach($key)
+        {
+            $sql = "SELECT kehoachchung.*, tenchuyennganh,hoten , tenhedaotao  FROM kehoachchung  INNER JOIN chuyennganh ON kehoachchung.chuyennganh = chuyennganh.machuyennganh INNER JOIN admin ON kehoachchung.nguoithaotac = admin.maGV INNER JOIN hedaotao ON kehoachchung.mahedaotao = hedaotao.mahedaotao  WHERE makehoachchung  LIKE'%$key%' OR  tenchuyennganh LIKE'%$key%' OR hoten LIKE'%$key%' OR tenhedaotao LIKE'%$key%'  ";
+            
+            
+           $query = $this ->db-> query($sql);
+                       
+            return $query->result();
+
+        }
+
+        /*
+            Lấy ra dữ liệu bảng chi tiết kế hoạch chuyên ngành
+            @@ $id truyền vào giá trị id của kế hoạch chung cho chuyên ngành
+        */
         
         public function get_join_detail($id)
         {
@@ -331,13 +365,236 @@
             LEFT JOIN  chuyennganh  ON kehoachchung.chuyennganh = chuyennganh.machuyennganh
             LEFT JOIN  monhoc ON kehoachchuyennganh.mamonhoc = monhoc.mamonhoc
             LEFT JOIN admin ON  kehoachchung.nguoithaotac= admin.maGV
-            WHERE kehoachchuyennganh.machuyennganh = {$id} ";
+            WHERE kehoachchuyennganh.machuyennganh = {$id} ORDER BY kehoachchuyennganh.hocky ASC ";
             
            $query = $this ->db-> query($sql);
                        
             return $query->result();
 
         }
+         
+        /**
+         *  Lấy ra dữ liệu kế hoạch chung của lớp
+         @@ $start giá trị bắt đầu
+         @@ $num giá trị số phần tử hiện thị trên 1 trang
+         */
+        public function getKeHoachTheoLop($start , $num)
+        {
+            $sql = "SELECT kehoachtheolop.*,tenchuyennganh,tenhedaotao,tenlop,hoten
+            FROM  kehoachtheolop
+            INNER JOIN  chuyennganh ON kehoachtheolop.machuyennganh = chuyennganh.machuyennganh
+            LEFT JOIN   hedaotao  ON kehoachtheolop.mahedaotao= hedaotao.mahedaotao
+            LEFT JOIN   lop  ON kehoachtheolop.malop= lop.malop
+            LEFT JOIN admin ON  kehoachtheolop.nguoithaotac= admin.maGV
+            ORDER BY kehoachtheolop.id DESC LIMIT {$start},{$num}
+
+            ";
+            
+           $query = $this ->db-> query($sql);
+                       
+            return $query->result();
+        }
+
+
+         /**
+         *  Seach  dữ liệu kế hoạch chung của lớp
+         @@ $start giá trị bắt đầu
+         @@ $num giá trị số phần tử hiện thị trên 1 trang
+         */
+        public function seachKeHoachTheoLop($key)
+        {
+            $sql = "SELECT kehoachtheolop.*,tenchuyennganh,tenhedaotao,tenlop,hoten
+            FROM  kehoachtheolop
+            INNER JOIN  chuyennganh ON kehoachtheolop.machuyennganh = chuyennganh.machuyennganh
+            LEFT JOIN   hedaotao  ON kehoachtheolop.mahedaotao= hedaotao.mahedaotao
+            LEFT JOIN   lop  ON kehoachtheolop.malop= lop.malop
+            LEFT JOIN admin ON  kehoachtheolop.nguoithaotac= admin.maGV
+            WHERE makehoachtheolop LIKE'%$key%' OR  tenchuyennganh LIKE'%$key%' OR hoten LIKE'%$key%' OR tenhedaotao LIKE'%$key%'  OR tenlop LIKE'%$key%' OR namhoc LIKE'%$key%' 
+
+            ";
+            
+           $query = $this ->db-> query($sql);
+                       
+            return $query->result();
+        }
+
+
+        public function viewChitietKeHoachLop($id , $hocky = "")
+        {
+             $sql = "SELECT chitietkehoachtheolop.*, monhoc.mamonhoc, tenmonhoc,soTCLT,soTCTH,TCM,monhoc.giaovien,chitietkehoachtheolop.hocky,hoten,chitietkehoachtheolop.created_at 
+            FROM chitietkehoachtheolop
+            INNER JOIN  kehoachtheolop ON chitietkehoachtheolop.makehoachtheolop = kehoachtheolop.makehoachtheolop 
+            LEFT JOIN  lop  ON chitietkehoachtheolop.malop = lop.malop
+            LEFT JOIN  monhoc ON chitietkehoachtheolop.mamonhoc = monhoc.mamonhoc
+            LEFT JOIN admin ON  chitietkehoachtheolop.nguoithaotac= admin.maGV
+            WHERE chitietkehoachtheolop.makehoachtheolop = '{$id}' ORDER BY chitietkehoachtheolop.hocky ASC
+            ";
+            
+           $query = $this ->db-> query($sql);
+                       
+            return $query->result();
+        }
+
+
+
+        // laays ra danh sach quy dinh
+        public function viewQuyDinh($start , $num , $key ='')
+        {
+            $sql = " SELECT quydinh.*  FROM quydinh INNER JOIN admin ON admin.maGV = quydinh.maGV WHERE maquydinh LIKE'%$key%' OR hoten LIKE'%$key%' ORDER BY quydinh.id DESC  LIMIT {$start},{$num} 
+            ";
+
+            $query = $this ->db-> query($sql);
+                       
+            return $query->result();
+        }
+
+        public function viewPhanCong($start , $num , $key ='')
+        {
+            $sql = " SELECT phancong.* , hoten  FROM phancong INNER JOIN admin ON admin.maGV = phancong.maGV WHERE  hoten LIKE'%$key%' ORDER BY phancong.id DESC  LIMIT {$start},{$num} 
+            ";
+
+            $query = $this ->db-> query($sql);
+                       
+            return $query->result();
+
+        }
+
+        // lấy ra dữ liệu danh sách các môn học trong bảng chi tiết kế hoạch theo lớp 
+        /*
+        @@ $lop mã của lớp cần lấy ra;
+        @@ $học kỳ 
+        @@ lấy ra tất cả các môn học có cùng mã lớp cùng học kỳ 
+        */
+        public function listMon($lop,$hocky)
+        {
+            $sql = " SELECT chitietkehoachtheolop.id , chitietkehoachtheolop.mamonhoc , tenmonhoc  FROM chitietkehoachtheolop  INNER JOIN monhoc  ON chitietkehoachtheolop.mamonhoc = monhoc.mamonhoc WHERE   chitietkehoachtheolop.malop = '{$lop}' AND chitietkehoachtheolop.hocky = '{$hocky}'
+            ";
+
+            $query = $this ->db-> query($sql);
+                       
+            return $query->result();
+
+        }
+
+
+        /*
+        lấy ra danh sách giáo viên được phân công
+         */
+        
+        public function getChiTietPhanCong($id)
+        {
+            $sql = " SELECT * FROM chitietphancong  
+            INNER JOIN monhoc  ON chitietphancong.mamon = monhoc.mamonhoc 
+            INNER JOIN lop ON chitietphancong.malop = lop.malop
+            INNER JOIN admin ON chitietphancong.nguoithaotac = admin.maGV
+            WHERE   maphancong =  {$id}
+            ";
+
+            $query = $this ->db-> query($sql);
+                       
+            return $query->result();
+        }
+
+        // lấy ra danh sách giáo viên phân công theo từng kỳ năm 
+        public function getChiTietPhanCongs($id,$hocky="",$nam)
+        {
+            $sql = " SELECT * FROM chitietphancong  
+            INNER JOIN monhoc  ON chitietphancong.mamon = monhoc.mamonhoc 
+            INNER JOIN lop ON chitietphancong.malop = lop.malop
+            INNER JOIN admin ON chitietphancong.nguoithaotac = admin.maGV
+            WHERE   maphancong =  {$id} AND chitietphancong.hocky = {$hocky} AND chitietphancong.namhoc = '{$nam}'
+            ";
+
+            $query = $this ->db-> query($sql);
+                       
+            return $query->result();
+        }
+
+
+        public function getYear()
+        {
+            $sql = "SELECT DISTINCT namhoc FROM chitietphancong  ORDER BY namhoc  DESC ";
+
+            $query = $this ->db-> query($sql);
+                       
+            return $query->result();
+        }
+       
+
+        public function chiTiet($nam,$hocky)
+        {
+            $sql = "SELECT phancong.id, phancong.time ,phancong.maGV  ,phancong.created_at, admin.hoten  FROM phancong INNER  JOIN admin ON phancong.maGV = admin.maGV  WHERE phancong.namhoc = '{$nam}'AND phancong.hocky = {$hocky}  ";
+
+            $query = $this ->db-> query($sql);
+                       
+            return $query->result();
+        }
+
+
+
+         // lấy ra danh sách giáo viên phân công theo từng kỳ năm 
+        public function KeKhaiGioGiang($id,$nam)
+        {
+            $sql = " SELECT * FROM chitietphancong  
+            INNER JOIN monhoc  ON chitietphancong.mamon = monhoc.mamonhoc 
+            INNER JOIN phancong  ON chitietphancong.maphancong  = phancong.id
+            INNER JOIN lop ON chitietphancong.malop = lop.malop
+            INNER JOIN admin ON chitietphancong.nguoithaotac = admin.maGV
+            WHERE   phancong.maGV =  {$id}  AND chitietphancong.namhoc = '{$nam}' ORDER BY chitietphancong.hocky ASC
+            ";
+
+            $query = $this ->db-> query($sql);
+                       
+            return $query->result();
+        }
+
+
+        public function KeKhaiGioGiangBM($bomon,$namhoc)
+        {
+            $sql = "SELECT * FROM kekhaigiogiangbomon
+            INNER JOIN admin ON kekhaigiogiangbomon.idgv = admin.maGV
+            WHERE kekhaigiogiangbomon.mabomon = '{$bomon}' AND kekhaigiogiangbomon.namhoc = '{$namhoc}'
+            
+             
+             ";
+
+             $query = $this ->db-> query($sql);
+                       
+            return $query->result();
+        }
+
+
+
+         public function KeKhaiGioGiangKhoa($khoa,$namhoc)
+        {
+            $sql = "SELECT * FROM kekhaigiogiangbomon
+            INNER JOIN admin ON kekhaigiogiangbomon.idgv = admin.maGV
+            WHERE kekhaigiogiangbomon.makhoa = '{$khoa}' AND kekhaigiogiangbomon.namhoc = '{$namhoc}'
+            
+             
+             ";
+
+             $query = $this ->db-> query($sql);
+                       
+            return $query->result();
+        }
+
+
+        public function QuyDoiHoatDongKhac($id,$nam,$maloaimon)
+        {
+            $sql = " SELECT * FROM chitietphancong  
+            INNER JOIN monhoc  ON chitietphancong.mamon = monhoc.mamonhoc 
+            INNER JOIN phancong  ON chitietphancong.maphancong  = phancong.id
+            INNER JOIN lop ON chitietphancong.malop = lop.malop
+            INNER JOIN admin ON chitietphancong.nguoithaotac = admin.maGV
+            WHERE   phancong.maGV =  {$id}  AND chitietphancong.namhoc = '{$nam}' AND maloaimon ='$maloaimon' ORDER BY chitietphancong.hocky ASC
+            ";
+
+            $query = $this ->db-> query($sql);
+                       
+            return $query->result();
+        }
+
         
     }
 ?>

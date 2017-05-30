@@ -45,16 +45,19 @@
             </div>
 
 
-             <div class="form-group">
+             <div class="form-group <?php echo !empty(form_error('makhoa')) ? 'has-error' : '' ?>">
                 <div class="col-lg-2"></div>
                 <label class="control-label col-lg-1">Tên Khoa</label>
                 <div class="col-lg-7">
                     <select class="form-control" name="makhoa">
-
+                    <option value=""> Chọn khoa </option>
                     <?php  foreach ($list_khoa as $value) { ?>
                         <option value="<?php echo $value ->makhoa ?>"> <?php echo $value ->tenkhoa ?> </option>
                     <?php } ?>
                     </select>
+                    <?php if (!empty(form_error('makhoa'))) : ?>
+                        <span class="text-danger"><?php echo form_error('makhoa'); ?> </p></span>
+                    <?php endif; ?>
                    
                 </div>
             </div>

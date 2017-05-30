@@ -73,6 +73,7 @@
 
 
 				$this->form_validation->set_rules('viettat','Nhập vào viết tắt của bộ môn ','required');
+				$this->form_validation->set_rules('makhoa','chọn khoa cho bộ môn ','required');
 
 
 				if($this->form_validation->run())
@@ -180,6 +181,7 @@
 
 				$this->form_validation->set_rules('viettat','Nhập vào viết tắt của bộ môn ','required');
 
+				$this->form_validation->set_rules('makhoa','chọn khoa cho bộ môn ','required');
 
 				if($this->form_validation->run())
 				{

@@ -5,7 +5,7 @@
             <form method="get" action="<?php echo kehoach_url('kehoachtheolop/search') ?> ">
                 <div class="col-lg-4 pull-right" style="padding-right: 0px;">
                     <div class="input-group">
-                        <input type="text"  name="key-search" id="text-search"  class="form-control" placeholder="Nhập vào tên bộ môn ">
+                        <input type="text"  name="key-search" id="text-search"  class="form-control" placeholder="Nhập vào mã lớp ">
                         <span class="input-group-btn">
                           <a href="/"><input type="submit" value="Tìm kiếm " class="btn btn-info"></a>
                         </span>
@@ -31,14 +31,14 @@
                     <th>Mã kế hoạch</th>
                     <th>Chuyên ngành</th>
                     <th>Lớp </th>
-                    <th>Môn học </th>
-                    <th>Học kỳ</th>
+                    <th>Hệ đào tạo </th>
                     <th>Năm học</th>
                     <th>Người Tạo</th>
                     <th>Ngày Tạo</th>
-                    <th>Ngày Cập Nhật</th>
-                    <th class="text-center">Active</th>
-                    <th colspan="2" class="text-center">Thao tác</th>
+                    <th>Lập kế hoạch</th>
+                    <th>Chi tiết </th>
+                    <th class="text-center">Thao tác</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -51,37 +51,21 @@
                          <tr>
                             <td><?php echo $value ->id ?></td>
                             <td><?php echo $value ->makehoachtheolop?></td>
-                            <td><?php echo $value ->machuyennganh ?></td>
-                            <td><?php echo $value ->malop ?></td>
-                            <td>
-                                <?php 
-                                
-                                     $monhoc = json_decode($value->monhoc);
-                                     $count = count($monhoc);
-
-                                     for($i=0 ; $i<$count ; $i++)
-                                     {
-                                        echo $monhoc[$i]."<br/>";
-                                     }
-                                     
-                                ?>
-                            </td>
-                            <td><?php echo $value ->hocky ?></td>
+                            <td><?php echo $value ->tenchuyennganh ?></td>
+                            <td><?php echo $value ->tenlop ?></td>
+                            <td><?php echo $value ->tenhedaotao ?></td>
                             <td><?php echo $value ->namhoc ?></td>
-                            <td><?php echo $value ->nguoithaothac ?></td>
+                            <td><?php echo $value ->hoten ?></td>
                             <td><?php echo $value ->created_at ?></td>
-                            <td><?php echo $value ->updated_at ?></td>
-                                
-                            <?php   if($value ->hienthi == 0): ?>
-                                <td class="text-center">
-                                    <a href="" class="btn btn-xs btn-default">Ẩn</a>
-                                </td>
-                            <?php else :?>
-                                <td class="text-center">
-                                    <a href="" class="btn btn-xs btn-default">Hiện</a>
-                                </td>
-                             <?php endif; ?>
-               
+
+                            <td>
+                                <a href="<?php echo kehoach_url('kehoachtheolop/addKeHoachLop/').$value->id ?>"><button type="button" class="btn btn-primary">Lập Kế Hoạch</button></a>
+                            </td>
+
+                            <td>
+                                <a href="<?php echo kehoach_url('Kehoachtheolop/viewKeHoachLop/').$value->id ?>"><button type="button" class="btn btn-primary">CT Kế Hoạch</button></a>
+                            </td>
+
                             <td class="text-center">
                                 <a class="btn btn-xs btn-default" href=" <?php echo kehoach_url('kehoachtheolop/edit/').$value ->id ?>"><i class="fa fa-pencil"></i></a>
                                 <a class="btn btn-xs btn-danger btn-delete-action verify_action " href="<?php echo kehoach_url('kehoachtheolop/delete/').$value ->id ?>"><i class="fa fa-trash-o"></i></a>

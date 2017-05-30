@@ -23,7 +23,7 @@
             </div>
 
             <!-- list ra danh sách hệ đào tạo -->
-            <div class="form-group">
+            <div class="form-group <?php echo !empty(form_error('mahedaotao')) ? 'has-error' : '' ?> "  >
                 <div class="col-lg-1"></div>
                 <label class="control-label col-lg-2">Chọn hệ đào tạo :</label>
                 <div class="col-lg-7">
@@ -33,11 +33,15 @@
                         <option <?php echo $list->mahedaotao == $value->mahedaotao ? "selected":"" ?>   value="<?php echo $value ->mahedaotao ?>"> <?php echo $value ->tenhedaotao?> </option>
                     <?php } ?>
                     </select>
+
+                     <?php if (!empty(form_error('mahedaotao'))) : ?>
+                        <span class="text-danger"><?php echo form_error('mahedaotao'); ?> </p></span>
+                    <?php endif; ?>
                    
                 </div>
             </div>
             <!-- list ra danh sách khoa  -->
-             <div class="form-group">
+             <div class="form-group <?php echo !empty(form_error('makhoa')) ? 'has-error' : '' ?> "  >
                 <div class="col-lg-2"></div>
                 <label class="control-label col-lg-1">Tên Khoa</label>
                 <div class="col-lg-7">
@@ -47,11 +51,15 @@
                         <option <?php echo $list->khoa == $value->makhoa ? "selected":"" ?> value="<?php echo $value ->makhoa ?>"> <?php echo $value ->tenkhoa ?> </option>
                     <?php } ?>
                     </select>
+
+                    <?php if (!empty(form_error('makhoa'))) : ?>
+                        <span class="text-danger"><?php echo form_error('makhoa'); ?> </p></span>
+                    <?php endif; ?>
                    
                 </div>
             </div>
             <!-- list ra danh sách bộ môn -->
-             <div class="form-group">
+             <div class="form-group <?php echo !empty(form_error('mabomon')) ? 'has-error' : '' ?>  "  >
                 <div class="col-lg-1"></div>
                 <label class="control-label col-lg-2">Bộ môn :</label>
                 <div class="col-lg-7">
@@ -61,11 +69,16 @@
                         <?php } ?>
                    
                     </select>
+
+                    <?php if (!empty(form_error('mabomon'))) : ?>
+                        <span class="text-danger"><?php echo form_error('mabomon'); ?> </p></span>
+                    <?php endif; ?>
+                   
                 </div>
             </div>
 
             <!-- list ra danh sách chuyên ngành -->
-             <div class="form-group">
+             <div class="form-group <?php echo !empty(form_error('machuyennganh')) ? 'has-error' : '' ?> "  >
                 <div class="col-lg-1"></div>
                 <label class="control-label col-lg-2"> Chuyên Ngành :</label>
                 <div class="col-lg-7">
@@ -75,24 +88,15 @@
                         <?php } ?>
                    
                     </select>
+
+                    <?php if (!empty(form_error('machuyennganh'))) : ?>
+                        <span class="text-danger"><?php echo form_error('machuyennganh'); ?> </p></span>
+                    <?php endif; ?>
                    
                 </div>
             </div>
 
-            
-            <div class="form-group <?php echo !empty(form_error('hocky')) ? 'has-error' : '' ?>">
-                <label class="control-label col-lg-3">Học kỳ : </label>
-                <div class="col-lg-7">
-                    <select class="form-control" name="hocky">
-                    <?php for($i = 1; $i<=10;$i++){ ?>
-                        <option class="hoclky" <?php echo ($list->hocky == $i )?"selected":"" ?> value="<?php echo $i ?>"> <?php echo  $i ?> </option>
-                    <?php } ?>
-                    </select>
-                    <?php if (!empty(form_error('hocky'))) : ?>
-                        <span class="text-danger"><?php echo form_error('hocky'); ?> </p></span>
-                    <?php endif; ?>
-                </div>
-            </div>
+        
 
             <div class="form-group <?php echo !empty(form_error('namhoc')) ? 'has-error' : '' ?>">
                 <label class="control-label col-lg-3">Năm học </label>
@@ -108,20 +112,6 @@
                     <?php if (!empty(form_error('namhoc'))) : ?>
                         <span class="text-danger"><?php echo form_error('namhoc'); ?> </p></span>
                     <?php endif; ?>
-                </div>
-            </div>
-
-            
-
-            <div class="form-group">
-                <div class="col-lg-2"></div>
-                <label class="control-label col-lg-1">Active</label>
-                <div class="col-lg-3">
-                    <select class="form-control" name="active">
-                        <option <?php echo ($list->hienthi == 1)? "selected":"" ?> value="1">Hiện</option>
-                        <option <?php echo ($list->hienthi == 0)? "selected":"" ?> value="0">Ẩn</option>
-                    </select>
-                   
                 </div>
             </div>
 

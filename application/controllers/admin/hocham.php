@@ -264,14 +264,14 @@
 
             $this->data['key'] = trim($key);
             $input = array();
-            $input['like'] = array('tenkhoa',$key);
+            $input['like'] = array('tenhocham',$key);
          
             $list = $this->HochamModel->get_list($input);
             
 
             $data['list'] = $list;
             // hiển thị ra phần view
-           	$data['temp'] = 'admin/dulieu/khoa/index';
+           	$data['temp'] = 'admin/dulieu/hocham/index';
             $this->load->view('admin/main',$data);	
         }
 

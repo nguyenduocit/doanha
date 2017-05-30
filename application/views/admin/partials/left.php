@@ -45,9 +45,10 @@
                         <a><i class="fa fa-database"></i> Kế hoạch đào tạo <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="<?php echo kehoach_url('kehoachchung') ?>">Lập kế hoạch chung</a></li>
-                            <li><a href="<?php echo kehoach_url('kehoachchuyennganh') ?>">Lập kế hoạch theo chuyên ngành</a></li>
 
-                            <li><a href="<?php echo kehoach_url('kehoachtheolop') ?>">Lập KHDT theo lớp</a></li>
+                            <li><a href="<?php echo kehoach_url('kehoachtheolop') ?>">Lập KHDT theo lớp</a></li> 
+
+                            <li><a href="<?php echo kehoach_url('kehoachtheolop') ?>">Lập KHDT ngoài khoa</a></li>
                             
                         </ul>
                     </li>
@@ -57,8 +58,31 @@
                         <ul class="nav child_menu">
                             <li><a href="<?php echo kehoachgiangday_url('quydinh') ?>"> Quản lý quy định</a></li>
 
-                            <li><a href="<?php echo kehoachgiangday_url('kehoachtheolop') ?>">Lập KHDT theo lớp</a></li>
+                          
+
                             
+
+                            <li class="active"><a>Chuẩn bị phân công<span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu" style="display: block;">
+                                    <li class="sub_menu"><a href="<?php echo kehoachgiangday_url('duyetkehoachdt') ?>">Duyệt KHDT </a></li>
+                                    
+                                </ul>
+                            </li>
+
+                            <li><a href="<?php echo kehoachgiangday_url('phancong') ?>">Phân công</a></li>
+
+                            <li><a href="<?php echo kehoachgiangday_url('danhsachphancong') ?>">Danh sách phân công</a></li>
+                            
+                        </ul>
+                    </li>
+
+                   <li>
+                        <a><i class="fa fa-database"></i> Kê khai <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="<?php echo keKhai('kekhaigiogiang') ?>">Kê khai giờ giảng</a></li>
+                            
+                            <li><a href="<?php echo keKhai('kekhaigiogiangbm') ?>">Kê khai giờ giảng BM</a></li>
+                            <li><a href="<?php echo keKhai('kekhaigiogiangkhoa') ?>">Kê khai giờ giảng khoa</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -94,4 +118,5 @@
         </div>
         <!-- /menu footer buttons -->
     </div>
+</div>
 </div>

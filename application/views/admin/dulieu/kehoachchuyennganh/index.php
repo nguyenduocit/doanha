@@ -1,6 +1,6 @@
 <div class="x_panel">
     <div class="x_title">
-        <h2>Lập kế hoạch chung cho chuyên ngành  </h2>
+        <h2>Chi Tiết kế hoạch chung cho chuyên ngành  </h2>
 
 
         <div class="clearfix"></div>
@@ -92,9 +92,16 @@
                             <td><?php echo $value ->hocky ?></td>
                             <td>
                             <?php 
-                                $tengiaovien  = $value->tengiaovien;
-                                echo $tengiaovien ->hoten;
-                            
+                                if(!$value->tengiaovien)
+                                {
+                                    echo "N.A";
+                                }
+                                else
+                                {
+                                    $tengiaovien  = $value->tengiaovien;
+                                    echo $tengiaovien ->hoten;
+
+                                }
                             
                             ?>
                                 
@@ -110,19 +117,13 @@
                
             </tbody>
         </table>
-        <div class="pagina">
-            <nav aria-label="Page navigation" class="clearfix">
-                <div class="pagi">
-                    <?php
-                    echo $this->pagination->create_links();
-                    ?>
-                </div>
-                
-                <div class="pull-right" style="margin-top: 20px;">
-                    <a href="" type="button" class="btn btn-danger" onclick="history.go(-1); return false;" >Trở Về</a>
-                </div>
-            </nav>
-        </div>
+        
+        
+        <!-- <div class="x_content">
+            <div class="">
+                <i class="fa fa-print " style="font-size: 50px;"></i>
+            </div>
+        </div> -->
     </div>
 
 </div>

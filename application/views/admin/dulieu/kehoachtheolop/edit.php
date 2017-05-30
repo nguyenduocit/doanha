@@ -24,8 +24,26 @@
                 </div>
             </div>
 
+             <div class="form-group <?php echo !empty(form_error('mahedaotao')) ? 'has-error' : '' ?> "  >
+                <div class="col-lg-1"></div>
+                <label class="control-label col-lg-2">Chọn hệ đào tạo :</label>
+                <div class="col-lg-7">
+                    <select class="form-control" name="mahedaotao">
 
-            <div class="form-group ">
+                    <?php  foreach ($list_hedaotao as $value) { ?>
+                        <option <?php echo $list->mahedaotao == $value->mahedaotao ? "selected":"" ?>   value="<?php echo $value ->mahedaotao ?>"> <?php echo $value ->tenhedaotao?> </option>
+                    <?php } ?>
+                    </select>
+
+                     <?php if (!empty(form_error('mahedaotao'))) : ?>
+                        <span class="text-danger"><?php echo form_error('mahedaotao'); ?> </p></span>
+                    <?php endif; ?>
+                   
+                </div>
+            </div>
+
+
+            <div class="form-group <?php echo !empty(form_error('machuyennganh')) ? 'has-error' : '' ?> ">
                 <div class="col-lg-1"></div>
                 <label class="control-label col-lg-2">Chọn chuyên ngành :</label>
                 <div class="col-lg-7">
@@ -41,22 +59,7 @@
                    
                 </div>
             </div>
-            
-          
 
-            
-            <div class="form-group <?php echo !empty(form_error('hocky')) ? 'has-error' : '' ?>">
-                <label class="control-label col-lg-3">Học kỳ : </label>
-                <div class="col-lg-7">
-                     <select class="form-control" name="hocky" id="hocky">
-
-                        <?php for($i = 1; $i<=10;$i++){ ?>
-                            <option <?php echo ($list->hocky == $i)? "selected" :"" ?> class="hocky"  value="<?php echo $i ?>"> <?php echo  $i ?> </option>
-                        <?php } ?>
-                    </select>
-                   
-                </div>
-            </div>
 
             <div class="form-group <?php echo !empty(form_error('namhoc')) ? 'has-error' : '' ?>">
                 <label class="control-label col-lg-3">Năm học </label>
@@ -93,45 +96,6 @@
                     <?php endif; ?>
                 </div>
             </div>
-
-
-
-
-            <div class="form-group <?php echo !empty(form_error('mon')) ? 'has-error' : '' ?>">
-                <label class="control-label col-lg-3">Danh sách môn cần mở : </label>
-                <div class="col-lg-7" id="mons">
-                   
-                    <?php $monhoc = json_decode($list->monhoc); ?>
-                    <?php foreach ($list_monhoc as $key => $value): ?>
-                        <div class=" form-group col-lg-4">
-                         <input type="checkbox"
-                        <?php 
-                            if(in_array($value->mamonhoc, $monhoc))
-                            {
-                                echo "checked";
-                            }
-                        ?>  
-                        id="mamonhoc" name="monhoc[]" value="<?php echo $value ->mamonhoc ?>"><?php echo $value ->tenmonhoc ?>
-                        </div>
-                    <?php endforeach; ?>
-                   
-                   
-                </div>
-            </div>
-
-
-            <div class="form-group">
-                <div class="col-lg-2"></div>
-                <label class="control-label col-lg-1">Active</label>
-                <div class="col-lg-3">
-                    <select class="form-control" name="active">
-                        <option <?php echo ($list->hienthi == 1)? "selected":"" ?> value="1">Hiện</option>
-                        <option <?php echo ($list->hienthi == 0)? "selected":"" ?> value="0">Ẩn</option>
-                    </select>
-                   
-                </div>
-            </div>
-            
             
             <div class="form-actions no-margin-bottom" style="text-align:center;">
                 <a href="#" class="btn btn-danger  " onclick="history.go(-1); return false;" >Trở về</a>
